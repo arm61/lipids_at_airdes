@@ -1,0 +1,54 @@
+sudo: false
+
+language: python
+
+matrix:
+    include:
+        - os: linux
+          env: PY=2.7
+        - os: linux
+          env: PY=3.5
+        - os: linux
+          env: PY=3.6
+        - os: osx
+          language: generic
+          env: PY=3.6
+addons:
+    apt:
+        packages:
+            - libhdf5-serial-dev
+
+before_install:
+    - echo $TRAVIS_OS_NAME
+    - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
+          wget https://repo.continuum.io/miniconda/Miniconda3-latest-MacOSX-x86_64.sh -O miniconda.sh;
+      elif [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
+          wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh;
+      fi
+
+    - bash miniconda.sh -b -p $HOME/miniconda
+    - export PATH="$HOME/miniconda/bin:$PATH"
+    - hash -r
+    - conda update --yes conda
+
+    # Useful for debugging any issues with conda
+    - conda info -a
+
+    - conda create --yes -n conda-refnx python=$PY
+    - source activate conda-refnx
+    - conda install --yes numpy scipy h5py cython pandas xlrd flake8 six pytest ipywidgets IPython matplotlib traitlets
+    - pip install uncertainties ptemcee
+
+    # gradually expand flake8 to all of codebase
+    - flake8 --ignore=F401 refnx
+
+script:
+    # definitely want to test the _creflect module on travis.
+    - export REQUIRE_C=1
+    - export MPLBACKEND=agg
+    - python setup.py test
+
+notifications:
+    # Perhaps we should have status emails sent to the mailing list, but
+    # let's wait to see what people think before turning that on.
+    email: false

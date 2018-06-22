@@ -1,0 +1,11 @@
+{
+  "refnx/reduce/test/test_batch_reduce.py::TestReduce::()": true,
+  "refnx/reduce/test/test_batch_reduce.py::TestReductionCache::()": true,
+  "refnx/reduce/test/test_event.py::TestEvent::()": true,
+  "refnx/reduce/test/test_parabolic_motion.py::TestParabolicMotion::()": true,
+  "refnx/reduce/test/test_peak_utils.py::TestPeakUtils::()": true,
+  "refnx/reduce/test/test_platypusnexus.py::TestPlatypusNexus::()": true,
+  "refnx/reduce/test/test_rebin.py::TestRebin::()": true,
+  "refnx/reduce/test/test_reduce.py::TestReduce::()": true,
+  "refnx/reduce/test/test_xray.py::TestXray::()": true
+}
