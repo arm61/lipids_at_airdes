@@ -274,14 +274,14 @@ for i in range(0, flatchain.shape[1]):
     elif 'sol' in lab[i]:
         k = [a[1]*100, (a[1] - a[0])*100, (a[2] - a[1])*100]
         q = '{:.2f}'.format(k[0])
-        w = '{:.2f}'.format(k[1])
-        e = '{:.2f}'.format(k[2])
+        e = '{:.2f}'.format(k[1])
+        w = '{:.2f}'.format(k[2])
         total_pearsons.write('$' + str(q) + '^{+' + str(w) + '}_{-' + str(e) + '}$')
     else:
         k = [a[1], a[1] - a[0], a[2] - a[1]]
         q = '{:.2f}'.format(k[0])
-        w = '{:.2f}'.format(k[1])
-        e = '{:.2f}'.format(k[2])
+        e = '{:.2f}'.format(k[1])
+        w = '{:.2f}'.format(k[2])
         total_pearsons.write('$' + str(q) + '^{+' + str(w) + '}_{-' + str(e) + '}$')
     total_pearsons.close()
     
@@ -292,8 +292,8 @@ for i in range(0, len(lab2)):
     a = mquantiles(kl[i], prob=[0.025, 0.5, 0.975])
     k = [a[1], a[1] - a[0], a[2] - a[1]]
     q = '{:.2f}'.format(k[0])
-    w = '{:.2f}'.format(k[1])
-    e = '{:.2f}'.format(k[2])
+    e = '{:.2f}'.format(k[1])
+    w = '{:.2f}'.format(k[2])
     total_pearsons.write('$' + str(q) + '^{+' + str(w) + '}_{-' + str(e) + '}$')
     total_pearsons.close()
             
@@ -304,8 +304,8 @@ for i in range(0, len(lab2)):
     a = mquantiles(kl[i], prob=[0.025, 0.5, 0.975])
     k = [a[1], a[1] - a[0], a[2] - a[1]]
     q = '{:.2f}'.format(k[0])
-    w = '{:.2f}'.format(k[1])
-    e = '{:.2f}'.format(k[2])
+    e = '{:.2f}'.format(k[1])
+    w = '{:.2f}'.format(k[2])
     total_pearsons.write('$' + str(q) + '^{+' + str(w) + '}_{-' + str(e) + '}$')
     total_pearsons.close()
     
@@ -313,8 +313,8 @@ total_pearsons = open('{}dppc/{}.txt'.format(analysis_dir, 'vh'), 'w')
 a = mquantiles(flatchain[:, 2], prob=[0.025, 0.5, 0.975])
 k = [a[1], a[1] - a[0], a[2] - a[1]]
 q = '{:.2f}'.format(k[0])
-w = '{:.2f}'.format(k[1])
-e = '{:.2f}'.format(k[2])
+e = '{:.2f}'.format(k[1])
+w = '{:.2f}'.format(k[2])
 total_pearsons.write('$' + str(q) + '^{+' + str(w) + '}_{-' + str(e) + '}$')
 total_pearsons.close()
 

@@ -1,12 +1,11 @@
-reports/paper.pdf : reports/paper.tex reports/rsc.bib reports/esi.pdf
+reports/paper.pdf : reports/paper.tex reports/rsc.bib reports/esi.pdf reports/figures/* output/* output/dlpc/* output/dppc/* output/dmpc/* output/dmpg/*
 	cd reports && pdflatex paper.tex
 	cd reports && bibtex paper.aux
 	cd reports && pdflatex paper.tex
-reports/esi.pdf : reports/esi.tex
+reports/esi.pdf : reports/esi.tex reports/figures/*
 	cd reports && pdflatex esi.tex
 	cd reports && bibtex esi.aux
 	cd reports && pdflatex esi.tex
-reports/paper.tex : reports/figures/* 
 reports/figures/DLPC_all_data.png : output/dlpc4_sld.txt output/dlpc4_sld.txt output/dlpc4_sld.txt output/dlpc4_sld.txt output/dlpc_highconc_chain.txt src/visualization/plotref.py
 	cd src/visualization && ipython plotref.py ../../output/dlpc4_ref.txt ../../output/dlpc4_sld.txt ../../output/dlpc5_ref.txt ../../output/dlpc5_sld.txt ../../output/dlpc_highconc_chain.txt a DLPC
 reports/figures/dlpc4_all_corner.png : src/visualization/plotcorner.py output/dlpc_highconc_chain.txt
