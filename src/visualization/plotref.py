@@ -1,7 +1,7 @@
 
 # coding: utf-8
 
-# In[5]:
+# In[1]:
 
 
 import matplotlib.pyplot as plt
@@ -57,9 +57,9 @@ def plothist(tohist, gs, label, name):
     ax.set_xticks([a[0], a[1], a[2]])
     ax.set_xticklabels(['{:.1f}'.format(a[0]), '{:.1f}'.format(a[1]), '{:.1f}'.format(a[2])])
 
-mpl.rcParams['axes.labelsize']=24
-mpl.rcParams['xtick.labelsize']=16
-mpl.rcParams['ytick.labelsize']=16
+mpl.rcParams['axes.labelsize']=28
+mpl.rcParams['xtick.labelsize']=20
+mpl.rcParams['ytick.labelsize']=20
 
 l = [1, 10, 100, 1000, 10000]
 fig = plt.figure(figsize=(20, 6))

@@ -131,9 +131,9 @@
 \includegraphics{head_foot/DOI} & \noindent\LARGE{\textbf{Probabilistic determination of the effect of a deep-eutectic solvent on the structure of lipid monolayers}} \\%Article title goes here instead of the text "This is the title"
 \vspace{0.3cm} & \vspace{0.3cm} \\
 
- & \noindent\large{Adrian Sanchez-Fernandez,\textit{$^{ab}$}$^{\dag\P}$ Andrew R. McCluskey,\textit{$^{ac}$}$^{\dag}$ Karen J. Edler,\textit{$^{a}$}$^{\ast}$ Andrew J. Jackson,\textit{$^{bd}$} Richard A. Campbell,\textit{$^{e}$} and Thomas Arnold\textit{$^{abc}$}} \\%Author names go here instead of "Full name", etc.
+ & \noindent\large{Adrian Sanchez-Fernandez,\textit{$^{ab}$}$^{\dag\P}$ Andrew R. McCluskey,\textit{$^{ac}$}$^{\dag}$ Karen J. Edler,\textit{$^{a}$}$^{\ast}$ Andrew J. Jackson,\textit{$^{bd}$} Richard A. Campbell,\textit{$^{e}$} and Thomas Arnold\textit{$^{abcf}$}$^{\ast}$} \\%Author names go here instead of "Full name", etc.
 
-\includegraphics{head_foot/dates} & \noindent\normalsize{Deep eutectic solvents present a novel class of non-aqueous room temperature solvent, with tunable properties and capable of promoting self-assembly of surfactant molecules. However, the interactions between the deep eutectic solvent and the surface-active compounds is not well understood. In this work, we present the first example of the self-assembly of a phospholipid monolayer at the interface between air and a non-aqueous solvent. Furthermore, we use novel, chemically-relevant modelling of reflectometry measurements to show the ability for the deep eutectic solvent to have an interaction with the phosphocholine lipid head group, leading to an apparent reduction in the component volume compared to that observed in water. No such reduction was observed for the phosphatidylglycerol head group, indicating that the interaction is ion specific.} \\
+\includegraphics{head_foot/dates} & \noindent\normalsize{Deep eutectic solvents present a novel class of non-aqueous room temperature solvent, with tunable properties and capable of promoting self-assembly of surfactant molecules. However, the solvation model in these systems still challenges the classic understanding of amphiphilicity. In this work, we present the first example of the self-assembly of a phospholipid monolayer at the interface between air and a non-aqueous solvent. Furthermore, we use novel, chemically-relevant modelling of reflectometry measurements to show the ability for the deep eutectic solvent to have an interaction with the phosphocholine lipid head group, leading to an apparent reduction in the component volume compared to that observed in water. No such reduction was observed for the phosphatidylglycerol head group, indicating that the interaction is ion specific.} \\
 
 \end{tabular}
 
@@ -156,8 +156,9 @@
 \footnotetext{\textit{$^{c}$~Diamond Light Source, Harwell Campus, Didcot, OX11 0DE, UK.}}
 \footnotetext{\textit{$^{d}$~Department of Physical Chemistry, Lund University, SE-211 00 Lund, Sweden.}}
 \footnotetext{\textit{$^{e}$~Institut Laue-Langevin, 71 avenue des Martyrs, 38000, Grenoble, France.}}
+\footnotetext{\textit{$^{f}$~ISIS Neutron and Muon Source, Science and Technology Facilities Council, Rutherford Appleton Laboratory, Harwell Oxford, Didcot OX11 0QX, UK.}}
 \footnotetext{\textit{$^{\P}$~Present address: Department of Food Technology, Lund University, SE-211 00 Lund, Sweden}}
-\footnotetext{$^{\ast}$~Corresponding author: k.edler@bath.ac.uk}
+\footnotetext{$^{\ast}$~Corresponding author: k.edler@bath.ac.uk, tom.arnold@esss.se}
 
 
 %Please use \dag to cite the ESI in the main text of the article.
@@ -179,26 +180,31 @@ These solvents have recently shown the ability to promote the self-assembly of s
 
 The formation of phospholipid monolayers plays a key role in many biological and technological processes. Amphiphilic lipids commonly show a low soluibilty in the one of the two phases, leading to the formation of a stable monolayer at the interface.\cite{Mohwald1990} Phospholipids consist of a charged headgroup, either anionic or zwitterionic, and investigations at the air-salt water interface have revealed the importance of the lipid-ion interactions on structure, monomer packing, and stability of the monolayer.\cite{Mohwald1990,Kewalramani2010} Despite the broad interest in these systems, the presence of stable phospholipid monolayers in non-aqueous media has not been previously reported, to the best of the authors' knowledge. 
 
-Recent developments in computational resource and software has enabled powerful methodologies and algorithms to be harnessed by those from non-computer science backgrounds. This has mostly occurred through open-source software projects such as the Python language and the Jupyter notebooks framework.\cite{vanRossum1995,Kluyver2016} In the area of neutron and X-ray reflectometry data-analysis, this has led to the development of refnx,\cite{Nelson2018} a Python library for the fitting of layer-based models to reflectometry data. refnx enables the use of custom models that contain chemically-relevant information. This information includes constaints such as that the number density of phospholipid headgroups must be the same as the number density of pairs of phospholipid tailgroups and that the length of the tail chains should be equal to the Tanford length.\cite{Tanford1980}
+Recent developments in computational resource and software has enabled powerful methodologies and algorithms to be harnessed by those from non-computer science backgrounds. This has mostly occurred through open-source software projects such as the Python language and the Jupyter notebooks framework.\cite{vanRossum1995,Kluyver2016} In the area of neutron and X-ray reflectometry data-analysis, this has led to the development of refnx,\cite{Nelson2018} a Python library for the fitting of layer-based models to reflectometry data. refnx enables the use of custom models that contain chemically-relevant information. This information includes constaints such as that the number density of phospholipid headgroups must be the same as the number density of pairs of phospholipid tailgroups and that the length of the tail chains should not surpass a maximum of the Tanford length for a given chain.\cite{Tanford1980}
 
 The use of a Python library for fitting enables powerful probability distribution function (PDF) sampling methods to be used such as the Goodman \& Weare Affine Invariant Markov chain Monte Carlo (MCMC) Ensemble,\cite{Goodman2010} as implemented in the Python library emcee.\cite{Foreman-Mackey2013} This method allows for the sampling of a high-dimensionality parameter space, such as that which is relevant to reflectometry fitting, to be performed with relative ease. This results in estimatations of the inverse uncertainties associated with each parameter as well as information about the correlations between different parameters within the model. 
 
-In this work, we present the first investigation of the structure of phospholipid monolayers at the air-DES interface, as determined by chemical-context modelling of X-ray reflectometry measurements. Four different phospholipids; 1,2-dipalmitoyl-sn-glycero-3-phosphocholine (DPPC), 1,2-dimyristoyl-sn-glycero-3-phosphocholine (DMPC),  1,2-dilauroyl-sn-glycero-3-phosphocholine (DLPC) and 1,2-dimyristoyl-sn-glycero-3-phospho-(1'-rac-glycerol) (DMPG), were studied at the interface between a 1:2 mixture of choline chloride:glycerol and air. This allowed the nature of two, chemically distinct, phospholipid headgroups to be understood in this non-aqueous solvent, in addition to the effect of the tail chain length. 
+In this work, we present the first investigation of the structure of phospholipid monolayers at the air-DES interface, as determined by chemical-context modelling of X-ray reflectometry (XRR) measurements. Four different phospholipids; 1,2-dipalmitoyl-sn-glycero-3-phosphocholine (DPPC), 1,2-dimyristoyl-sn-glycero-3-phosphocholine (DMPC),  1,2-dilauroyl-sn-glycero-3-phosphocholine (DLPC) and 1,2-dimyristoyl-sn-glycero-3-phospho-(1'-rac-glycerol) (DMPG), were studied at the interface between a 1:2 mixture of choline chloride:glycerol and air. This allowed the nature of two, chemically distinct, phospholipid headgroups to be understood in this non-aqueous solvent, in addition to the effect of the tail chain length. 
 
 \section{Experimental}
 
 \subsection{Materials}
-Choline chloride (99 \%, Sigma-Aldrich) and glycerol (99 \%, Sigma-Aldrich) were purchased and used without further purification. The DES was prepared by mixing the precursors at the appropriate mole ratio, and heating at 80 $^\circ$C until a homogeneous, transparent liquid formed.\cite{Smith2014} The solvent was equilibrated overnight at 40 $^\circ$C and subsequently stored under a dry atmosphere. 
+Choline chloride (99 \%, Sigma-Aldrich) and glycerol (99 \%, Sigma-Aldrich) d$_9$-choline chloride (99 \%, 98 \% D, CK Isotopes) and d8-glycerol (99 \%, 98 \% D, CK Isotopes)  were purchased and used without further purification. The DES was prepared by mixing the precursors at the appropriate mole ratio, and heating at 80 $^\circ$C until a homogeneous, transparent liquid formed.\cite{Smith2014} The solvent was equilibrated overnight at 40 $^\circ$C and subsequently stored under a dry atmosphere. Due to the limited availability of the deuterated precursors, a fully protonated subphase (hDES) and a partially deuterated subphase (hdDES) were prepared and used during the neutron reflectometry (NR) experiment. The partiall deuterated subpahse was prepared using the following mixtures of precursors: 1 mole of 0.38 fraction of h-choline chloride/0.62 mole fraction of d-choline chloride; and 2 moles of 0.56 mole fraction of h-glycerol/0.44 mole fraction of d-glycerol. The solvent was subsequently prepared follow the procedure discussed above. 
 
 The water content on the DES was determined before and after each experiment by Karl-Fischer titration (Mettler Toledo DL32 Karl-Fischer Coulometer, Aqualine Electrolyte A, Aqualine Catholyte CG A) in order to ensure water presence was kept to a minimum. Those measurements showed that the water content of the solvent was kept below 0.3 wt\% during all the experimental procedures presented here, which we assume to be negligible and have little impact on the characteristics of the DES.\cite{Hammond2016,Hammond2017}
 
-DPPC (> 99 \%), DMPC (> 99 \%), and DMPG (> 99 \%) were supplied by Avanti Polar Lipids and DLPC (> 99 \%) was supplied by Sigma-Aldrich and all were used as received. Sample preparation was performed in situ using the standard method for the spreading of insoluble monolayers on water: a certain amount of the phospholipid solution was spread onto the liquid surface in order to provide a given surface concentration. After the evaporation of the chloroform, it is assumed that the resulting system is a solvent subphase with a monolayer of phospholipid at the interface. Surface concentration was modified by closing and opening the PTFE barriers of the Langmuir trough.
+DPPC (> 99 \%), DMPC (> 99 \%), and DMPG (> 99 \%) were supplied by Avanti Polar Lipids and DLPC (> 99 \%) was supplied by Sigma-Aldrich and all were used as received. Deuterated versions of DPPC (d62-DPPC, > 99 \%, deuterated tails-only) and DMPC (d54-DPPC, > 99 \%, deuterated tails-only) were supplied by Avanti Polar Lipids and used without further purification. These phospholipids were dissolved in chloroform (0.5 mg/mL) at room temperature. 
+
+In the XRR, sample preparation was performed in situ using the standard method for the spreading of insoluble monolayers on water: a certain amount of the phospholipid solution was spread onto the liquid surface in order to provide a given surface concentration. After the evaporation of the chloroform, it is assumed that the resulting system is a solvent subphase with a monolayer of phospholipid at the interface. Surface concentration was modified by closing and opening the PTFE barriers of the Langmuir trough. In order to minimise the volumes used in the NR experiment (to keep the cost of deuterated compounds to a managageable level) it was not possible to use a Langmuir trough. Instead, small Delrin adsorption troughs were used that did not have controlable barriers. This resulted in no control over the surface pressure of the measurement and therefore it was not possible to co-refine different NR contrasts. 
 
 \subsection{Methods}
-X-ray reflectivity measurements were taken on I07 at Diamond Light Source, at 12.5 keV photon energy using the double-crystal-deflector.\cite{Arnold2012} The reflected intensity was measured in a momentum transfer range from 0.018 to 0.7 \AA$^{-1}$. The data was normalised with respect to the incident beam and the background was measured from off-specular reflection and subsequently subtracted. The sample environment consisted of a PTFE Langmuir trough. Samples were equilibrated for at least one hour and preserved under argon atmosphere to minimise the adsorption of water by the subphase. Surface concentration was controlled through opening and closing the barriers of the Langmuir trough. X-ray reflectivity data were collected for each of the lipids, DMPC, DPPC, DLPC and DMPG and all measurements were made at 22 $^\circ$C at five different surface concentrations, however full analysis was only performed for the two highest surface concentrations where the monolayer would be in the condensed phase. 
+XRR measurements were taken on I07 at Diamond Light Source, at 12.5 keV photon energy using the double-crystal-deflector.\cite{Arnold2012} The reflected intensity was measured in a momentum transfer range from 0.018 to 0.7 \AA$^{-1}$. The data was normalised with respect to the incident beam and the background was measured from off-specular reflection and subsequently subtracted. The sample environment consisted of a PTFE Langmuir trough. Samples were equilibrated for at least one hour and preserved under argon atmosphere to minimise the adsorption of water by the subphase. Surface concentration was controlled through opening and closing the barriers of the Langmuir trough. XRR data were collected for each of the lipids, DMPC, DPPC, DLPC and DMPG at two surface pressures, 20 mNm$^{-1}$ and 30 mNm$^{-1}$, as measured with an aluminium Wilhelmy plate, all measurements were made at 22 $^\circ$C. 
+
+The NR experiments were performed on FIGARO at the Institut Laue-Langevin using the time-of-flight method.\cite{Campbell2011} Two angle regimes were measured to provide a momentum transfer range from 0.0005 to 0.18 \AA$^{-1}$. Small-volume Delrin adsorption troughs were used to support the sample. A single surface concentration for each system and contrast was measured. Similar to the X-ray procedure, samples were given enough time to equilibrate (at least two hours) and kept under inert atmosphere.
+
 
 \subsection{Data analysis}
-The use of reflectometry to analyse the structure of phospholipids on the surface of water has a histroy extending over many years.\cite{Mohwald1990,Kewalramani2010,Bayerl1990,Johnson1991,Clifton2012,Helm1987,Daillant1990} This has led to some variation in the models used to fit experimental data, shown in Table \ref{tab:water}. Although, there appears to be a general consensus that the volume of the phosphocholine is in the range from 320 \AA$^3$ to 360 \AA$^3$, and as a result this volume is often used as a physical constraint on the layer model when fitting reflectometry data. However, this work involves the use of a non-aqueous solvent system and we believe that the these literature values for the head group volumes may be unreliable in such media. This is due to the charged nature of the zwitterionic and anionic lipid heads having a significant interaction with the solvent in both the neutral water and the charged DES. 
+The use of reflectometry to analyse the structure of phospholipids on the surface of water has a histroy extending over many years.\cite{Mohwald1990,Kewalramani2010,Bayerl1990,Johnson1991,Clifton2012,Helm1987,Daillant1990} This has led to some variation in the models used to fit experimental data, shown in Table \ref{tab:water}. Although, there appears to be a general consensus that the component volume of the phosphocholine is in the range from 320 \AA$^3$ to 360 \AA$^3$, and as a result this volume is often used as a physical constraint on the layer model when fitting reflectometry data. However, since this work involves a non-aqueous solvent we do not know whether the head group component volumes used in the literature are derived from water-based measurements are appropriate for this work. The charged nature of the zwitterionic and anionic lipid heads means that they are likely to have different interactions with neutral water as compared to the charged DES.\cite{Sanchez-Fernandez2018} 
 
 \begin{table*}
 	\small
@@ -218,53 +224,62 @@ The use of reflectometry to analyse the structure of phospholipids on the surfac
 	\end{tabular*}
 \end{table*}
 
-To allow for the use of a chemically-relevant model, where the lipid head group volume was allowed to vary, the Python library refnx\cite{Nelson2018} as used. This software allows the inclusion of a custom chemically-relevant model from which the parameters to be fed into the Abel\`{e}s layer-model,\cite{Abeles1950,Parratt1954} that is typical for reflectometry fitting, are obtained. This custom model, along with Jupyter notebook showing in full the analysis performed, can be found in the ESI. 
+To allow for the use of a chemically-relevant model, where the lipid head group component volume was allowed to vary, the Python library refnx\cite{Nelson2018} as used. This software allows the inclusion of a custom chemically-relevant model from which the parameters to be fed into the Abel\`{e}s layer-model,\cite{Abeles1950,Parratt1954} that is typical for reflectometry fitting, are obtained. This custom model, along with Jupyter notebook showing in full the analysis performed, can be found in the ESI. 
 
-This chemically-relevant model involves considering the lipids as consisting of head groups and tail groups. The head groups have a calculated scattering length, $b_h$, (found as a summation of the number of electrons in the head group multiplied by the classical radius of the electron), and a volume, $V_h$. These head groups make up a layer with a given thickness, $d_h$, and roughness, $\sigma_h$, within which some volume fraction of solvent can intercalate, $\phi_h$. The tail groups also have a calculated scattering length, $b_t$, and a volume, $V_t$, however the thickness of the tail group layer, $d_t$, is found from the length of the carbon tail, $t_t$, and angle that the chain is tilted by with respect to the interface normal, $\theta_t$, 
+This chemically-relevant model involves considering the lipids as consisting of head groups and tail groups. The head groups have a calculated scattering length, $b_h$, (found as a summation of the number of electrons in the head group multiplied by the classical radius of the electron), and a component volume, $V_h$. These head groups make up a layer with a given thickness, $d_h$, and roughness, $\sigma_h$, within which some volume fraction of solvent can intercalate, $\phi_h$. The tail groups also have a calculated scattering length, $b_t$, and a component volume, $V_t$, however the thickness of the tail group layer, $d_t$, is found from the length of the carbon tail, $t_t$, and angle that the chain is tilted by with respect to the interface normal, $\theta_t$, 
 \begin{equation}
 \label{equ:tl}
 d_t = t_t \cos{\theta_t}.
 \end{equation}
-The air above the monolayer is also able to solvate the tail region by some volume fraction, $\phi_t$. The scattering length density of the tail and head layers used in the Abel\`{e}s model can therefore be found as follows, 
+The air above the monolayer is also able to solvate the tail region by some volume fraction, $\phi_t$. The scattering length density (SLD) of the tail and head layers used in the Abel\`{e}s model can therefore be found as follows, 
 \begin{equation}
 \text{SLD}_i = \frac{b_i}{V_i}(1 - \phi_i) + \text{SLD}_{s}\phi_i,
 \end{equation}
-where $\text{SLD}_{s}$ is the scattering length density of the superphase (air) and the subphase (DES) for the tail and head groups respectively, and $i$ indicates either the tail or head layer. In order to ensure that the number density of head groups and pairs of tail groups is the same, the following constraint was added to the model,
+where $\text{SLD}_{s}$ is the scattering length density of the superphase (air) and the subphase (DES) for the tail and head groups respectively, and $i$ indicates either the tail or head layer. In order to ensure that the number density of head groups and pairs of tail groups is the same, the following constraint was added to the model,\cite{Braun2017}
 \begin{equation}
 \label{equ:ht}
 d_h = \frac{V_hd_t(1-\phi_t)}{V_t(1-\phi_h)}. 
 \end{equation}
 
-This custom model was used to co-refine the volume of the lipid head group, $V_h$, for the two highest surface concentration measurements. Other parameters that were allowed to very were $\theta_t$, $\phi_t$, $\phi_h$, $\sigma_t$, and $\sigma_h$, while the parameters shown in Table \ref{tab:invariant} were held constant at the values given. The length of the carbon chain was kept constant to the value determined by the Tanford equation,\cite{Tanford1980} this is valid due to the condensed nature of the monolayer at this surface concentration resulting in the extended, staggered conformation of the chain being likely. 
+Initially, this custom model was used to co-refine the component volume of the lipid head group, $V_h$, for the two surface concentration XRR measurements. Some parameters were allowed to vary ($\theta_t$, $\phi_t$, $\phi_h$, $\sigma_t$, and $\sigma_h$); while others, shown in Table \ref{tab:invariant}, were held constant at the values given. The length of the carbon chain was kept constant to the value determined by the Tanford equation,\cite{Tanford1980} this is valid due to the condensed nature of the monolayer at this surface concentration resulting in the extended, staggered conformation of the chain being likely. 
 
 \begin{table}[h]
 	\small
-	\caption{\ The variant parameters within the chemically-sensible model. $^a$Values determined from Armen \emph{et al.}\cite{Armen1998} $^b$Values obtained from the Tanford formula where the carbon chains are assumed to be fully extended.\cite{Tanford1980} $^c$Values extracted from Sanchez-Fernandez \emph{et al.}\cite{Sanchez-Fernandez2016}}
+	\caption{\ The invariant parameters within the chemically-sensible model. $^a$Values determined from Armen \emph{et al.}\cite{Armen1998} $^b$Values obtained from the Tanford formula where the carbon chains are assumed to be fully extended.\cite{Tanford1980} $^c$Values extracted from Sanchez-Fernandez \emph{et al.}\cite{Sanchez-Fernandez2016}}
 	\label{tab:invariant}
-	\begin{tabular*}{0.48\textwidth}{@{\extracolsep{\fill}}ll}
+	\begin{tabular*}{0.48\textwidth}{@{\extracolsep{\fill}}llllll}
 		\hline
-		Parameter & Value \\
+		Component & $b_t$/fm & $b_h$/fm & $V_t$/\AA$^3$ & $t_t$/\AA & $\text{SLD}$/$\times10^{-6}$\AA$^{-2}$ \\
 		\hline
-		DP-$b_t$/fm & 6897 \\
-		DM-$b_t$/fm & 5985 \\
-		DL-$b_t$/fm & 5073 \\
-		PC-$b_h$/fm & 4674 \\
-		PG-$b_h$/fm & 4731 \\
-		DP-$V_t$/\AA$^3$ & 891$^a$ \\
-		DM-$V_t$/\AA$^3$ & 779$^a$ \\
-		DL-$V_t$/\AA$^3$ & 667$^a$ \\	
-		DP-$t_t$/\AA & 21.8$^b$ \\
-		DM-$t_t$/\AA & 19.3$^b$ \\
-		DL-$t_t$/\AA & 16.7$^b$ \\
-		$\text{SLD}_{\text{sup}}$/$\times10^{-6}$\AA$^{-2}$ & 0\\
-		$\text{SLD}_{\text{sub}}$/$\times10^{-6}$\AA$^{-2}$ & 10.8$^c$ \\
+		X-ray & & & & & \\
+		DLPC & 5073 & 4674 & 667$^a$ & 15.5$^b$ & -- \\
+		DMPC & 5985 & 4674 & 779$^a$ & 18.0$^b$ & -- \\
+		DPPC & 6897 & 4674 & 891$^a$ & 20.5$^b$ & -- \\
+		DMPG & 5985 & 4731 & 779$^a$ & 18.0$^b$ & --\\
+		Air & -- & -- & -- & -- & 0\\
+		DES & -- & -- & -- & -- & 10.8$^c$ \\
+		\hline
+		Neutron & & & & & \\
+		d54-DMPC & 5329.8 & 602.7 & 779$^a$ & 18.0$^b$ & -- \\
+		d62-DPPC & 6129.2 & 602.7 & 891$^a$ & 20.5$^b$ & -- \\
+		h-DES & -- & -- & -- & -- & 0.43$^c$  \\
+		hd-DES & -- & -- & -- & -- & 3.15$^c$ \\
 		\hline
 	\end{tabular*}
 \end{table}
 
-The fitting of the reflectometry model to the experimental involved transforming the reflectometry calculated from the model and the data into $Rq^4$ such that the artifact of the Fresnel decay was removed, before using the differential evoulation method available to refnx from the scipy library,\cite{Jones2001} to find the parameters that gave the best fit to the data. The parameter space was then probed using the MCMC method available through emcee, this allowed for an estimate of the PDF associated with each parameter. In the MCMC sampling, 200 walkers were used over 1000 iterations, following an equilibration of 200 iterations.
+The determined head group component volumes were then used in the refinement of the custom model against the NR measurements. Due to the lack of contrast present between the hydrogenated phosphocholine head group and the solvent, it was necessary to constrain the thickness and roughness of the head layer based on that determined from the highest surface concentration XRR measurement, this allowed the chain tilt angle to be constrained based on the following relationship, 
+\begin{equation}
+\label{equ:ct}
+\theta_t = \cos^{-1}\bigg(\frac{V_td_h(1-\phi_h)}{V_ht_t(1-\phi_t)}\bigg),
+\end{equation}
+ensuring that the number density of head groups and pairs of tails is held constant. Table \ref{tab:invariant} gives the details of the scattering length and SLDs used as invariant parameters in the custom model, while the tail component volumes and tail chain length were the same as for the XRR. 
+
+The refinement of the custom model to the experimental data involved transforming the reflectometry calculated from the model and the data into $Rq^4$ such that the artifact of the Fresnel decay was removed, before using the differential evoulation method available to refnx from the scipy library,\cite{Jones2001} to find the parameters that gave the best fit to the data. The parameter space was then probed using the MCMC method available through emcee, this allowed for an estimate of the PDF associated with each parameter. In the MCMC sampling, 200 walkers were used over 1000 iterations, following an equilibration of 200 iterations.
 
 \section{Results \& Discussion}
+
+\subsection{Solvent effect on lipid head component volumes}
 
 \begin{figure}
 	\centering
@@ -272,19 +287,19 @@ The fitting of the reflectometry model to the experimental involved transforming
 	\includegraphics[width=0.48\textwidth]{figures/DMPC_all_data}
 	\includegraphics[width=0.48\textwidth]{figures/DPPC_all_data}
 	\includegraphics[width=0.48\textwidth]{figures/DMPG_all_data}
-	\caption{The reflectometry profile, scattering length density profile and probability distribution function for each of the three phosphocholine containing lipids, the lower surface concentration is shown in blue while the higher in green; (a) DLPC, (b) DMPC, (c) DPPC, (d) DMPG. The reflectometry and SLD profiles have been offset in the $y$-axis for clarity. Figure files are available under MIT License.\cite{mccluskey_2018}}
+	\caption{The XRR profile, SLD profile and probability distribution function of the head component volume for each of the four lipids, the lower surface concentration is shown in blue while the higher in green; (a) DLPC, (b) DMPC, (c) DPPC, (d) DMPG. The NR and SLD profiles have been offset in the $y$-axis for clarity. Figure files are available under MIT License.\cite{mccluskey_2018}}
 	\label{fig:lipids}
 \end{figure}
-The custom model was co-refined for the highest two concentrations of all lipids. The resulting reflectometry profiles, associated scattering length density profiles and the PDF for the head group volume are shown in Figure \ref{fig:lipids}. Table \ref{tab:liptab} gives details of all varying parameters for each lipid, these are given with asymmetric error bars which correspond to a 95 \% confidence interval, the full PDF plots can be found in the ESI. 
+The custom model was co-refined for the highest two concentrations of all lipids. The resulting reflectometry profiles, associated SLD profiles and the PDF for the head group component volume are shown in Figure \ref{fig:lipids}. Table \ref{tab:liptab} gives details of all varying parameters for each lipid, these are given with asymmetric uncertainties that correspond to a 95 \% confidence interval, the full PDF plots can be found in the ESI. 
 \begin{table*}
 	\small
-	\caption{\ The best-fit values, and associated 95 \% confidence intervals for the varying parameters in the phosphocholine reflectometry model. The values of $d_t$ were found from the appropriate values of $\theta_t$ using Eqn. \ref{equ:tl}. The values of $d_h$ were obtained from the appropriate use of Eqn. \ref{equ:ht}}
+	\caption{\ The best-fit values, and associated 95 \% confidence intervals for the varying parameters in the XRR models. The values of $d_t$ were found from the appropriate values of $\theta_t$ using Eqn. \ref{equ:tl}. The values of $d_h$ were obtained from the appropriate use of Eqn. \ref{equ:ht}}
 	\label{tab:liptab}
 	\begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}lllllllll}
 		\hline
-		 & DLPC & & DMPC & & DPPC & & DMPG & \\
+		Lipid & DLPC & & DMPC & & DPPC & & DMPG & \\
+		Surface Pressure/mNm${-1}$ & 20 & 30 & 20 & 30 & 20 & 30 & 20 & 30 \\
 		\hline
-		Parameter & Conc 4 & Conc 5 & Conc 4 & Conc 5 & Conc 4 & Conc 5 & Conc 4 & Conc 5 \\
 		$\theta_t$/$^\circ$ & \input{../output/dlpc/angle4.txt} & \input{../output/dlpc/angle5.txt} & \input{../output/dmpc/angle4.txt} & \input{../output/dmpc/angle5.txt} & \input{../output/dppc/angle4.txt} & \input{../output/dppc/angle5.txt} & \input{../output/dmpg/angle4.txt} & \input{../output/dmpg/angle5.txt} \\
 		$d_t$/\AA & \input{../output/dlpc/tail4.txt} & \input{../output/dlpc/tail5.txt} & \input{../output/dlpc/tail4.txt} & \input{../output/dmpc/tail5.txt} & \input{../output/dppc/tail4.txt} & \input{../output/dppc/tail5.txt} & \input{../output/dmpg/tail4.txt} & \input{../output/dmpg/tail5.txt} \\
 		$d_h$/\AA & \input{../output/dlpc/head4.txt} & \input{../output/dlpc/head5.txt} & \input{../output/dlpc/head4.txt} & \input{../output/dmpc/head5.txt} & \input{../output/dppc/head4.txt} & \input{../output/dppc/head5.txt} & \input{../output/dmpg/head4.txt} & \input{../output/dmpg/head5.txt} \\
@@ -296,15 +311,11 @@ The custom model was co-refined for the highest two concentrations of all lipids
 	\end{tabular*}
 \end{table*}
 
-It can be seen from Table \ref{tab:liptab} that as would be expected, and as found in previous work,\cite{Mohwald1990,Vaknin1991} the thickness of the tail layer increases as the number of carbon atoms in the tail chains increases. Additionally, it is also observed that the value of the chain tilt either decreases, resulting in a tail thickness increase, or remains constant as the surface concentration increases. This indicates that for DLPC and DPPC these two highest surface concentration measurements where at a similar area per molecule, while the area per molecule slightly decreased between the two measurements for DMPC and DPPC. The phenomena of the tail thickness increasing with increasing surface pressure has been note before for DMPC at the air-water interface.\cite{Bayerl1990} Futhermore, as the surface concentration increases, the amount of solvent in the head layer decreases, or stays the same, this would be expected for the head layer becoming more closely-packed and therefore having less space available for solvent. 
+It can be seen from Table \ref{tab:liptab} that as would be expected, and as found in previous work,\cite{Mohwald1990,Vaknin1991} the thickness of the tail layer increases as the number of carbon atoms in the tail chains increases. Additionally, it is also observed that the value of the chain tilt either decreases, resulting in a tail thickness increase, or remains constant as the surface concentration increases. This indicates that for DLPC and DPPC these concentrations were in a condensed state, where futher increases in surface concentration had little effect on the monolayer's structure. For DMPC and DMPG, however, the area per molecule slightly decreased between the two measurements for DMPC and DPPC. The phenomena of the tail thickness increasing with increasing surface pressure has been note before for DMPC at the air-water interface.\cite{Bayerl1990} Futhermore, as the surface concentration increases, the amount of solvent in the head layer decreases, or stays the same. This would be expected for the head layer becoming more closely-packed and therefore having less space available for solvent. 
 
 The thickness of the tail layers in these condensed monolayers appears to agree well with values found for water-analogues (DMPC: $d_t=15.8$ \AA,\cite{Johnson1991} DPPC: $d_t=16.7$ \AA\cite{Helm1987}). Previous work indicates, although there has been no direct comparison, that the phosphatidylglycerol head layer may be thicker than phosphocholine at a water-air interface.\cite{Clifton2012,Johnson1991,Vaknin1991,Lawrie2000} However, the phosphocholine head group appears to be slightly expanded in the DES compared to in water (DPPC: $d_h=8.4$ \AA\cite{Helm1987}) resulting in the values for the thicknesses of the head layers being similar between the two head groups. 
 
-Figures \ref{fig:lipids}(a-c) show the PDF determined for the head group volume for each of the four lipids. The three lipids with a phosphocholine head group appear to show some small unsystematic variation as the tail length is changed, with values of \input{../output/dlpc/vh.txt} \AA$^{3}$ for DLPC, \input{../output/dmpc/vh.txt} \AA$^{3}$ for DMPC, and \input{../output/dppc/vh.txt} \AA$^{3}$ for DPPC. This is significantly less than the largest estimate of the head volume from literature sources, 360 \AA$^3$,\cite{Tardieu1973} and slightly less than lowest estimate, 319 \AA$^3$.\cite{Sun1994,Kucerka2004} The fact that the choline chloride component of the DES is charged in nature suggests that it may have a screening effect on the charged interactions between the zwitterionic phosphocholine head groups reducing the volume occupied.
-
-Figure \ref{fig:lipids}(d) contains the PDF for the phosphatidylglycerol head group volume, which was found to be \input{../output/dmpg/vh.txt} \AA$^{3}$. This agrees well with the literature value for this lipid head group of 291 \AA$^{3}$,\cite{Pan2012} indictating that the charged component of the DES solvent has little affect on the volume occupied by the phosphatidylglycerol head group. 
-
-It is possible to generalise the difference between the two lipid head groups in terms of the difference in their charges, with the phosphocholine group being zwitterionic in nature while the phosphatidylglycerol is anionic (Figure \ref{fig:heads}). The fact that the phosphatidylglycerol head group appears to show no deviation in volume at the air-DES interface, when compared with the air-water interface, suggests that the interaction resulting in the apparent decrease in volume of the phosphocholine head group is due to the positively-charged nitrogen group interacting with the negatively-charged chlorine component of the DES. The relatively small size of the chloride ion, compared to the choline moiety, means that it is able to intercalate more easily into the lipid head layer allowing for the charge screening to occur. 
+Figures \ref{fig:lipids}(a-c) show the PDF determined for the head group component volume for each of the four lipids. The three lipids with a phosphocholine head group appear to show some small unsystematic variation as the tail length is changed, with values of \input{../output/dlpc/vh.txt} \AA$^{3}$ for DLPC, \input{../output/dmpc/vh.txt} \AA$^{3}$ for DMPC, and \input{../output/dppc/vh.txt} \AA$^{3}$ for DPPC. This is significantly less than the largest estimate of the head group component volume from literature sources, 360 \AA$^3$,\cite{Tardieu1973} and slightly less than lowest estimate, 319 \AA$^3$.\cite{Sun1994,Kucerka2004} The fact that the choline chloride component of the DES is charged in nature suggests that it may have a screening effect on the charged interactions between the zwitterionic phosphocholine head groups reducing the volume occupied. Figure \ref{fig:lipids}(d) contains the PDF for the phosphatidylglycerol head group component volume, which was found to be \input{../output/dmpg/vh.txt} \AA$^{3}$. This value was found to be similar to that in water, 291 \AA$^{3}$,\cite{Pan2012} indictating that the charged nature of the DES has less of an effect on the volume occupied by the phosphatidylglycerol head group. 
 
 \begin{figure}
 	\centering
@@ -313,14 +324,43 @@ It is possible to generalise the difference between the two lipid head groups in
 	\label{fig:heads}
 \end{figure}
 
-Finally, previous work has suggested that the DES may provide a segregated environment to better solubilise phospholipid head groups.\cite{Bryant2016,Bryant2017}. Since both the phosphatidylglycerol and phosphocholine head groups contain a moeity of the DES solvent, it is possible for the choline terminal of the phosphocholine would favour the presence of glycerol, while the glycerol terminal of the phosphatidylglycerol would be favourably solubilised by the choline moeity of the DES. This solvent segregation of the DES may result in the phosphocholine head group being preferentially solubilised due to the greater molar abundence of glycerol in the 1:2 mixture, and hence giving a smaller volume for this head group than found in water.
+The variation in the head group component volumes observed my be interpreted in terms of solvation by a charged environment. Previous work has suggested that DES may provide segregated environments to enhance the solubility of charged moieties.\cite{Bryant2017,Bryant2016,Sanchez-Fernandez2018} Furthermore, it has also been shown that anionic groups have a certain affinity for the choline cations of the solvent.\cite{Sanchez-Fernandez2016} Since both the phosphatidylglycerol and the phosphocholine headgroup contain a moiety of the DES solvent (Figure \ref{fig:heads}), it is possible for the choline terminal of the phosphocholine to favour the presence of glycerol, while the glycerol terminal of the phosphatidylglycerol would be favourably solubilised by the choline moiety of the DES. This solvent segration of the DES may result in the phosphocholine head group being specifically solubilised attending to those affinities. Due to the highly ionic environment of the solvent, the electrostatic interactions will be suppressed to some extent and thus the apparent component volume of the head group may be reduced. However, this effect needs to be probed at atomistic resolution, which is not available to X-ray and neutron reflectometry.
+
+\subsection{Refinement of neutron reflectometry}
+The custom model was refined individually for each of the 4 NR measurements, two contrasts for each of the two lipids studied. The resulting reflectometry profiles and associated SLD profiles are given in Figure \ref{fig:neutron}. Table \ref{tab:neutron} gives details of all of the varying parameters for each measurement, again these are given with a asymmetric uncertainties corresponding to a 95 \% confidence interval and the full PDF plots can be found in the ESI.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.36\textwidth]{figures/nDMPC_all_data}
+	\includegraphics[width=0.36\textwidth]{figures/nDPPC_all_data}
+	\caption{The NR and SLD profiles for each of the four lipids, the h-DES contrast is shown in blue while the hd-DES in green; (a) DMPC, (b) DPPC. The NR and SLD profiles have been offset in the $y$-axis for clarity. Figure files are available under MIT License.\cite{mccluskey_2018}}
+	\label{fig:neutron}
+\end{figure}
+
+The ability to fit the NR data, as shown in Figure \ref{fig:neutron} indicates that the values found for the head group component volume is accurate for the given system. This further indicates that the literature values for the head group component volume found in the literature when solvated with water is not sufficient for modelling this system at the air-DES interface. 
+
+\begin{table}
+	\small
+	\caption{\ The best-fit values, and associated 95 \% confidence intervals for the varying parameters in the NR models. The values of $d_t$ were found from the appropriate values of $\theta_t$ using Eqn. \ref{equ:tl}, which in turn was obtained using Eqn. \ref{equ:ct}}
+	\label{tab:neutron}
+	\begin{tabular*}{0.48\textwidth}{@{\extracolsep{\fill}}lllll}
+		\hline
+		Lipid & DMPC & & DPPC & \\
+		Solvent & h-DES & hd-DES & h-DES & hd-DES \\
+		\hline
+		$\theta_t$/$^\circ$ & \input{../output/dmpc/angle3_neutron_n1.txt} & \input{../output/dmpc/angle3_neutron_n2.txt} & \input{../output/dppc/angle3_neutron_n1.txt} & \input{../output/dppc/angle3_neutron_n2.txt} \\
+		$d_t$/\AA & \input{../output/dmpc/tail3_neutron_n1.txt} & \input{../output/dmpc/tail3_neutron_n2.txt} & \input{../output/dppc/tail3_neutron_n1.txt} & \input{../output/dppc/tail3_neutron_n2.txt} \\ 
+		$\phi_t$/$\times10^{-2}$ & \input{../output/dmpc/solt3_neutron_n1.txt} & \input{../output/dmpc/solt3_neutron_n2.txt} & \input{../output/dppc/solt3_neutron_n1.txt} & \input{../output/dppc/solt3_neutron_n2.txt} \\
+		$\phi_h$/$\times10^{-2}$ & \input{../output/dmpc/solh3_neutron_n1.txt} & \input{../output/dmpc/solh3_neutron_n2.txt} & \input{../output/dppc/solh3_neutron_n1.txt} & \input{../output/dppc/solh3_neutron_n2.txt} \\
+		$\sigma_t$/\AA & \input{../output/dmpc/rought3_neutron_n1.txt} & \input{../output/dmpc/rought3_neutron_n2.txt} & \input{../output/dppc/rought3_neutron_n1.txt} & \input{../output/dppc/rought3_neutron_n2.txt} \\
+		\hline
+	\end{tabular*}
+\end{table}
 
 \section{Conclusions}
-Stable phosphocholine and phosphatidylglycerol lipid monolayers have been observed to at the air-DES interface, and chemically-relevant modelling was used to analyse X-ray reflectometry measurements quantifying the effect that the non-aqueous solvent on the volume occupied by the head group of each lipid. The structure of the tail regions were similar to those previously found at the air-water interface, while there was clear decrease in the volume occupied by the phosphocholine head group. This decrease was not also found in the phosphatidylglycerol head group volume. 
+Stable phosphocholine and phosphatidylglycerol lipid monolayers have been observed at the air-DES interface, and chemically-relevant modelling was used to analyse XRR measurements, allowing for the quantification of the effect that the non-aqueous solvent on the volume occupied by the head group of each lipid. The structure of the tail regions were similar to those previously found at the air-water interface, while there was clear decrease in the volume occupied by the phosphocholine head group. This decrease was not also found in the phosphatidylglycerol head group volume. A possible cause for this volume reduction may be the screening of the electrostatic charges between the lipid head groups by the DES. This screening may come about through the segregation of the DES, resulting in a specific interaction between the DES and the phosphocholine head. 
 
-A possible cause for this volume reduction may be the screening of the positive charge on the ammonium moeity of the phosphocholine, as this is a differential feature of the two lipid head groups. It appears that specific ion-ion interactions between the positively charged nitrogen and, most likely, the negatively charged chloride ion results in a modification to the head group charge density in DES compared to that in water. It is possible that the change observed to the head groups may be observed structurally, however insufficient instrument resolution did not allow for the precise identification of such changes. 
-
-The ability to determine the head group volume was facilitated by access to easy to use, and open-source software that allowed for the straightforward use a custom, chemically-relevant model to be used within the analysis of the X-ray reflectometry measurements. Futhermore, this work presents the first, to our knowledge, use of chemically-relevant parameterisation to ce-refine X-ray reflectometry measurements at different surface concentrations. 
+The ability to determine the head group volume was facilitated by access to easy to use, and open-source software that allowed for the straightforward use a custom, chemically-relevant model to be used within the analysis of the XRR measurements. Futhermore, this work presents the first, to our knowledge, use of chemically-relevant parameterisation to co-refine XRR measurements at different surface concentrations. 
 
 Until the emergence of ionic liquids and DES, only a limited number of molecular solvents exhibited the ability to promote self-assembly and, to the best of our knowledge, only water among those had demonstrated the formation of functional phospholipid monolayers at the air-liquid interface. Therefore, choline chloride:glycerol DES constitutes a novel environment where phospholipid membranes may be investigated. These possibilities include fundamental investigations of phospholipid monolayers in extreme environments (total or partial absence of water, cryogenic temperatures), protein membrane interactions and development of new technologies for drug delivery.
 

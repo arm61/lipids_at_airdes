@@ -239,23 +239,6 @@ printsld(4, structure_dppc4, global_objective)
 printsld(5, structure_dppc5, global_objective)
 
 
-# In[14]:
-
-
-# determine the average pearson r coefficient magnitude 
-from scipy.stats import pearsonr
-
-sumr = np.array([])
-
-for i in range(0, flatchain.shape[1]-1):
-    for j in range(i+1, flatchain.shape[1]):
-        sumr = np.append(sumr, np.abs(pearsonr(flatchain[:, i], flatchain[:, j])[0]))
-        
-total_pearsons = open('{}dppc_all_pearsons.txt'.format(analysis_dir), 'w')
-total_pearsons.write('pearsons {}'.format(np.average(sumr)))
-total_pearsons.close()
-
-
 # In[16]:
 
 
