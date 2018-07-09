@@ -26,9 +26,9 @@ import sys
 sys.path.insert(0, '/home/arm61/work/writing/articles/lipids_at_airdes/src/models')
 import mol_vol as mv
 
-data_dir = '/home/arm61/work/writing/articles/lipids_at_airdes/data/processed/DMPC/'
-figures_dir = '/home/arm61/work/writing/articles/lipids_at_airdes/reports/figures/'
-analysis_dir = '/home/arm61/work/writing/articles/lipids_at_airdes/output/'
+data_dir = sys.argv[1] + '/data/processed/DMPC/'
+figures_dir = sys.argv[1] + '/reports/figures/'
+analysis_dir = sys.argv[1] + '/output/'
 
 
 # In[2]:
@@ -208,7 +208,7 @@ printsld("3_n1", structure_dmpc3_n1, objective_n1, choose)
 # In[15]:
 
 
-lab = ['scale3', 'roughh3', 'solt3', 'solh3']
+lab = ['scale3', 'rought3', 'solt3', 'solh3']
 
 for i in range(0, flatchain.shape[1]):
     total_pearsons = open('{}dmpc/{}_neutron_n1.txt'.format(analysis_dir, lab[i]), 'w')
@@ -250,7 +250,7 @@ for i in range(0, len(lab2)):
 lab2 = ['tail3']
 kl = angle3 * dmpc3_n1.tail_length.value
 for i in range(0, len(lab2)):
-    total_pearsons = open('{}dmpc/{}_neutron_n2.txt'.format(analysis_dir, lab2[i]), 'w')
+    total_pearsons = open('{}dmpc/{}_neutron_n1.txt'.format(analysis_dir, lab2[i]), 'w')
     a = mquantiles(kl[i], prob=[0.025, 0.5, 0.975])
     k = [a[1], a[1] - a[0], a[2] - a[1]]
     q = '{:.2f}'.format(k[0])

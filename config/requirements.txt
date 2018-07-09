@@ -1,0 +1,10 @@
+cython
+numpy 
+scipy 
+matplotlib
+seaborn
+pandas
+corner
+h5py
+tqdm
+xlrd

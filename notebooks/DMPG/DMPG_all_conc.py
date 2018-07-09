@@ -26,9 +26,9 @@ import sys
 sys.path.insert(0, '/home/arm61/work/writing/articles/lipids_at_airdes/src/models')
 import mol_vol as mv
 
-data_dir = '/home/arm61/work/writing/articles/lipids_at_airdes/data/processed/DMPG/'
-figures_dir = '/home/arm61/work/writing/articles/lipids_at_airdes/reports/figures/'
-analysis_dir = '/home/arm61/work/writing/articles/lipids_at_airdes/output/'
+data_dir = sys.argv[1] + '/data/processed/DMPG/'
+figures_dir = sys.argv[1] + '/reports/figures/'
+analysis_dir = sys.argv[1] + '/output/'
 
 
 # In[2]:
@@ -237,23 +237,6 @@ printref(4, dataset4, model_dmpg4, global_objective, analysis_dir)
 printref(5, dataset5, model_dmpg5, global_objective, analysis_dir)
 printsld(4, structure_dmpg4, global_objective)
 printsld(5, structure_dmpg5, global_objective)
-
-
-# In[14]:
-
-
-# determine the average pearson r coefficient magnitude 
-from scipy.stats import pearsonr
-
-sumr = np.array([])
-
-for i in range(0, flatchain.shape[1]-1):
-    for j in range(i+1, flatchain.shape[1]):
-        sumr = np.append(sumr, np.abs(pearsonr(flatchain[:, i], flatchain[:, j])[0]))
-        
-total_pearsons = open('{}dmpg_all_pearsons.txt'.format(analysis_dir), 'w')
-total_pearsons.write('pearsons {}'.format(np.average(sumr)))
-total_pearsons.close()
 
 
 # In[16]:

@@ -1,7 +1,7 @@
 
 # coding: utf-8
 
-# In[1]:
+# In[3]:
 
 
 # Standard libraries to import
@@ -26,12 +26,14 @@ import sys
 sys.path.insert(0, '/home/arm61/work/writing/articles/lipids_at_airdes/src/models')
 import mol_vol as mv
 
-data_dir = '/home/arm61/work/writing/articles/lipids_at_airdes/data/processed/DPPC/'
-figures_dir = '/home/arm61/work/writing/articles/lipids_at_airdes/reports/figures/'
-analysis_dir = '/home/arm61/work/writing/articles/lipids_at_airdes/output/'
+#sys.argv = ['', '/home/arm61/work/writing/articles/lipids_at_airdes']
+
+data_dir = sys.argv[1] + '/data/processed/DPPC/'
+figures_dir = sys.argv[1] + '/reports/figures/'
+analysis_dir = sys.argv[1] + '/output/'
 
 
-# In[2]:
+# In[4]:
 
 
 # Reading datasets into refnx format
@@ -39,7 +41,7 @@ dataset4 = ReflectDataset('{}DPPC_Xray_conc4.dat'.format(data_dir))
 dataset5 = ReflectDataset('{}DPPC_Xray_conc5.dat'.format(data_dir))
 
 
-# In[3]:
+# In[5]:
 
 
 # Scattering length of the lipid head group 
@@ -57,7 +59,7 @@ head_tail_rough = 3.3
 tail_air_rough = 5.1
 
 
-# In[4]:
+# In[6]:
 
 
 # set up the chemical context system
@@ -67,7 +69,7 @@ dppc5 = mv.VolMono(head_sl, thick_heads[1], tail_sl, tail_length, chain_tilt[1],
                   head_tail_rough, tail_air_rough, reverse_monolayer=True, name='dppc5')
 
 
-# In[5]:
+# In[7]:
 
 
 # build the structures
@@ -78,7 +80,7 @@ structure_dppc4 = air(0, 0) | dppc4 | des(0, 0)
 structure_dppc5 = air(0, 0) | dppc5 | des(0, 0)
 
 
-# In[6]:
+# In[9]:
 
 
 dppc4.head_mol_vol.setp(vary=True, bounds=(72., 472.))
@@ -113,7 +115,7 @@ dppc5.thick_heads.constraint = (dppc5.head_mol_vol * dppc5.tail_length * dppc5.c
 structure_dppc5[-1].rough.setp(vary=False)
 
 
-# In[7]:
+# In[10]:
 
 
 # constraining the head and tail molecular volumes
@@ -122,7 +124,7 @@ lipids = [dppc4, dppc5]
 lipids = mv.set_contraints(lipids)
 
 
-# In[8]:
+# In[11]:
 
 
 # Creating a ReflectModel class object, add setting an initial scale 
@@ -138,7 +140,7 @@ model_dppc5.scale.setp(0.9364, vary=True, bounds=(0.005, 10))
 model_dppc5.bkg.setp(dataset5.y[-1], vary=False)
 
 
-# In[9]:
+# In[12]:
 
 
 # building the global objective
@@ -148,7 +150,7 @@ objective5 = Objective(model_dppc5, dataset5, transform=Transform('YX4'))
 global_objective = GlobalObjective([objective4, objective5])
 
 
-# In[10]:
+# In[13]:
 
 
 # A differential evolution algorithm is used to obtain an best fit
@@ -164,14 +166,14 @@ res = fitter.sample(1000, nthin=1, random_state=2, f='{}dppc_highconc_chain.txt'
 flatchain = fitter.sampler.flatchain
 
 
-# In[11]:
+# In[14]:
 
 
 #print total objective
 print(global_objective)
 
 
-# In[12]:
+# In[15]:
 
 
 head4 = flatchain[:, 2] * dppc4.tail_length.value * flatchain[:, 1] * (1 - flatchain[:, 5])
@@ -188,7 +190,7 @@ tail4 = flatchain[:, 1] * dppc4.tail_length.value
 tail5 = flatchain[:, 8] * dppc5.tail_length.value
 
 
-# In[13]:
+# In[16]:
 
 
 def printref(n, dataset, model, objective, analysis_dir):
@@ -239,7 +241,7 @@ printsld(4, structure_dppc4, global_objective)
 printsld(5, structure_dppc5, global_objective)
 
 
-# In[16]:
+# In[17]:
 
 
 lab = ['scale4', 'angle4', 'vh', 'roughh4', 'rought4', 'solt4', 'solh4', 

@@ -17,8 +17,9 @@ from scipy.stats.mstats import mquantiles
 
 
 n = len(sys.argv)
-print(sys.argv)
-figures_dir = '/home/arm61/work/writing/articles/lipids_at_airdes/reports/figures/'
+import os
+cwd = os.getcwd()
+figures_dir = cwd + '/../../reports/figures/'
 
 
 # In[6]:

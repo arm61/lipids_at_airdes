@@ -26,9 +26,9 @@ import sys
 sys.path.insert(0, '/home/arm61/work/writing/articles/lipids_at_airdes/src/models')
 import mol_vol as mv
 
-data_dir = '/home/arm61/work/writing/articles/lipids_at_airdes/data/processed/DMPC/'
-figures_dir = '/home/arm61/work/writing/articles/lipids_at_airdes/reports/figures/'
-analysis_dir = '/home/arm61/work/writing/articles/lipids_at_airdes/output/'
+data_dir = sys.argv[1] + '/data/processed/DMPC/'
+figures_dir = sys.argv[1] + '/reports/figures/'
+analysis_dir = sys.argv[1] + '/output/'
 
 
 # In[2]:
@@ -210,7 +210,7 @@ printsld("3_n2", structure_dmpc3_n2, objective_n2, choose)
 # In[15]:
 
 
-lab = ['scale3', 'roughh3', 'solt3', 'solh3']
+lab = ['scale3', 'rought3', 'solt3', 'solh3']
 
 for i in range(0, flatchain.shape[1]):
     total_pearsons = open('{}dmpc/{}_neutron_n2.txt'.format(analysis_dir, lab[i]), 'w')

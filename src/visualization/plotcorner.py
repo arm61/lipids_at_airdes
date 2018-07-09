@@ -19,7 +19,7 @@ f = sys.argv[1] #'../../output/dlpc_highconc_chain.txt'
 tail_length = float(sys.argv[2]) #1.54 + 1.265 * 12
 vole = float(sys.argv[3]) #667.)
 flatchain = analysis.curvefitter.load_chain(f)
-figures_dir = '/home/arm61/work/writing/articles/lipids_at_airdes/reports/figures/'
+figures_dir = sys.argv[5] + '/reports/figures/'
 lab = sys.argv[4] #'dlpc'
 
 
