@@ -39,7 +39,7 @@ def plotref(data, gs, offset):
     
 def plotsld(data, gs, offset):
     ax = plt.subplot(gs)
-    z = data[0]
+    z = data[0] - 10
     true_sld = data[1]
     ax.plot(z, true_sld + offset, linewidth=4)
     for i in range(2, data.shape[0]):
@@ -60,8 +60,8 @@ def plothist(tohist, gs, label, name):
     ax.set_xticklabels(['{:.1f}'.format(a[0]), '{:.1f}'.format(a[1]), '{:.1f}'.format(a[2])])
 
 mpl.rcParams['axes.labelsize']=28
-mpl.rcParams['xtick.labelsize']=20
-mpl.rcParams['ytick.labelsize']=20
+mpl.rcParams['xtick.labelsize']=18
+mpl.rcParams['ytick.labelsize']=18
 
 l = [1, 10, 100, 1000, 10000]
 fig = plt.figure(figsize=(20, 6))
@@ -77,7 +77,7 @@ for i in range(1, int(n)-3, 2):
     plotsld(data, gs[0, 1], f)
     f += 5
 j = analysis.curvefitter.load_chain(sys.argv[n-3])
-plothist(j[:, :, 2].flatten(), gs[0, 2], str(sys.argv[n-2]), sys.argv[n-1])
+plothist(j[:, :, 3].flatten(), gs[0, 2], str(sys.argv[n-2]), sys.argv[n-1])
 plt.tight_layout()
 plt.savefig('{}{}_all_data.png'.format(figures_dir, sys.argv[n-1]), dpi=600)
 plt.close()

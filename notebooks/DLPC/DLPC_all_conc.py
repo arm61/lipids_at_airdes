@@ -52,7 +52,7 @@ tail_sl = 5073e-6
 thick_heads = [13.1117, 11.0571]
 tail_length = 1.54 + 1.265 * 11
 chain_tilt = [0.792674, 0.79015]
-vols = [280.497, 891.]
+vols = [400.497, 891.]
 head_tail_rough = 3.3
 tail_air_rough = 5.1
 
@@ -81,14 +81,15 @@ structure_dlpc5 = air(0, 0) | dlpc5 | des(0, 0)
 # In[6]:
 
 
-dlpc4.head_mol_vol.setp(vary=True, bounds=(200., 500.))
-dlpc4.tail_mol_vol.setp(667., vary=False)
+dlpc4.head_mol_vol.setp(348., vary=True, bounds=(72., 472.))
+dlpc4.tail_mol_vol.setp(581., vary=True, bounds=(481, 681))
 dlpc4.tail_length.setp(vary=False)
-dlpc4.cos_rad_chain_tilt.setp(vary=True, bounds=(0.40, 0.96))
-dlpc4.rough_head_tail.setp(vary=True, bounds=(1, 12))
-dlpc4.rough_preceding_mono.setp(vary=True, bounds=(1,12))
-dlpc4.phit.setp(0, vary=True, bounds=(0, 0.1))
-dlpc4.phih.setp(0.312487, vary=True, bounds=(0, 0.9))
+dlpc4.cos_rad_chain_tilt.setp(0.69, vary=True, bounds=(0.59, 0.79))
+dlpc4.rough_head_tail.constraint = dlpc4.solventrough
+dlpc4.rough_preceding_mono.constraint = dlpc4.solventrough
+dlpc4.phit.setp(0, vary=False)
+dlpc4.phih.setp(0.149, vary=True, bounds=(0.049, 0.35))
+dlpc4.solventrough.setp(4.4, vary=True, bounds=(3.4, 5.4))
 dlpc4.solventsld.setp(vary=False)
 dlpc4.solventsldi.setp(vary=False)
 dlpc4.supersld.setp(vary=False)
@@ -97,13 +98,12 @@ dlpc4.thick_heads.constraint = (dlpc4.head_mol_vol * dlpc4.tail_length * dlpc4.c
                                 (1 - dlpc4.phit)) / (dlpc4.tail_mol_vol * (1 - dlpc4.phih))
 structure_dlpc4[-1].rough.setp(vary=False)
 
-dlpc5.tail_mol_vol.setp(667., vary=False)
-dlpc5.tail_length.setp(vary=False)
-dlpc5.cos_rad_chain_tilt.setp(vary=True, bounds=(0.40, 0.97))
-dlpc5.rough_head_tail.setp(vary=True, bounds=(1, 12))
-dlpc5.rough_preceding_mono.setp(vary=True, bounds=(1,12))
-dlpc5.phit.setp(0, vary=True, bounds=(0, 0.2))
-dlpc5.phih.setp(0.291706, vary=True, bounds=(0, 0.9))
+dlpc5.cos_rad_chain_tilt.setp(0.76, vary=True, bounds=(0.67, 0.9))
+dlpc5.rough_head_tail.constraint = dlpc5.solventrough
+dlpc5.rough_preceding_mono.constraint = dlpc5.solventrough
+dlpc5.phit.setp(0, vary=False)
+dlpc5.phih.setp(0.01, vary=True, bounds=(0.00001, 0.1))
+dlpc5.solventrough.setp(4.66, vary=True, bounds=(3.66, 5.66))
 dlpc5.solventsld.setp(vary=False)
 dlpc5.solventsldi.setp(vary=False)
 dlpc5.supersld.setp(vary=False)
@@ -174,18 +174,18 @@ print(global_objective)
 # In[12]:
 
 
-head4 = flatchain[:, 2] * dlpc4.tail_length.value * flatchain[:, 1] * (1 - flatchain[:, 5])
-head4 = head4 / (dlpc4.tail_mol_vol.value)
-a = 1 - flatchain[:, 6]
+head4 = flatchain[:, 3] * dlpc4.tail_length.value * flatchain[:, 1] 
+head4 = head4 / flatchain[:, 2]
+a = 1 - flatchain[:, 5]
 head4 = np.array(head4) / a
 
-head5 = flatchain[:, 2] * dlpc5.tail_length.value * flatchain[:, 8] * (1 - flatchain[:, 11])
-head5 = head5 / (dlpc5.tail_mol_vol.value)
-a = 1 - flatchain[:, 12]
+head5 = flatchain[:, 3] * dlpc5.tail_length.value * flatchain[:, 7]
+head5 = head5 / flatchain[:, 2]
+a = 1 - flatchain[:, 9]
 head5 = np.array(head5) / a
 
 tail4 = flatchain[:, 1] * dlpc4.tail_length.value
-tail5 = flatchain[:, 8] * dlpc5.tail_length.value
+tail5 = flatchain[:, 7] * dlpc5.tail_length.value
 
 
 # In[13]:
@@ -242,8 +242,8 @@ printsld(5, structure_dlpc5, global_objective)
 # In[15]:
 
 
-lab = ['scale4', 'angle4', 'vh', 'roughh4', 'rought4', 'solt4', 'solh4', 
-       'scale5', 'angle5', 'roughh5', 'rought5', 'solt5', 'solh5']
+lab = ['scale4', 'angle4', 'vt', 'vh', 'rough4', 'solh4', 
+       'scale5', 'angle5', 'rough5', 'solh5']
 for i in range(0, flatchain.shape[1]):
     total_pearsons = open('{}dlpc/{}.txt'.format(analysis_dir, lab[i]), 'w')
     a = mquantiles(flatchain[:, i], prob=[0.025, 0.5, 0.975])
@@ -279,7 +279,7 @@ for i in range(0, len(lab2)):
     w = '{:.2f}'.format(k[2])
     total_pearsons.write('$' + str(q) + '^{+' + str(w) + '}_{-' + str(e) + '}$')
     total_pearsons.close()
-    
+            
 lab2 = ['tail4', 'tail5']
 kl = [tail4, tail5]
 for i in range(0, len(lab2)):
@@ -292,12 +292,12 @@ for i in range(0, len(lab2)):
     total_pearsons.write('$' + str(q) + '^{+' + str(w) + '}_{-' + str(e) + '}$')
     total_pearsons.close()
     
-total_pearsons = open('{}dlpc/{}.txt'.format(analysis_dir, 'vh'), 'w')
-a = mquantiles(flatchain[:, 2], prob=[0.025, 0.5, 0.975])
-k = [a[1], a[1] - a[0], a[2] - a[1]]
-q = '{:.2f}'.format(k[0])
-e = '{:.2f}'.format(k[1])
-w = '{:.2f}'.format(k[2])
-total_pearsons.write('$' + str(q) + '^{+' + str(w) + '}_{-' + str(e) + '}$')
-total_pearsons.close()
+#total_pearsons = open('{}dlpc/{}.txt'.format(analysis_dir, 'vh'), 'w')
+#a = mquantiles(flatchain[:, 2], prob=[0.025, 0.5, 0.975])
+#k = [a[1], a[1] - a[0], a[2] - a[1]]
+#q = '{:.2f}'.format(k[0])
+#e = '{:.2f}'.format(k[1])
+#w = '{:.2f}'.format(k[2])
+#total_pearsons.write('$' + str(q) + '^{+' + str(w) + '}_{-' + str(e) + '}$')
+#total_pearsons.close()
 

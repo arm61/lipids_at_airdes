@@ -46,17 +46,16 @@ mpl.rcParams['axes.labelsize']=22
 mpl.rcParams['xtick.labelsize']=14
 mpl.rcParams['ytick.labelsize']=14
 
-label=['θ$_t$/°', r'ϕ$_t/\times10^{-2}$', r'ϕ$_h/\times10^{-2}$', 'σ$_t$/Å']
+label=['θ$_t$/°', r'ϕ$_t/\times10^{-2}$', r'ϕ$_h/\times10^{-2}$', 'σ$_{t,h,s}$/Å']
 
-new_flat = np.zeros((flatchain.shape[0] * flatchain.shape[1], 4))
-a = (vole * (1 - flatchain[:, :, 3]) * get_value('head5')) 
-b = (get_value('vh') * tail_length * (1 - flatchain[:, :, 2]))
-angle3 = a / b
+print(flatchain.shape)
 
-new_flat[:, 0] = np.rad2deg(np.arccos(angle3.flatten()))
-new_flat[:, 1] = flatchain[:, :, 2].flatten()
-new_flat[:, 2] = flatchain[:, :, 3].flatten()
-new_flat[:, 3] = flatchain[:, :, 1].flatten()
+new_flat = np.zeros((flatchain.shape[0]*flatchain.shape[1], 4))
+
+new_flat[:, 0] = np.rad2deg(np.arccos(flatchain[:, :, 1].flatten()))
+new_flat[:, 1] = (1 - ((get_value('head4') * get_value('vt') * (1 - flatchain[:, :, 3].flatten())) / (get_value('vh') * flatchain[:, :, 1].flatten() * tail_length))) * 100
+new_flat[:, 2] = flatchain[:, :, 3].flatten() * 100
+new_flat[:, 3] = flatchain[:, :, 2].flatten()
 
 
 plt1 = corner.corner(new_flat, max_n_ticks=3, labels=label)

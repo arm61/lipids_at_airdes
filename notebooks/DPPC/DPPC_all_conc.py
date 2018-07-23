@@ -84,13 +84,14 @@ structure_dppc5 = air(0, 0) | dppc5 | des(0, 0)
 
 
 dppc4.head_mol_vol.setp(vary=True, bounds=(72., 472.))
-dppc4.tail_mol_vol.setp(891., vary=False)
+dppc4.tail_mol_vol.setp(891., vary=True, bounds=(600, 1000))
 dppc4.tail_length.setp(vary=False)
 dppc4.cos_rad_chain_tilt.setp(vary=True, bounds=(0.56, 0.96))
-dppc4.rough_head_tail.setp(vary=True, bounds=(1, 12))
-dppc4.rough_preceding_mono.setp(vary=True, bounds=(1,12))
-dppc4.phit.setp(0, vary=True, bounds=(0, 0.2))
-dppc4.phih.setp(0.312487, vary=True, bounds=(0, 0.9))
+dppc4.rough_head_tail.constraint = dppc4.solventrough
+dppc4.rough_preceding_mono.constraint = dppc4.solventrough
+dppc4.phit.setp(0, vary=False)
+dppc4.phih.setp(0, vary=True, bounds=(0.1, 0.9))
+dppc4.solventrough.setp(vary=True, bounds=(2.5, 12))
 dppc4.solventsld.setp(vary=False)
 dppc4.solventsldi.setp(vary=False)
 dppc4.supersld.setp(vary=False)
@@ -100,12 +101,13 @@ dppc4.thick_heads.constraint = (dppc4.head_mol_vol * dppc4.tail_length * dppc4.c
 structure_dppc4[-1].rough.setp(vary=False)
 
 dppc5.tail_mol_vol.setp(891., vary=False)
-dppc5.tail_length.setp(vary=False)
+dppc4.tail_mol_vol.setp(891., vary=True, bounds=(600, 1000))
 dppc5.cos_rad_chain_tilt.setp(vary=True, bounds=(0.57, 0.97))
-dppc5.rough_head_tail.setp(vary=True, bounds=(1, 12))
-dppc5.rough_preceding_mono.setp(vary=True, bounds=(1,12))
-dppc5.phit.setp(0, vary=True, bounds=(0, 0.2))
-dppc5.phih.setp(0.291706, vary=True, bounds=(0, 0.9))
+dppc5.rough_head_tail.constraint = dppc5.solventrough
+dppc5.rough_preceding_mono.constraint = dppc5.solventrough
+dppc5.phit.setp(0, vary=False)
+dppc5.phih.setp(0, vary=True, bounds=(0.1, 0.9))
+dppc5.solventrough.setp(vary=True, bounds=(2.5, 12))
 dppc5.solventsld.setp(vary=False)
 dppc5.solventsldi.setp(vary=False)
 dppc5.supersld.setp(vary=False)
@@ -173,23 +175,6 @@ flatchain = fitter.sampler.flatchain
 print(global_objective)
 
 
-# In[15]:
-
-
-head4 = flatchain[:, 2] * dppc4.tail_length.value * flatchain[:, 1] * (1 - flatchain[:, 5])
-head4 = head4 / (dppc4.tail_mol_vol.value)
-a = 1 - flatchain[:, 6]
-head4 = np.array(head4) / a
-
-head5 = flatchain[:, 2] * dppc5.tail_length.value * flatchain[:, 8] * (1 - flatchain[:, 11])
-head5 = head5 / (dppc5.tail_mol_vol.value)
-a = 1 - flatchain[:, 12]
-head5 = np.array(head5) / a
-
-tail4 = flatchain[:, 1] * dppc4.tail_length.value
-tail5 = flatchain[:, 8] * dppc5.tail_length.value
-
-
 # In[16]:
 
 
@@ -241,11 +226,28 @@ printsld(4, structure_dppc4, global_objective)
 printsld(5, structure_dppc5, global_objective)
 
 
+# In[15]:
+
+
+head4 = flatchain[:, 3] * dppc4.tail_length.value * flatchain[:, 1] 
+head4 = head4 / flatchain[:, 2]
+a = 1 - flatchain[:, 5]
+head4 = np.array(head4) / a
+
+head5 = flatchain[:, 3] * dppc5.tail_length.value * flatchain[:, 7]
+head5 = head5 / flatchain[:, 2]
+a = 1 - flatchain[:, 9]
+head5 = np.array(head5) / a
+
+tail4 = flatchain[:, 1] * dppc4.tail_length.value
+tail5 = flatchain[:, 7] * dppc5.tail_length.value
+
+
 # In[17]:
 
 
-lab = ['scale4', 'angle4', 'vh', 'roughh4', 'rought4', 'solt4', 'solh4', 
-       'scale5', 'angle5', 'roughh5', 'rought5', 'solt5', 'solh5']
+lab = ['scale4', 'angle4', 'vt', 'vh', 'rough4', 'solh4', 
+       'scale5', 'angle5', 'rough5', 'solh5']
 for i in range(0, flatchain.shape[1]):
     total_pearsons = open('{}dppc/{}.txt'.format(analysis_dir, lab[i]), 'w')
     a = mquantiles(flatchain[:, i], prob=[0.025, 0.5, 0.975])
@@ -294,12 +296,12 @@ for i in range(0, len(lab2)):
     total_pearsons.write('$' + str(q) + '^{+' + str(w) + '}_{-' + str(e) + '}$')
     total_pearsons.close()
     
-total_pearsons = open('{}dppc/{}.txt'.format(analysis_dir, 'vh'), 'w')
-a = mquantiles(flatchain[:, 2], prob=[0.025, 0.5, 0.975])
-k = [a[1], a[1] - a[0], a[2] - a[1]]
-q = '{:.2f}'.format(k[0])
-e = '{:.2f}'.format(k[1])
-w = '{:.2f}'.format(k[2])
-total_pearsons.write('$' + str(q) + '^{+' + str(w) + '}_{-' + str(e) + '}$')
-total_pearsons.close()
+#total_pearsons = open('{}dppc/{}.txt'.format(analysis_dir, 'vh'), 'w')
+#a = mquantiles(flatchain[:, 3], prob=[0.025, 0.5, 0.975])
+#k = [a[1], a[1] - a[0], a[2] - a[1]]
+#q = '{:.2f}'.format(k[0])
+#e = '{:.2f}'.format(k[1])
+#w = '{:.2f}'.format(k[2])
+#total_pearsons.write('$' + str(q) + '^{+' + str(w) + '}_{-' + str(e) + '}$')
+#total_pearsons.close()
 

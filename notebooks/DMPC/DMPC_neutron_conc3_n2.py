@@ -93,20 +93,19 @@ def get_value(file):
 
 
 dmpc3_n2.head_mol_vol.setp(get_value('vh'), vary=False, bounds=(72., 472.))
-dmpc3_n2.tail_mol_vol.setp(891., vary=False)
+dmpc3_n2.tail_mol_vol.setp(get_value('vt'), vary=False)
 dmpc3_n2.tail_length.setp(vary=False)
-dmpc3_n2.cos_rad_chain_tilt.setp(get_value('angle5'), vary=True, bounds=(0.1, 0.9))
-dmpc3_n2.rough_head_tail.setp(get_value('roughh5'), vary=False, bounds=(0.1, 20))
-dmpc3_n2.rough_preceding_mono.setp(get_value('rought5'), vary=True, bounds=(0.1,12))
-dmpc3_n2.phit.setp(get_value('solt5')/100, vary=True, bounds=(0, 0.38))
-dmpc3_n2.phih.setp(get_value('solh5')/100, vary=True, bounds=(0.62, 0.9999))
+dmpc3_n2.rough_head_tail.constraint = dmpc3_n2.solventrough
+dmpc3_n2.rough_preceding_mono.constraint = dmpc3_n2.solventrough
+dmpc3_n2.solventrough.setp(get_value('rough4'), vary=True, bounds=(2.5, 8.))
+dmpc3_n2.phih.setp(get_value('solh5')/100, vary=True, bounds=(0.5, 0.9))
 dmpc3_n2.solventsld.setp(vary=False)
 dmpc3_n2.solventsldi.setp(vary=False)
 dmpc3_n2.supersld.setp(vary=False)
 dmpc3_n2.supersldi.setp(vary=False)
-dmpc3_n2.thick_heads.setp(get_value('head5'), vary=False)
-dmpc3_n2.cos_rad_chain_tilt.constraint = (dmpc3_n2.tail_mol_vol * (1 - dmpc3_n2.phih) * dmpc3_n2.thick_heads) / (dmpc3_n2.head_mol_vol * dmpc3_n2.tail_length * (1 - dmpc3_n2.phit))
-
+dmpc3_n2.thick_heads.setp(get_value('head4'), vary=False)
+dmpc3_n2.phit.constraint = 1 - ((dmpc3_n2.thick_heads * dmpc3_n2.tail_mol_vol * (1 - dmpc3_n2.phih)) / (dmpc3_n2.head_mol_vol * dmpc3_n2.cos_rad_chain_tilt * dmpc3_n2.tail_length))
+dmpc3_n2.cos_rad_chain_tilt.setp(np.cos(np.deg2rad(get_value('angle5'))), vary=True, bounds=(0.01, 0.99))
 structure_dmpc3_n2[-1].rough.setp(vary=False)
 dmpc3_n2.solventsld.setp(solvent_sld[1], vary=False)
 
@@ -154,9 +153,8 @@ print(objective_n2)
 # In[12]:
 
 
-a = (dmpc3_n2.tail_mol_vol.value * (1 - flatchain[:, 3]) * dmpc3_n2.thick_heads.value) 
-b = (dmpc3_n2.head_mol_vol.value * dmpc3_n2.tail_length.value * (1 - flatchain[:, 2]))
-angle3 = a / b
+angle3 = flatchain[:, 1]#(dmpc3_n2.head_mol_vol.value * dmpc3_n2.tail_length.value * flatchain[:, 1] * 
+        #(1 - flatchain[:, 3])) / (dmpc3_n2.tail_mol_vol.value * (1 - flatchain[:, 4]))
 
 
 # In[13]:
@@ -210,7 +208,7 @@ printsld("3_n2", structure_dmpc3_n2, objective_n2, choose)
 # In[15]:
 
 
-lab = ['scale3', 'rought3', 'solt3', 'solh3']
+lab = ['scale3', 'angle3', 'rought3', 'solh3']
 
 for i in range(0, flatchain.shape[1]):
     total_pearsons = open('{}dmpc/{}_neutron_n2.txt'.format(analysis_dir, lab[i]), 'w')
@@ -236,13 +234,14 @@ for i in range(0, flatchain.shape[1]):
         total_pearsons.write('$' + str(q) + '^{+' + str(w) + '}_{-' + str(e) + '}$')
     total_pearsons.close()
     
-lab2 = ['angle3']
-kl = [angle3]
+lab2 = ['solt3']
+kl = 1 - ((dmpc3_n2.thick_heads.value * dmpc3_n2.tail_mol_vol.value * (1 - flatchain[:, 3])) / (dmpc3_n2.head_mol_vol.value * flatchain[:, 1] * dmpc3_n2.tail_length.value))
+kl = kl * 100
 for i in range(0, len(lab2)):
     total_pearsons = open('{}dmpc/{}_neutron_n2.txt'.format(analysis_dir, lab2[i]), 'w')
-    a = mquantiles(kl[i], prob=[0.025, 0.5, 0.975])
-    c = np.rad2deg(np.arccos(a))
-    k = [c[1], c[0] - c[1], c[1] - c[2]]
+    a = mquantiles(kl, prob=[0.025, 0.5, 0.975])
+    c = a
+    k = [a[1], a[1] - a[0], a[2] - a[1]]
     q = '{:.2f}'.format(k[0])
     w = '{:.2f}'.format(k[1])
     e = '{:.2f}'.format(k[2])
@@ -250,10 +249,10 @@ for i in range(0, len(lab2)):
     total_pearsons.close()
     
 lab2 = ['tail3']
-kl = angle3 * dmpc3_n2.tail_length.value
+kl = flatchain[:, 1] * dmpc3_n2.tail_length.value
 for i in range(0, len(lab2)):
     total_pearsons = open('{}dmpc/{}_neutron_n2.txt'.format(analysis_dir, lab2[i]), 'w')
-    a = mquantiles(kl[i], prob=[0.025, 0.5, 0.975])
+    a = mquantiles(kl, prob=[0.025, 0.5, 0.975])
     k = [a[1], a[1] - a[0], a[2] - a[1]]
     q = '{:.2f}'.format(k[0])
     e = '{:.2f}'.format(k[1])
