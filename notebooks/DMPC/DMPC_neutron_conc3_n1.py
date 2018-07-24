@@ -98,14 +98,14 @@ dmpc3_n1.tail_length.setp(vary=False)
 dmpc3_n1.rough_head_tail.constraint = dmpc3_n1.solventrough
 dmpc3_n1.rough_preceding_mono.constraint = dmpc3_n1.solventrough
 dmpc3_n1.solventrough.setp(get_value('rough4'), vary=True, bounds=(2.5, 8.))
-dmpc3_n1.phih.setp(get_value('solh5')/100, vary=True, bounds=(0.3, 0.9))
+dmpc3_n1.phih.constraint = 1 - (dmpc3_n1.head_mol_vol * dmpc3_n1.tail_length * dmpc3_n1.cos_rad_chain_tilt / (dmpc3_n1.tail_mol_vol * dmpc3_n1.thick_heads))
 dmpc3_n1.solventsld.setp(vary=False)
 dmpc3_n1.solventsldi.setp(vary=False)
 dmpc3_n1.supersld.setp(vary=False)
 dmpc3_n1.supersldi.setp(vary=False)
 dmpc3_n1.thick_heads.setp(get_value('head4'), vary=False)
-dmpc3_n1.phit.constraint = 1 - ((dmpc3_n1.thick_heads * dmpc3_n1.tail_mol_vol * (1 - dmpc3_n1.phih)) / (dmpc3_n1.head_mol_vol * dmpc3_n1.cos_rad_chain_tilt * dmpc3_n1.tail_length))
-dmpc3_n1.cos_rad_chain_tilt.setp(np.cos(np.deg2rad(get_value('angle5'))), vary=True, bounds=(0.5, 0.9))
+dmpc3_n1.phit.setp(0, vary=False)
+dmpc3_n1.cos_rad_chain_tilt.setp(np.cos(np.deg2rad(get_value('angle5'))), vary=True, bounds=(0.01, 0.99))
 structure_dmpc3_n1[-1].rough.setp(vary=False)
 dmpc3_n1.solventsld.setp(solvent_sld[0], vary=False)
 
@@ -201,7 +201,7 @@ printsld("3_n1", structure_dmpc3_n1, objective_n1, choose)
 # In[16]:
 
 
-lab = ['scale3', 'angle3', 'rought3', 'solh3']
+lab = ['scale3', 'angle3', 'rought3']
 
 for i in range(0, flatchain.shape[1]):
     total_pearsons = open('{}dmpc/{}_neutron_n1.txt'.format(analysis_dir, lab[i]), 'w')
@@ -227,8 +227,8 @@ for i in range(0, flatchain.shape[1]):
         total_pearsons.write('$' + str(q) + '^{+' + str(w) + '}_{-' + str(e) + '}$')
     total_pearsons.close()
     
-lab2 = ['solt3']
-kl = 1 - ((dmpc3_n1.thick_heads.value * dmpc3_n1.tail_mol_vol.value * (1 - flatchain[:, 3])) / (dmpc3_n1.head_mol_vol.value * flatchain[:, 1] * dmpc3_n1.tail_length.value))
+lab2 = ['solh3']
+kl = 1 - ((dmpc3_n1.head_mol_vol.value * flatchain[:, 1] * dmpc3_n1.tail_length.value) / (dmpc3_n1.tail_mol_vol.value * dmpc3_n1.thick_heads.value))
 kl = kl * 100
 for i in range(0, len(lab2)):
     total_pearsons = open('{}dmpc/{}_neutron_n1.txt'.format(analysis_dir, lab2[i]), 'w')
