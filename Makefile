@@ -7,107 +7,102 @@ DPPC_DIR = output/dppc
 DMPG_DIR = output/dmpg
 DATA_DIR = data/processed
 
-PAPER_FIGS = $(FIG_DIR)/DLPC_all_data.png $(FIG_DIR)/DMPC_all_data.png $(FIG_DIR)/DMPG_all_data.png $(FIG_DIR)/DPPC_all_data.png $(FIG_DIR)/nDPPC_all_data.png $(FIG_DIR)/nDMPC_all_data.png $(FIG_DIR)/head_groups.png
-ESI_FIGS = $(FIG_DIR)/dlpc4_all_corner.png $(FIG_DIR)/dlpc5_all_corner.png $(FIG_DIR)/dmpc3_neutron_corner1.png $(FIG_DIR)/dmpc3_neutron_corner2.png $(FIG_DIR)/dmpc4_all_corner.png $(FIG_DIR)/dmpc5_all_corner.png $(FIG_DIR)/dmpg4_all_corner.png $(FIG_DIR)/dmpg5_all_corner.png $(FIG_DIR)/dppc3_neutron_corner1.png $(FIG_DIR)/dppc3_neutron_corner2.png $(FIG_DIR)/dppc4_all_corner.png $(FIG_DIR)/dppc5_all_corner.png
-DLPC_OUT = output/dlpc4_ref.txt output/dlpc4_sld.txt output/dlpc5_ref.txt output/dlpc5_sld.txt output/dlpc_highconc_chain.txt $(DLPC_DIR)/angle4.txt $(DLPC_DIR)/angle5.txt $(DLPC_DIR)/head4.txt $(DLPC_DIR)/head5.txt $(DLPC_DIR)/rough4.txt $(DLPC_DIR)/rough5.txt $(DLPC_DIR)/scale4.txt $(DLPC_DIR)/scale5.txt $(DLPC_DIR)/solh4.txt $(DLPC_DIR)/solh5.txt $(DLPC_DIR)/tail4.txt $(DLPC_DIR)/tail5.txt $(DLPC_DIR)/vh.txt
-DMPC_OUT = output/dmpc4_ref.txt output/dmpc4_sld.txt output/dmpc5_ref.txt output/dmpc5_sld.txt output/dmpc_highconc_chain.txt $(DMPC_DIR)/angle4.txt $(DMPC_DIR)/angle5.txt $(DMPC_DIR)/head4.txt $(DMPC_DIR)/head5.txt $(DMPC_DIR)/rough4.txt $(DMPC_DIR)/rough5.txt $(DMPC_DIR)/scale4.txt $(DMPC_DIR)/scale5.txt $(DMPC_DIR)/solh4.txt $(DMPC_DIR)/solh5.txt $(DMPC_DIR)/tail4.txt $(DMPC_DIR)/tail5.txt $(DMPC_DIR)/vh.txt
-DPPC_OUT = output/dppc4_ref.txt output/dppc4_sld.txt output/dppc5_ref.txt output/dppc5_sld.txt output/dppc_highconc_chain.txt $(DPPC_DIR)/angle4.txt $(DPPC_DIR)/angle5.txt $(DPPC_DIR)/head4.txt $(DPPC_DIR)/head5.txt $(DPPC_DIR)/rough4.txt $(DPPC_DIR)/rough5.txt $(DPPC_DIR)/scale4.txt $(DPPC_DIR)/scale5.txt $(DPPC_DIR)/solh4.txt $(DPPC_DIR)/solh5.txt $(DPPC_DIR)/tail4.txt $(DPPC_DIR)/tail5.txt $(DPPC_DIR)/vh.txt
-DMPG_OUT = output/dmpg4_ref.txt output/dmpg4_sld.txt output/dmpg5_ref.txt output/dmpg5_sld.txt output/dmpg_highconc_chain.txt $(DMPG_DIR)/angle4.txt $(DMPG_DIR)/angle5.txt $(DMPG_DIR)/head4.txt $(DMPG_DIR)/head5.txt $(DMPG_DIR)/rough4.txt $(DMPG_DIR)/rough5.txt $(DMPG_DIR)/scale4.txt $(DMPG_DIR)/scale5.txt $(DMPG_DIR)/solh4.txt $(DMPG_DIR)/solh5.txt $(DMPG_DIR)/tail4.txt $(DMPG_DIR)/tail5.txt $(DMPG_DIR)/vh.txt
-NDMPC1_OUT = output/dmpc3_n1_ref_neutron.txt output/dmpc3_n1_sld_neutron.txt output/dmpc_highconc_chain_neutron_n1.txt $(DMPC_DIR)/angle3_neutron_n1.txt $(DMPC_DIR)/rought3_neutron_n1.txt $(DMPC_DIR)/scale3_neutron_n1.txt $(DMPC_DIR)/solh3_neutron_n1.txt $(DMPC_DIR)/tail3_neutron_n1.txt
-NDMPC2_OUT = output/dmpc3_n2_ref_neutron.txt output/dmpc3_n2_sld_neutron.txt output/dmpc_highconc_chain_neutron_n2.txt $(DMPC_DIR)/angle3_neutron_n2.txt $(DMPC_DIR)/rought3_neutron_n2.txt $(DMPC_DIR)/scale3_neutron_n2.txt $(DMPC_DIR)/solh3_neutron_n2.txt $(DMPC_DIR)/tail3_neutron_n2.txt
-NDPPC1_OUT = output/dppc3_n1_ref_neutron.txt output/dppc3_n1_sld_neutron.txt output/dppc_highconc_chain_neutron_n1.txt $(DPPC_DIR)/angle3_neutron_n1.txt $(DPPC_DIR)/rought3_neutron_n1.txt $(DPPC_DIR)/scale3_neutron_n1.txt $(DPPC_DIR)/solh3_neutron_n1.txt $(DPPC_DIR)/tail3_neutron_n1.txt
-NDPPC2_OUT = output/dppc3_n2_ref_neutron.txt output/dppc3_n2_sld_neutron.txt output/dppc_highconc_chain_neutron_n2.txt $(DPPC_DIR)/angle3_neutron_n2.txt $(DPPC_DIR)/rought3_neutron_n2.txt $(DPPC_DIR)/scale3_neutron_n2.txt $(DPPC_DIR)/solh3_neutron_n2.txt $(DPPC_DIR)/tail3_neutron_n2.txt
+PAPER_FIGS = $(FIG_DIR)/DLPC_all_data.pdf $(FIG_DIR)/DMPC_all_data.pdf $(FIG_DIR)/DMPG_all_data.pdf $(FIG_DIR)/DPPC_all_data.pdf $(FIG_DIR)/nDPPC15_all_data.pdf $(FIG_DIR)/nDMPC20_all_data.pdf $(FIG_DIR)/nDPPC20_all_data.pdf $(FIG_DIR)/nDMPC25_all_data.pdf $(FIG_DIR)/head_groups.png
+ESI_FIGS = $(FIG_DIR)/dlpc4_all_corner.pdf $(FIG_DIR)/dlpc5_all_corner.pdf $(FIG_DIR)/dmpc25_neutron_corner.pdf $(FIG_DIR)/dmpc20_neutron_corner.pdf $(FIG_DIR)/dmpc4_all_corner.pdf $(FIG_DIR)/dmpc5_all_corner.pdf $(FIG_DIR)/dmpg4_all_corner.pdf $(FIG_DIR)/dmpg5_all_corner.pdf $(FIG_DIR)/dppc20_neutron_corner.pdf $(FIG_DIR)/dppc15_neutron_corner.pdf $(FIG_DIR)/dppc4_all_corner.pdf $(FIG_DIR)/dppc5_all_corner.pdf
+DLPC_OUT = output/dlpc_chain.txt
+DMPC_OUT = output/dmpc_chain.txt
+DPPC_OUT = output/dppc_chain.txt
+DMPG_OUT = output/dmpg_chain.txt
+NDMPC1_OUT = output/dmpc25_chain_neutron.txt
+NDMPC2_OUT = output/dmpc20_chain_neutron.txt
+NDPPC1_OUT = output/dppc20_chain_neutron.txt
+NDPPC2_OUT = output/dppc15_chain_neutron.txt
 
 all : reports/paper.pdf reports/esi.pdf
 clean :
-	rm reports/paper.pdf reports/esi.pdf $(FIG_DIR)/*all_data.png $(FIG_DIR)/*all_corner.png $(FIG_DIR)/*neutron_corner*.png $(PLOT_DIR)/*.py notebooks/DLPC/*.py notebooks/DMPC/*.py notebooks/DPPC/*.py notebooks/DMPG/*.py output/* output/dlpc/* output/dppc/* output/dmpc/* output/dmpg/*
+	rm reports/paper.pdf reports/esi.pdf $(FIG_DIR)/*all_data.pdf $(FIG_DIR)/*all_corner.pdf $(FIG_DIR)/*neutron_corner*.pdf $(PLOT_DIR)/*.py notebooks/DLPC/*.py notebooks/DMPC/*.py notebooks/DPPC/*.py notebooks/DMPG/*.py output/* output/dlpc/* output/dppc/* output/dmpc/* output/dmpg/*
 
 reports/paper.pdf : reports/paper.tex reports/rsc.bib $(PAPER_FIGS) $(DLPC_OUT) $(DMPC_OUT) $(DPPC_OUT) $(DMPG_OUT)
 	cd reports && pdflatex paper.tex
 	cd reports && bibtex paper.aux
 	cd reports && pdflatex paper.tex
+	cd reports && pdflatex paper.tex
 reports/esi.pdf : reports/esi.tex $(ESI_FIGS)
 	cd reports && pdflatex esi.tex
 	cd reports && bibtex esi.aux
 	cd reports && pdflatex esi.tex
+	cd reports && pdflatex esi.tex
 
 
-$(FIG_DIR)/DLPC_all_data.png : $(PLOT_DIR)/plotref.py $(DLPC_OUT)
-	cd src/visualization && ipython plotref.py ../../output/dlpc4_ref.txt ../../output/dlpc4_sld.txt ../../output/dlpc5_ref.txt ../../output/dlpc5_sld.txt ../../output/dlpc_highconc_chain.txt a DLPC
-$(FIG_DIR)/DMPC_all_data.png : $(PLOT_DIR)/plotref.py $(DMPC_OUT)
-	cd src/visualization && ipython plotref.py ../../output/dmpc4_ref.txt ../../output/dmpc4_sld.txt ../../output/dmpc5_ref.txt ../../output/dmpc5_sld.txt ../../output/dmpc_highconc_chain.txt b DMPC
-$(FIG_DIR)/DPPC_all_data.png : $(PLOT_DIR)/plotref.py $(DPPC_OUT)
-	cd src/visualization && ipython plotref.py ../../output/dppc4_ref.txt ../../output/dppc4_sld.txt ../../output/dppc5_ref.txt ../../output/dppc5_sld.txt ../../output/dppc_highconc_chain.txt c DPPC
-$(FIG_DIR)/DMPG_all_data.png : $(PLOT_DIR)/plotref.py $(DMPG_OUT)
-	cd src/visualization && ipython plotref.py ../../output/dmpg4_ref.txt ../../output/dmpg4_sld.txt ../../output/dmpg5_ref.txt ../../output/dmpg5_sld.txt ../../output/dmpg_highconc_chain.txt d DMPG
-$(FIG_DIR)/nDMPC_all_data.png : $(PLOT_DIR)/plotrefn.py $(NDMPC1_OUT) $(NDMPC2_OUT)
-	cd src/visualization && ipython plotrefn.py ../../output/dmpc3_n1_ref_neutron.txt ../../output/dmpc3_n1_sld_neutron.txt ../../output/dmpc3_n2_ref_neutron.txt ../../output/dmpc3_n2_sld_neutron.txt ../../output/dmpc_highconc_chain_neutron_n2.txt a nDMPC
-$(FIG_DIR)/nDPPC_all_data.png : $(PLOT_DIR)/plotrefn.py $(NDPPC1_OUT) $(NDPPC2_OUT)
-	cd src/visualization && ipython plotrefn.py ../../output/dppc3_n1_ref_neutron.txt ../../output/dppc3_n1_sld_neutron.txt ../../output/dppc3_n2_ref_neutron.txt ../../output/dppc3_n2_sld_neutron.txt ../../output/dppc_highconc_chain_neutron_n2.txt b nDPPC
+$(FIG_DIR)/DLPC_all_data.pdf : $(PLOT_DIR)/plotref.py $(DLPC_OUT)
+	cd src/visualization && ipython plotref.py ../../output/dlpc20_ref.txt ../../output/dlpc20_sld.txt ../../output/dlpc25_ref.txt ../../output/dlpc25_sld.txt ../../output/dlpc30_ref.txt ../../output/dlpc30_sld.txt ../../output/dlpc35_ref.txt ../../output/dlpc35_sld.txt ../../output/dlpc_chain.txt a DLPC
+$(FIG_DIR)/DMPC_all_data.pdf : $(PLOT_DIR)/plotref.py $(DMPC_OUT)
+	cd src/visualization && ipython plotref.py ../../output/dmpc20_ref.txt ../../output/dmpc20_sld.txt ../../output/dmpc25_ref.txt ../../output/dmpc25_sld.txt ../../output/dmpc30_ref.txt ../../output/dmpc30_sld.txt ../../output/dmpc40_ref.txt ../../output/dmpc40_sld.txt ../../output/dmpc_chain.txt b DMPC
+$(FIG_DIR)/DPPC_all_data.pdf : $(PLOT_DIR)/plotref.py $(DPPC_OUT)
+	cd src/visualization && ipython plotref.py ../../output/dppc15_ref.txt ../../output/dppc15_sld.txt ../../output/dppc20_ref.txt ../../output/dppc20_sld.txt ../../output/dppc25_ref.txt ../../output/dppc25_sld.txt ../../output/dppc30_ref.txt ../../output/dppc30_sld.txt ../../output/dppc_chain.txt c DPPC
+$(FIG_DIR)/DMPG_all_data.pdf : $(PLOT_DIR)/plotref.py $(DMPG_OUT)
+	cd src/visualization && ipython plotref.py ../../output/dmpg15_ref.txt ../../output/dmpg15_sld.txt ../../output/dmpg20_ref.txt ../../output/dmpg20_sld.txt ../../output/dmpg25_ref.txt ../../output/dmpg25_sld.txt ../../output/dmpg30_ref.txt ../../output/dmpg30_sld.txt ../../output/dmpg_chain.txt d DMPG
+$(FIG_DIR)/nDMPC25_all_data.pdf : $(PLOT_DIR)/plotrefn.py $(NDMPC1_OUT)
+	cd src/visualization && ipython plotrefn.py ../../output/dmpc25_1_ref_neutron.txt ../../output/dmpc25_1_sld_neutron.txt ../../output/dmpc25_2_ref_neutron.txt ../../output/dmpc25_2_sld_neutron.txt ../../output/dmpc25_chain_neutron.txt a nDMPC25
+$(FIG_DIR)/nDMPC20_all_data.pdf : $(PLOT_DIR)/plotrefn.py $(NDMPC2_OUT)
+	cd src/visualization && ipython plotrefn.py ../../output/dmpc20_1_ref_neutron.txt ../../output/dmpc20_1_sld_neutron.txt ../../output/dmpc20_2_ref_neutron.txt ../../output/dmpc20_2_sld_neutron.txt ../../output/dmpc20_chain_neutron.txt a nDMPC20
+$(FIG_DIR)/nDPPC20_all_data.pdf : $(PLOT_DIR)/plotrefn.py $(NDPPC1_OUT)
+	cd src/visualization && ipython plotrefn.py ../../output/dppc20_1_ref_neutron.txt ../../output/dppc20_1_sld_neutron.txt ../../output/dppc20_2_ref_neutron.txt ../../output/dppc20_2_sld_neutron.txt ../../output/dppc20_chain_neutron.txt b nDPPC20
+$(FIG_DIR)/nDPPC15_all_data.pdf : $(PLOT_DIR)/plotrefn.py $(NDPPC2_OUT)
+	cd src/visualization && ipython plotrefn.py ../../output/dppc15_1_ref_neutron.txt ../../output/dppc15_1_sld_neutron.txt ../../output/dppc15_2_ref_neutron.txt ../../output/dppc15_2_sld_neutron.txt ../../output/dppc15_chain_neutron.txt b nDPPC15
 
 $(PLOT_DIR)/plotref.py : $(PLOT_DIR)/plotref.ipynb
 	jupyter-nbconvert src/visualization/plotref.ipynb --to script --output-dir=src/visualization/
 $(PLOT_DIR)/plotrefn.py : $(PLOT_DIR)/plotrefn.ipynb
 	jupyter-nbconvert src/visualization/plotrefn.ipynb --to script --output-dir=src/visualization/
 
-$(DLPC_OUT) : notebooks/DLPC/DLPC_all_conc.py $(DATA_DIR)/DLPC/DLPC_Xray_conc4.dat $(DATA_DIR)/DLPC/DLPC_Xray_conc5.dat
-	cd notebooks/DLPC && ipython DLPC_all_conc.py $(current_dir)
-$(DMPC_OUT) : notebooks/DMPC/DMPC_all_conc.py $(DATA_DIR)/DMPC/DMPC_Xray_conc4.dat $(DATA_DIR)/DMPC/DMPC_Xray_conc5.dat
-	cd notebooks/DMPC && ipython DMPC_all_conc.py $(current_dir)
-$(DPPC_OUT) : notebooks/DPPC/DPPC_all_conc.py $(DATA_DIR)/DPPC/DPPC_Xray_conc4.dat $(DATA_DIR)/DPPC/DPPC_Xray_conc5.dat
-	cd notebooks/DPPC && ipython DPPC_all_conc.py $(current_dir)
-$(DMPG_OUT) : notebooks/DMPG/DMPG_all_conc.py $(DATA_DIR)/DMPG/DMPG_Xray_conc4.dat $(DATA_DIR)/DMPG/DMPG_Xray_conc5.dat
-	cd notebooks/DMPG && ipython DMPG_all_conc.py $(current_dir)
-$(NDMPC1_OUT) : notebooks/DMPC/DMPC_neutron_conc3_n1.py $(DATA_DIR)/DMPC/DMPC_Neutron_conc2_dDMPC_hDES.mft
-	cd notebooks/DMPC && ipython DMPC_neutron_conc3_n1.py $(current_dir)
-$(NDMPC2_OUT) : notebooks/DMPC/DMPC_neutron_conc3_n2.py $(DATA_DIR)/DMPC/DMPC_Neutron_conc1_dDMPC_hdDES.mft
-	cd notebooks/DMPC && ipython DMPC_neutron_conc3_n2.py $(current_dir)
-$(NDPPC1_OUT) : notebooks/DPPC/DPPC_neutron_conc3_n1.py $(DATA_DIR)/DPPC/DPPC_Neutron_conc3_dDPPC_hDES.mft
-	cd notebooks/DPPC && ipython DPPC_neutron_conc3_n1.py $(current_dir)
-$(NDPPC2_OUT) : notebooks/DPPC/DPPC_neutron_conc3_n2.py $(DATA_DIR)/DPPC/DPPC_Neutron_conc3_dDPPC_hdDES.mft
-	cd notebooks/DPPC && ipython DPPC_neutron_conc3_n2.py $(current_dir)
-
-notebooks/DLPC/DLPC_all_conc.py : notebooks/DLPC/DLPC_all_conc.ipynb
-	jupyter-nbconvert notebooks/DLPC/DLPC_all_conc.ipynb --to script --output-dir=notebooks/DLPC/
-notebooks/DMPC/DMPC_all_conc.py : notebooks/DMPC/DMPC_all_conc.ipynb
-	jupyter-nbconvert notebooks/DMPC/DMPC_all_conc.ipynb --to script --output-dir=notebooks/DMPC/
-notebooks/DPPC/DPPC_all_conc.py : notebooks/DPPC/DPPC_all_conc.ipynb
-	jupyter-nbconvert notebooks/DPPC/DPPC_all_conc.ipynb --to script --output-dir=notebooks/DPPC/
-notebooks/DMPG/DMPG_all_conc.py : notebooks/DMPG/DMPG_all_conc.ipynb
-	jupyter-nbconvert notebooks/DMPG/DMPG_all_conc.ipynb --to script --output-dir=notebooks/DMPG/
-notebooks/DMPC/DMPC_neutron_conc3_n1.py : notebooks/DMPC/DMPC_neutron_conc3_n1.ipynb
-	jupyter-nbconvert notebooks/DMPC/DMPC_neutron_conc3_n1.ipynb --to script --output-dir=notebooks/DMPC/
-notebooks/DMPC/DMPC_neutron_conc3_n2.py : notebooks/DMPC/DMPC_neutron_conc3_n2.ipynb
-	jupyter-nbconvert notebooks/DMPC/DMPC_neutron_conc3_n2.ipynb --to script --output-dir=notebooks/DMPC/
-notebooks/DPPC/DPPC_neutron_conc3_n1.py : notebooks/DPPC/DPPC_neutron_conc3_n1.ipynb
-	jupyter-nbconvert notebooks/DPPC/DPPC_neutron_conc3_n1.ipynb --to script --output-dir=notebooks/DPPC/
-notebooks/DPPC/DPPC_neutron_conc3_n2.py : notebooks/DPPC/DPPC_neutron_conc3_n2.ipynb
-	jupyter-nbconvert notebooks/DPPC/DPPC_neutron_conc3_n2.ipynb --to script --output-dir=notebooks/DPPC/
+$(DLPC_OUT) : notebooks/lipid_xrr.py src/models/mol_vol.py
+	cd notebooks && ipython lipid_xrr.py dlpc 11 20 25 30 35
+$(DMPC_OUT) : notebooks/lipid_xrr.py src/models/mol_vol.py
+	cd notebooks && ipython lipid_xrr.py dmpc 13 20 25 30 40
+$(DPPC_OUT) : notebooks/lipid_xrr.py src/models/mol_vol.py
+	cd notebooks && ipython lipid_xrr.py dppc 15 15 20 25 30
+$(DMPG_OUT) : notebooks/lipid_xrr.py src/models/mol_vol.py
+	cd notebooks && ipython lipid_xrr.py dmpg 13 15 20 25 30
+$(NDMPC1_OUT) : notebooks/lipid_nr.py $(DMPC_OUT)
+	cd notebooks && ipython lipid_nr.py dmpc 13 25
+$(NDMPC2_OUT) : notebooks/lipid_nr.py $(DMPC_OUT)
+	cd notebooks && ipython lipid_nr.py dmpc 15 20
+$(NDPPC1_OUT) : notebooks/lipid_nr.py $(DPPC_OUT)
+	cd notebooks && ipython lipid_nr.py dppc 15 20
+$(NDPPC2_OUT) : notebooks/lipid_nr.py $(DPPC_OUT)
+	cd notebooks && ipython lipid_nr.py dppc 15 15
 
 
-
-$(FIG_DIR)/dlpc4_all_corner.png $(FIG_DIR)/dlpc5_all_corner.png : $(PLOT_DIR)/plotcorner.py output/dlpc_highconc_chain.txt
-	cd src/visualization && ipython plotcorner.py ../../output/dlpc_highconc_chain.txt 15.455 667 dlpc $(current_dir)
-$(FIG_DIR)/dmpc4_all_corner.png $(FIG_DIR)/dmpc5_all_corner.png : $(PLOT_DIR)/plotcorner.py output/dmpc_highconc_chain.txt
-	cd src/visualization && ipython plotcorner.py ../../output/dmpc_highconc_chain.txt 17.985 779 dmpc $(current_dir)
-$(FIG_DIR)/dppc4_all_corner.png $(FIG_DIR)/dppc5_all_corner.png : $(PLOT_DIR)/plotcorner.py output/dppc_highconc_chain.txt
-	cd src/visualization && ipython plotcorner.py ../../output/dppc_highconc_chain.txt 20.515 891 dppc $(current_dir)
-$(FIG_DIR)/dmpg4_all_corner.png $(FIG_DIR)/dmpg5_all_corner.png : $(PLOT_DIR)/plotcorner.py output/dmpg_highconc_chain.txt
-	cd src/visualization && ipython plotcorner.py ../../output/dmpg_highconc_chain.txt 17.985 779 dmpg $(current_dir)
+notebooks/lipid_xrr.py : notebooks/lipid_xrr.ipynb
+	jupyter-nbconvert notebooks/lipid_xrr.ipynb --to script --output-dir=notebooks/
+notebooks/lipid_nr.py : notebooks/lipid_nr.ipynb
+	jupyter-nbconvert notebooks/lipid_nr.ipynb --to script --output-dir=notebooks/
 
 
-$(FIG_DIR)/dmpc3_neutron_corner1.png : $(PLOT_DIR)/plotcornern.py output/dmpc_highconc_chain_neutron_n1.txt
-	cd src/visualization && ipython plotcornern.py ../../output/dmpc_highconc_chain_neutron_n1.txt 17.985 779 dmpc 1 $(current_dir)
-$(FIG_DIR)/dmpc3_neutron_corner2.png : $(PLOT_DIR)/plotcornern.py output/dmpc_highconc_chain_neutron_n2.txt
-	cd src/visualization && ipython plotcornern.py ../../output/dmpc_highconc_chain_neutron_n2.txt 17.985 779 dmpc 2 $(current_dir)
-$(FIG_DIR)/dppc3_neutron_corner1.png : $(PLOT_DIR)/plotcornern.py output/dppc_highconc_chain_neutron_n1.txt
-	cd src/visualization && ipython plotcornern.py ../../output/dppc_highconc_chain_neutron_n1.txt 20.515 891 dppc 1 $(current_dir)
-$(FIG_DIR)/dppc3_neutron_corner2.png : $(PLOT_DIR)/plotcornern.py output/dppc_highconc_chain_neutron_n2.txt
-	cd src/visualization && ipython plotcornern.py ../../output/dppc_highconc_chain_neutron_n2.txt 20.515 891 dppc 2 $(current_dir)
+$(FIG_DIR)/dlpc4_all_corner.pdf $(FIG_DIR)/dlpc5_all_corner.pdf : $(PLOT_DIR)/plotcorner.py output/dlpc_chain.txt
+	cd src/visualization && ipython plotcorner.py ../../output/dlpc_chain.txt 11 dlpc
+$(FIG_DIR)/dmpc4_all_corner.pdf $(FIG_DIR)/dmpc5_all_corner.pdf : $(PLOT_DIR)/plotcorner.py output/dmpc_chain.txt
+	cd src/visualization && ipython plotcorner.py ../../output/dmpc_chain.txt 13 dmpc
+$(FIG_DIR)/dppc4_all_corner.pdf $(FIG_DIR)/dppc5_all_corner.pdf : $(PLOT_DIR)/plotcorner.py output/dppc_chain.txt
+	cd src/visualization && ipython plotcorner.py ../../output/dppc_chain.txt 15 dppc
+$(FIG_DIR)/dmpg4_all_corner.pdf $(FIG_DIR)/dmpg5_all_corner.pdf : $(PLOT_DIR)/plotcorner.py output/dmpg_chain.txt
+	cd src/visualization && ipython plotcorner.py ../../output/dmpg_chain.txt 13 dmpg
+
+
+$(FIG_DIR)/dmpc20_neutron_corner.pdf : $(PLOT_DIR)/plotcornern.py output/dmpc20_chain_neutron.txt
+	cd src/visualization && ipython plotcornern.py ../../output/dmpc20_chain_neutron.txt 13 dmpc 20
+$(FIG_DIR)/dmpc25_neutron_corner.pdf : $(PLOT_DIR)/plotcornern.py output/dmpc25_chain_neutron.txt
+	cd src/visualization && ipython plotcornern.py ../../output/dmpc25_chain_neutron.txt 13 dmpc 25
+$(FIG_DIR)/dppc20_neutron_corner.pdf : $(PLOT_DIR)/plotcornern.py output/dppc20_chain_neutron.txt
+	cd src/visualization && ipython plotcornern.py ../../output/dppc20_chain_neutron.txt 15 dppc 20
+$(FIG_DIR)/dppc15_neutron_corner.pdf : $(PLOT_DIR)/plotcornern.py output/dppc15_chain_neutron.txt
+	cd src/visualization && ipython plotcornern.py ../../output/dppc15_chain_neutron.txt 15 dppc 15
 
 
 $(PLOT_DIR)/plotcorner.py : $(PLOT_DIR)/plotcorner.ipynb
 	jupyter-nbconvert src/visualization/plotcorner.ipynb --to script --output-dir=src/visualization/
+$(PLOT_DIR)/plotcorner-new.py : $(PLOT_DIR)/plotcorner-new.ipynb
+	jupyter-nbconvert src/visualization/plotcorner-new.ipynb --to script --output-dir=src/visualization/
 $(PLOT_DIR)/plotcornern.py : $(PLOT_DIR)/plotcornern.ipynb
 	jupyter-nbconvert src/visualization/plotcornern.ipynb --to script --output-dir=src/visualization/
-

@@ -1,3 +1,0 @@
-# All source files
-recursive-include refnx *
-recursive-include src *

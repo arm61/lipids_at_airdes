@@ -1,12 +1,12 @@
-lipids_at_airdes
+Bayesian determination of the effect of a deep eutectic solvent on the structure of lipid monolayers
 ==============================
 
 Electronic supplementary information for "Bayesian determination of the effect of a deep eutectic solvent on the structure of lipid monolayers", this ESI aims to be a fully reproducible analysis of the data discussed within the paper. The supplied Makefile while reproduce all analysis, draw figures and compile the paper when run.
 
-Requirements: 
+Requirements:
 
-- anaconda python 
-- make 
+- anaconda python
+- make
 
 The analysis can be completely reproduced using the following commands:
 
@@ -17,17 +17,7 @@ source activate paper_env
 
 pip install -r config/requirements.txt
 
-cd src/data/refnx-0.0.15
-
-python setup.py build
-
-python setup.py install
-
-python setup.py test
-
-cd ../../
-
-make clean
+make clean #this will remove all of the output from previous runs
 
 make
 ```
@@ -40,7 +30,8 @@ Project Organization
     ├── LICENSE              # MIT License
     ├── README.md            # You are here
     ├── Makefile             # Makefile to outline workflow
-    ├── config               # spec_file.txt for building the conda env
+    ├── output               # Files and data output by analysis scripts
+    ├── config               # requirements.txt file
 	├── data        
     │   ├── external
     │   ├── interim
@@ -51,8 +42,8 @@ Project Organization
     ├── reports              # Paper and ESI
     │   └── figures
     └── src
-        ├── data             # refnx v0.0.15
+        ├── data             
         ├── external  
         ├── models           # mol_vol.py custom model for refnx
-        ├── tools      
+        ├── tools            # helper.py script
         └── visualization    # Plotting scripts

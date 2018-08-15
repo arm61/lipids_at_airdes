@@ -1,6 +1,6 @@
 cython
-numpy 
-scipy 
+numpy
+scipy
 matplotlib
 seaborn
 pandas
@@ -8,3 +8,5 @@ corner
 h5py
 tqdm
 xlrd
+refnx
+jupyter_nbcontrib_extensions

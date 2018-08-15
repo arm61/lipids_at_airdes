@@ -1,8 +1,0 @@
-<RCC>
-	<qresource>
-		<file>icons/go.jpeg</file>
-		<file>icons/scattering.png</file>
-		<file>icons/plus.png</file>
-		<file>icons/minus.png</file>
-	</qresource>
-</RCC>

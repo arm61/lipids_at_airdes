@@ -45,7 +45,7 @@ def plotsld(data, gs, offset, label):
     for i in range(2, data.shape[0]):
         sld = data[i]
         ax.plot(z, sld + offset, linewidth=2, alpha=0.05)
-    ax.text(0.80, 0.9, '(' + label + ')', fontsize=30, transform=ax.transAxes)
+    ax.text(0.81, 0.90, '(' + label + ')', fontsize=44, transform=ax.transAxes)
     ax.set_xlabel(r'$z$/Å')
     ax.set_ylabel(r'SLD/$10^{-6}$Å$^{-2}$')
     return plt
@@ -59,12 +59,20 @@ def plothist(tohist, gs, label, name):
     ax.set_xticks([a[0], a[1], a[2]])
     ax.set_xticklabels(['{:.1f}'.format(a[0]), '{:.1f}'.format(a[1]), '{:.1f}'.format(a[2])])
 
-mpl.rcParams['axes.labelsize']=28
-mpl.rcParams['xtick.labelsize']=18
-mpl.rcParams['ytick.labelsize']=18
+mpl.rcParams['axes.labelsize']=44
+mpl.rcParams['xtick.labelsize']=32
+mpl.rcParams['ytick.labelsize']=32
+mpl.rcParams['grid.linestyle'] = ''
+mpl.rcParams['axes.grid'] = True
+mpl.rcParams['axes.facecolor'] = 'w'
+mpl.rcParams['axes.linewidth'] = 1
+mpl.rcParams['axes.edgecolor'] = 'k'
+mpl.rcParams['xtick.bottom'] = True
+mpl.rcParams['ytick.left'] = True
+
 
 l = [1, 10, 100, 1000, 10000]
-fig = plt.figure(figsize=(15, 6))
+fig = plt.figure(figsize=(20, 7.5))
 gs = mpl.gridspec.GridSpec(1, 2, width_ratios=[2, 1]) 
 k = 0
 for i in range(0, int(n)-4, 2):
@@ -77,7 +85,7 @@ for i in range(1, int(n)-3, 2):
     plotsld(data, gs[0, 1], f, sys.argv[n-2])
     f += 5
 plt.tight_layout()
-plt.savefig('{}{}_all_data.png'.format(figures_dir, sys.argv[n-1]), dpi=600)
+plt.savefig('{}{}_all_data.pdf'.format(figures_dir, sys.argv[n-1]))
 plt.close()
 #plt.show()
 
