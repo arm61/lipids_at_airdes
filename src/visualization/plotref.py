@@ -85,12 +85,14 @@ def plotsld(data, gs, offset, label):
 def plothist(tohist, gs, name):
     ax = plt.subplot(gs)
     a = mquantiles(tohist, prob=[0.025, 0.5, 0.975])
-    ax.hist(tohist, bins=50, histtype='stepfilled')
+    weights = np.ones_like(tohist)/float(len(tohist))
+    ax.hist(tohist, bins=50, histtype='stepfilled', weights=weights)
     ax.set_ylabel('PDF({}-$V_h$)'.format(name))
     ax.set_xlabel('{}-$V_h$/Å$^3$'.format(name))
     ax.set_xticks([a[0], a[1], a[2]])
-    ax.set_ylim([0, 15000])
-    ax.set_yticks([])
+    #ax.set_ylim([0, 15000])
+    ax.set_xlim([np.min(tohist)-0.01, np.max(tohist)+0.01])
+    #ax.set_yticks([])
     ax.set_xticklabels(['{:.1f}'.format(a[0]), '{:.1f}'.format(a[1]), '{:.1f}'.format(a[2])])
 
 def plotgraph(gs, sp, tails, sols, n1, n2, p1, p2, x1, x2, label):
