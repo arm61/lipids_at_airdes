@@ -18,7 +18,7 @@ NDMPC2_OUT = output/dmpc20_chain_neutron.txt
 NDPPC1_OUT = output/dppc20_chain_neutron.txt
 NDPPC2_OUT = output/dppc15_chain_neutron.txt
 
-all : reports/paper.pdf reports/esi.pdf
+all : reports/paper.pdf reports/esi.pdf reports/apssamp.pdf reports/esi2.pdf
 clean :
 	rm reports/paper.pdf reports/esi.pdf $(FIG_DIR)/*all_data.pdf $(FIG_DIR)/*all_corner.pdf $(FIG_DIR)/*neutron_corner*.pdf $(PLOT_DIR)/*.py notebooks/DLPC/*.py notebooks/DMPC/*.py notebooks/DPPC/*.py notebooks/DMPG/*.py output/* output/dlpc/* output/dppc/* output/dmpc/* output/dmpg/*
 
@@ -32,6 +32,16 @@ reports/esi.pdf : reports/esi.tex $(ESI_FIGS)
 	cd reports && bibtex esi.aux
 	cd reports && pdflatex esi.tex
 	cd reports && pdflatex esi.tex
+reports/apssamp.pdf : reports/apssamp.tex reports/rsc.bib $(PAPER_FIGS) $(DLPC_OUT) $(DMPC_OUT) $(DPPC_OUT) $(DMPG_OUT)
+	cd reports && pdflatex apssamp.tex
+	cd reports && bibtex apssamp.aux
+	cd reports && pdflatex apssamp.tex
+	cd reports && pdflatex apssamp.tex
+reports/esi2.pdf : reports/esi2.tex $(ESI_FIGS)
+	cd reports && pdflatex esi2.tex
+	cd reports && bibtex esi2.aux
+	cd reports && pdflatex esi2.tex
+	cd reports && pdflatex esi2.tex
 
 
 $(FIG_DIR)/DLPC_all_data.pdf : $(PLOT_DIR)/plotref.py $(DLPC_OUT)
