@@ -104,7 +104,7 @@
   Deep eutectic solvents present a novel class of non-aqueous room temperature solvent with tunable properties, that are capable of promoting the self-assembly of surfactant molecules. However, the solvation model in these systems still challenges the classic understanding of amphiphilicity. In this work, we present the first example of the self-assembly of phospholipid monolayers at the interface between air and a non-aqueous solvent. Furthermore, we use novel, chemically-consistent Bayesian modelling of X-ray and neutron reflectometry measurements to show the ability of the deep eutectic solvent to interact with the phosphatidylglycerol lipid head, leading to an apparent increase in the volume compared to that observed in water. No such change was observed for the phosphocholine head, indicating that the interaction is head specific.
 \begin{description}
 \item[Usage]
-Electronic Supplementary Information (ESI) available: All datasets, figure file and analysis/plotting scripts, allowing for a fully reproducible analysis of all work presented herein. See DOI: 10.6084/m9.figshare.6661784.
+Electronic Supplementary Information (ESI) available: All datasets, figure files and analysis/plotting scripts, allowing for a fully reproducible analysis of all work presented herein. See DOI: 10.6084/m9.figshare.6661784.
 \end{description}
 \end{abstract}
 
@@ -147,7 +147,7 @@ Unlike monolayer models applied previously\cite{Mohwald1990,Kewalramani2010,Baye
 Instead these parameters, along with the thickness of the phospholipid head layer, $d_h$, were allowed to vary for each lipid.
 However, their values were constained to be self-consistent for a single lipid over multiple measurements at different surface pressures.
 
-This model was required, despite the general consensus that the volume of the phosphocholine (PC) head is \numrange{320}{360} \AA$^3$, while the phosphatidylglycerol (PG) head is \numrange{289}{291} \AA$^3$ (Table \ref{tab:water}), as it not clear if the presence of the DES would affect the head volume due to electrostatic interactions, which may differ from those between the head and water.
+This model was required, despite the general consensus that the volume of the phosphocholine (PC) head is \SIrange{320}{360}{\cubic\angstrom}, while the phosphatidylglycerol (PG) head is \SIrange{289}{291}{\cubic\angstrom} (Table \ref{tab:water}), as it not clear if the presence of the DES would affect the head volume due to electrostatic interactions, which may differ from those between the head and water.
 Furthermore, the effect of pressure, which is not necessarily present for the tail volume values in Table \ref{tab:water}, has been shown to compress the lipid tail volume\cite{Marsh2010,Small1984}, and the need to account for this hydrocarbon compaction according to their phase in the modelling of NR data has recently been demonstrated\cite{Campbell2018}.
 %
 \begin{figure}
@@ -156,38 +156,38 @@ Furthermore, the effect of pressure, which is not necessarily present for the ta
 	\includegraphics[width=0.45\textwidth]{figures/DMPC_all_data}
 	\includegraphics[width=0.45\textwidth]{figures/DPPC_all_data}
 	\includegraphics[width=0.45\textwidth]{figures/DMPG_all_data}
-	\caption{The XRR profiles (left) and SLD profiles (right) for each of the four lipids; (a) DLPC, (b) DMPC, (c) DPPC, (d) DMPG, at the four measured surface pressures; lowest surface pressure at the bottom and increasing moving up. The different surface pressure XRR profiles have been offset in the $y$-axis by an order of magnitude and SLD profiles offset in the $y$-axis by $5\times10^{-6}$ \AA$^{-2}$, for clarity. Source: Datasets, figure files and running/plotting scripts are available under CC-BY\cite{mccluskey_2018}.}
+	\caption{The XRR profiles (left) and SLD profiles (right) for each of the four lipids; (a) DLPC, (b) DMPC, (c) DPPC, (d) DMPG, at the four measured surface pressures; lowest surface pressure at the bottom and increasing moving up. The different surface pressure XRR profiles have been offset in the $y$-axis by an order of magnitude and SLD profiles offset in the $y$-axis by \SI{5e-6}{\per\square\angstrom}, for clarity. Source: Datasets, figure files and running/plotting scripts are available under CC-BY\cite{mccluskey_2018}.}
 	\label{fig:lipids}
 \end{figure}
 %
 
-The custom model for each lipid, fitted to the experimental XRR data, and the associated SLD profiles are shown in Figure \ref{fig:lipids}, while Table \ref{tab:liptab} presents the mean value, and asymmetric uncertainies that correspond to a 95 \% confidence interval, of the PDF for each of the varying parameters; the tail tile angle, $\theta_t$, and the interfacial roughness, $\sigma$ which were free to vary independent of surface pressure, and the head and tail volumes, $V_h$ and $V_t$ respectively, and the head layer thickness, $d_h$, for each a single value was fitted for each lipid across all surface pressures.
+The custom model for each lipid, fitted to the experimental XRR data, and the associated SLD profiles are shown in Figure \ref{fig:lipids}, while Table \ref{tab:liptab} presents the mean value, and asymmetric uncertainies that correspond to a \SI{95}{\percent} confidence interval, of the PDF for each of the varying parameters; the tail tile angle, $\theta_t$, and the interfacial roughness, $\sigma$ which were free to vary independent of surface pressure, and the head and tail volumes, $V_h$ and $V_t$ respectively, and the head layer thickness, $d_h$, for each a single value was fitted for each lipid across all surface pressures.
 %
 \begin{table}
 	\caption{\label{tab:liptab} The best-fit values, and associated 95 \% confidence intervals for the varying parameters in the XRR models, at the highest surface pressure (SP) measured. The values of $d_t$ were found from the appropriate values of $\theta_t$ using Eqn. \ref{equ:tl} and the values for $\phi_h$ were obtained from the appropriate use of Eqn. \ref{equ:phih}. Source: Datasets, figure files and running/plotting scripts are available under CC-BY\cite{mccluskey_2018}.}
   \begin{ruledtabular}
 	\begin{tabular}{ccccc}
 		Lipid & DLPC & DMPC & DPPC & DMPG \\
-    SP/mNm$^{-1}$ & 35 & 40 & 30 & 30 \\
+    SP/\si{\milli\newton\per\meter} & 35 & 40 & 30 & 30 \\
 		\hline
-		$\theta_t$/$^\circ$ & \input{../output/dlpc/angle35.txt} & \input{../output/dmpc/angle40.txt} & \input{../output/dppc/angle30.txt} & \input{../output/dmpg/angle30.txt} \\
-		$\sigma$/\AA & \input{../output/dlpc/rough35.txt} & \input{../output/dmpc/rough40.txt} & \input{../output/dppc/rough30.txt} & \input{../output/dmpg/rough30.txt} \\
+		$\theta_t$/\si{\degree} & \input{../output/dlpc/angle35.txt} & \input{../output/dmpc/angle40.txt} & \input{../output/dppc/angle30.txt} & \input{../output/dmpg/angle30.txt} \\
+		$\sigma$/\si{\angstrom} & \input{../output/dlpc/rough35.txt} & \input{../output/dmpc/rough40.txt} & \input{../output/dppc/rough30.txt} & \input{../output/dmpg/rough30.txt} \\
     \hline
-    $V_t$/\AA$^3$ & \input{../output/dlpc/vt.txt} & \input{../output/dmpc/vt.txt} & \input{../output/dppc/vt.txt} & \input{../output/dmpg/vt.txt} \\
-		$V_h$/\AA$^3$ & \input{../output/dlpc/vh.txt} & \input{../output/dmpc/vh.txt} & \input{../output/dppc/vh.txt} & \input{../output/dmpg/vh.txt} \\
-		$d_h$/\AA & \input{../output/dlpc/head.txt} & \input{../output/dmpc/head.txt} & \input{../output/dppc/head.txt} & \input{../output/dmpg/head.txt} \\
+    $V_t$/\si{\cubic\angstrom} & \input{../output/dlpc/vt.txt} & \input{../output/dmpc/vt.txt} & \input{../output/dppc/vt.txt} & \input{../output/dmpg/vt.txt} \\
+		$V_h$/\si{\cubic\angstrom} & \input{../output/dlpc/vh.txt} & \input{../output/dmpc/vh.txt} & \input{../output/dppc/vh.txt} & \input{../output/dmpg/vh.txt} \\
+		$d_h$/\si{\angstrom} & \input{../output/dlpc/head.txt} & \input{../output/dmpc/head.txt} & \input{../output/dppc/head.txt} & \input{../output/dmpg/head.txt} \\
     \hline
     $\phi_h$/$\times10^{-2}$ & \input{../output/dlpc/solh35.txt} & \input{../output/dmpc/solh40.txt} & \input{../output/dppc/solh30.txt} & \input{../output/dmpg/solh30.txt} \\
-		$d_t$/\AA & \input{../output/dlpc/tail35.txt} & \input{../output/dmpc/tail40.txt} & \input{../output/dppc/tail30.txt} & \input{../output/dmpg/tail30.txt} \\
+		$d_t$/\si{\angstrom} & \input{../output/dlpc/tail35.txt} & \input{../output/dmpc/tail40.txt} & \input{../output/dppc/tail30.txt} & \input{../output/dmpg/tail30.txt} \\
 	\end{tabular}
   \end{ruledtabular}
 \end{table}
 %
 
 In keeping this previous literature, \cite{Mohwald1990,Vaknin1991}, the tail layer thickness, $d_t$, increases with the number of hydrocarbon atoms present.
-Furthermore, the thickness of the tail layers agress well with values found for water-analogues; \input{../output/dmpc/tail30.txt}\AA\ at 30 mN/m in DES compared with $d_t=15.8$ \AA\ at 30 mN/m\cite{Johnson1991} in water for DMPC, and \input{../output/dppc/tail30.txt}\AA\ at 30 mN/m in DES compared with $d_t=16.7$ \AA\ at 40 mN/m\cite{Helm1987} in water for DPPC.
+Furthermore, the thickness of the tail layers agress well with values found for water-analogues; \input{../output/dmpc/tail30.txt}\si{\angstrom} at \SI{30}{\milli\newton\per\meter} in DES compared with $d_t=\SI{15.8}{\angstrom}$ at \SI{30}{\milli\newton\per\meter}\cite{Johnson1991} in water for DMPC, and \input{../output/dppc/tail30.txt}\si{\angstrom} at \SI{30}{\milli\newton\per\meter} in DES compared with $d_t=\SI{16.7}{\angstrom}$ at \SI{40}{\milli\newton\per\meter}\cite{Helm1987} in water for DPPC.
 
-Figure \ref{fig:lipresults} shows the tail layer thickness increasing with surface pressure, before plateuing; for DPPC this occurs at 20 mNm$^{-1}$, DMPC at 30 mNm$^{-1}$ and for DMPG and DLPC the plateu can be assumed to be at higher pressures than those studied.
+Figure \ref{fig:lipresults} shows the tail layer thickness increasing with surface pressure, before plateuing; for DPPC this occurs at \SI{20}{\milli\newton\per\meter}, DMPC at \SI{30}{\milli\newton\per\meter} and for DMPG and DLPC the plateu can be assumed to be at higher pressures than those studied.
 This phenomenon has been noted before for DMPC\cite{Bayerl1990} and DPPC\cite{Campbell2018} at the air-water interface.
 %
 \begin{figure}
@@ -203,23 +203,23 @@ This phenomenon has been noted before for DMPC\cite{Bayerl1990} and DPPC\cite{Ca
 
 In Figure \ref{fig:lipresults}, it is clear that for all four lipids, as the surface pressure is increased there is a corresponding decrease in the percentage solvent, $\phi_h$, present in the lipid head layer.
 This can be rationalised by considering when the surface pressure is increased, the free volume available between the lipid heads reduces forcing the solvent out of the lipid head layer and into the bulk.
-A similar effect has been observed when increasing the surface pressure from 11 mNm$^{-1}$ to 31 mNm$^{-1)}$ for a DMPC/DMPG monolayer at the air-water interface\cite{Bayerl1990}.
+A similar effect has been observed when increasing the surface pressure from \SI{11}{\milli\newton\per\meter} to \SI{31}{\milli\newton\per\meter} for a DMPC/DMPG monolayer at the air-water interface\cite{Bayerl1990}.
 
 When comparing Tables \ref{tab:water} and \ref{tab:liptab} it is clear that the volume of the lipid tails are significantly lower in the current measurements than found previously, by other techniques.
 It is unlikely that this is a result of the DES subphase, due to the hydrophobic nature of the lipid tails.
 Such a reduction has been shown previously\cite{Campbell2018}, where it was rationalised by the compaction of the monolayer at elevated surface pressure.
-In that work, the optimal value of the tail volume for DPPC was found to be $772$ \AA${^3}$ at a surface pressure of $35$ mNm$^{-1}$, this agrees well with the value of \input{../output/dppc/vt.txt} \AA$^3$ found in this work at surface pressures of 15, 20, 25, and 30 mNm$^{-1}$.
+In that work, the optimal value of the tail volume for DPPC was found to be \SI{772}{\cubic\angstrom} at a surface pressure of \SI{35}{\milli\newton\per\meter}, this agrees well with the value of \input{../output/dppc/vt.txt}\si{\cubic\angstrom} found in this work at surface pressures of 15, 20, 25, and \SI{30}{\milli\newton\per\meter}.
 
 In this work, a single tail volume was fitted to each lipid for all four surface pressures that were measured.
 This is based on the assumption, that at all four surface pressures, the lipids adopt the same phase (as discussed Section \ref{sec:gixd}) and therefore any variation in the structure with surface pressure would manifest only as a change in the tail thickness, via the tail tilt angle.
 It is clear when comparing Tables \ref{tab:water} and \ref{tab:liptab} that some of the tail volumes are reduced in the current XRR measurements compared to those determined previously.
-The reduction was found to be between 8-12 \% for DPPC, DMPC and DLPC when compared with literature sources at 24-30 $^\circ$C, this is in good agreement with the maximum compression percentage of 15 \% noted by Small and coworkers\cite{Small1984}. DMPG shows a small increase in the tail volume relative to the literature value quoted at lower temperature.
+The reduction was found to be \SIrange{8}{12}{\percent} for DPPC, DMPC and DLPC when compared with literature sources at \SIrange{24}{30}{\celsius}, this is in good agreement with the maximum compression percentage of \SI{15}{\percent} noted by Small \emph{et al.}\cite{Small1984}. DMPG shows a small increase in the tail volume relative to the literature value quoted at lower temperature.
 Notably our value is similar to that found for DMPC on DES, which has the same tail structure and suggests that our results are at least self-consistent.
 
 Figure \ref{fig:lipresults} shows the PDFs for the head volume for each of the four lipids.
-The three lipids with the PC head are consistent with values of $\sim330$ \AA$^3$, regardless of tail.
+The three lipids with the PC head are consistent with values of around \SI{330}{\cubic\angstrom}, regardless of hydrocarbon tail.
 This agrees well with the values found for the same head in water (Table \ref{tab:water}).
-Interestingly, the volume for the PG head is similar to that for the PC head with a value of \input{../output/dmpg/vh.txt}\AA$^3$, whereas it is considered to be smaller in water when measured by either DMPG using differential vibrating tube densimetry\cite{Pan2012} ($291.0$ \AA$^3$) or POPG using molecular dynamics simulations\cite{Kucerka2012} ($289$ \AA$^3$).
+Interestingly, the volume for the PG head is similar to that for the PC head with a value of \input{../output/dmpg/vh.txt}\si{\cubic\angstrom}, whereas it is considered to be smaller in water when measured by either DMPG using differential vibrating tube densimetry\cite{Pan2012} (\SI{291}{\cubic\angstrom}) or POPG using molecular dynamics simulations\cite{Kucerka2012} (\SI{289}{\cubic\angstrom}).
 This indicates that there may be some effect arising from the solvation in DES causing an apparent increase in the PG head volume when compared with water.
 
 The major difference between the two heads is the fact PG head is negatively charged whereas the PC head is zwitterionic (Figure \ref{fig:heads}).
@@ -227,9 +227,9 @@ It has been shown previously that, due to the electrostic interaction, the confo
 A similar structure may occur for the PG head, with a weaker interaction between the partially postively-charged alcoholic hydrogen atoms and the negatively-charged phosphate group.
 Therefore, the observed increase found for the PG volume in DES when compared with water may be due to the unfolding of the PG head, where the solvent is capable of providing a greater screening effect to the PG head than that present in water.
 This may not be observed for the PC head due to the greater strength of the folding interaction arising from the formally-charged nature of the ammonium group.
-It would be anticipated that this unfolding would result in an increase in the thickness of the lipid head layer. Previously, DPPG has been reported to have a head layer thickness of $10.3\pm0.4$ \AA\ at 22 mNn$^{-1}$ from neutron reflectometry measurements\cite{Clifton2012}, which it slightly less than the \input{../output/dmpg/head.txt} \AA\ determined in the current work, further suggesting that the unfolding of the PG head.
+It would be anticipated that this unfolding would result in an increase in the thickness of the lipid head layer. Previously, DPPG has been reported to have a head layer thickness of \SI[separate-uncertainty=true]{10.3\pm0.4}{\angstrom} at \SI{22}{\milli\newton\per\meter} from neutron reflectometry measurements\cite{Clifton2012}, which it slightly less than the \input{../output/dmpg/head.txt}\si{angstrom} determined in the current work, further suggesting that the unfolding of the PG head.
 
-The determined volumes for the head and tails, and the thickness of the head layers, for DMPC and DPPC were then used as constraints in the co-refinement of the custom model against two contrasts NR data (Figure \ref{fig:neutron}). In these analysis the only two varying parameters were the tail tilt angle, $\theta_t$, and the interfacial roughness, $\sigma$
+The determined volumes for the head and tails, and the thickness of the head layers, for DMPC and DPPC were then used as constraints in the co-refinement of the custom model against two contrasts NR data (Figure \ref{fig:neutron}). In these analysis the only two varying parameters were the tail tilt angle, $\theta_t$, and the interfacial roughness, $\sigma$.
 The quality of agreement with the NR measurements indicates that the values found for the head and tail volumes air consistent between the pair of measurements for the same system.
 It is clear, that again stable monolayers of the lipids are forming at the air-DES interface, and that the head and tail volumes determined from XRR measurements are robust-enough to be used in the modelling of NR data.
 Futhermore, the trends present with varying surface pressure in the XRR models are consistent with that found in the NR models.
@@ -238,7 +238,7 @@ Futhermore, the trends present with varying surface pressure in the XRR models a
 	\centering
 	\includegraphics[width=0.45\textwidth]{figures/nDMPC20_all_data}
 	\includegraphics[width=0.45\textwidth]{figures/nDPPC20_all_data}
-	\caption{The NR and SLD profiles at a surface pressure of 20 mNm$^{-1}$, the h-DES contrast is shown in blue while the hd-DES in yellow; (a) DMPC, (b) DPPC. The NR profiles have been offset in the $y$-axis by an order of magnitude and SLD profiles offset in the $y$-axis by $5\times10^{-6}$ \AA$^{-2}$, for clarity. Source: Datasets, figure files and running/plotting scripts are available under CC-BY\cite{mccluskey_2018}.}
+	\caption{The NR and SLD profiles at a surface pressure of 20 mNm$^{-1}$, the h-DES contrast is shown in blue while the hd-DES in yellow; (a) DMPC, (b) DPPC. The NR profiles have been offset in the $y$-axis by an order of magnitude and SLD profiles offset in the $y$-axis by \SI{5e-6}{\per\square\angstrom}, for clarity. Source: Datasets, figure files and running/plotting scripts are available under CC-BY\cite{mccluskey_2018}.}
 	\label{fig:neutron}
 \end{figure}
 %
