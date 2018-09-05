@@ -58,25 +58,25 @@ for i in range(0, len(sps)):
 
 
 #plotting reflectometry
-def plotref(data, gs, offset):
+def plotref(data, gs, offset, col):
     ax = plt.subplot(gs)
     ax.errorbar(data[0], data[1] * offset, yerr=data[2] * offset, linestyle='', marker='s', markersize=7, 
                 markeredgecolor='k', markerfacecolor='k', ecolor='k')
-    ax.plot(data[0], data[3] * offset, linewidth=4)
+    ax.plot(data[0], data[3] * offset, linewidth=4, color=col)
     for i in range(4, data.shape[0]):
-        ax.plot(data[0], data[i] * offset, color='k', linewidth=2, alpha=0.005)
+        ax.plot(data[0], data[i] * offset, color=col, linewidth=2, alpha=0.005)
     ax.set_ylabel(r'$Rq^4$/Å$^{-4}$')
     ax.set_yscale('log')
     ax.set_xlabel(r'$q$/Å$^{-1}$')
     
-def plotsld(data, gs, offset, label):
+def plotsld(data, gs, offset, label, col):
     ax = plt.subplot(gs)
     z = data[0] - 10
     true_sld = data[1]
-    ax.plot(z, true_sld + offset, linewidth=4)
+    ax.plot(z, true_sld + offset, linewidth=4, color=col)
     for i in range(2, data.shape[0]):
         sld = data[i]
-        ax.plot(z, sld + offset, color='k', linewidth=2, alpha=0.005)
+        ax.plot(z, sld + offset, color=col, linewidth=2, alpha=0.005)
     ax.set_xlabel(r'$z$/Å')
     ax.set_ylabel(r'SLD/$10^{-6}$Å$^{-2}$')
     ax.text(0.80, 0.05, '(' + label + ')', fontsize=44, transform=ax.transAxes)
@@ -115,8 +115,8 @@ def plotgraph(gs, sp, tails, sols, n1, n2, p1, p2, x1, x2, label):
     #make_patch_spines_invisible(par2)
     # Second, show the right spine.
     #par2.spines["right"].set_visible(True)
-    p11, = host.plot(sp, tails, c='#0173B2', marker='s', ls='', ms=15)
-    p21, = par1.plot(sp, sols, c='#029E73', marker='o', ls='', ms=15)
+    p11, = host.plot(sp, tails, c="#0173B2", marker='s', ls='', ms=15)
+    p21, = par1.plot(sp, sols, c="#DE8F05", marker='o', ls='', ms=15)
     
     host.set_xlim(x1, x2)
     host.set_ylim(np.min(tails)-0.5, np.max(tails)+0.5)
@@ -156,15 +156,18 @@ l = [1, 10, 100, 1000, 10000]
 fig = plt.figure(figsize=(20, 7.5))
 gs = mpl.gridspec.GridSpec(1, 3) 
 k = 0
+colors = ["#0173B2", "#DE8F05", "#029E73", "#D55E00"]
 for i in range(0, int(n)-4, 2):
     data = np.loadtxt(sys.argv[i+1])
-    plotref(data, gs[0, 0:2], l[k])
+    plotref(data, gs[0, 0:2], l[k], colors[k])
     k += 1
 f = 0
+l = 0
 for i in range(1, int(n)-3, 2):
     data = np.loadtxt(sys.argv[i+1])
-    plotsld(data, gs[0, 2], f, str(sys.argv[n-2]))
+    plotsld(data, gs[0, 2], f, str(sys.argv[n-2]), colors[l])
     f += 5
+    l += 1
 plt.tight_layout()
 plt.savefig('{}{}_all_data.pdf'.format(figures_dir, sys.argv[n-1]))
 plt.close()

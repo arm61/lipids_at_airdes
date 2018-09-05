@@ -26,25 +26,25 @@ figures_dir = cwd + '/../../reports/figures/'
 
 
 #plotting reflectometry
-def plotref(data, gs, offset):
+def plotref(data, gs, offset, col):
     ax = plt.subplot(gs)
     ax.errorbar(data[0], data[1] * offset, yerr=data[2] * offset, linestyle='', marker='s', markersize=5, 
                 markeredgecolor='k', markerfacecolor='k', ecolor='k')
-    ax.plot(data[0], data[3] * offset, linewidth=4)
+    ax.plot(data[0], data[3] * offset, linewidth=4, color=col)
     for i in range(4, data.shape[0]):
-        ax.plot(data[0], data[i] * offset, color='k', linewidth=2, alpha=0.005)
+        ax.plot(data[0], data[i] * offset, color=col, linewidth=2, alpha=0.005)
     ax.set_ylabel(r'$Rq^4$/Å$^{-4}$')
     ax.set_yscale('log')
     ax.set_xlabel(r'$q$/Å$^{-1}$')
     
-def plotsld(data, gs, offset, label):
+def plotsld(data, gs, offset, label, col):
     ax = plt.subplot(gs)
     z = data[0] - 10
     true_sld = data[1]
-    ax.plot(z, true_sld + offset, linewidth=4)
+    ax.plot(z, true_sld + offset, linewidth=4, color=col)
     for i in range(2, data.shape[0]):
         sld = data[i]
-        ax.plot(z, sld + offset, linewidth=2, alpha=0.05)
+        ax.plot(z, sld + offset, linewidth=2, alpha=0.05, color=col)
     ax.text(0.81, 0.90, '(' + label + ')', fontsize=44, transform=ax.transAxes)
     ax.set_xlabel(r'$z$/Å')
     ax.set_ylabel(r'SLD/$10^{-6}$Å$^{-2}$')
@@ -75,15 +75,18 @@ l = [1, 10, 100, 1000, 10000]
 fig = plt.figure(figsize=(20, 7.5))
 gs = mpl.gridspec.GridSpec(1, 2, width_ratios=[2, 1]) 
 k = 0
+colors = ["#0173B2", "#DE8F05"]
 for i in range(0, int(n)-4, 2):
     data = np.loadtxt(sys.argv[i+1])
-    plotref(data, gs[0, 0], l[k])
+    plotref(data, gs[0, 0], l[k], colors[k])
     k += 1
 f = 0
+l = 0
 for i in range(1, int(n)-3, 2):
     data = np.loadtxt(sys.argv[i+1])
-    plotsld(data, gs[0, 1], f, sys.argv[n-2])
+    plotsld(data, gs[0, 1], f, sys.argv[n-2], colors[l])
     f += 5
+    l += 1
 plt.tight_layout()
 plt.savefig('{}{}_all_data.pdf'.format(figures_dir, sys.argv[n-1]))
 plt.close()
