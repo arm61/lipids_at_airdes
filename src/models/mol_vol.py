@@ -1,7 +1,8 @@
 import numpy as np
 import periodictable as pt
-from refnx.analysis import Parameter, possibly_create_parameter, Parameters
-from refnx.reflect import SLD, Component, Slab
+from refnx.analysis import possibly_create_parameter, Parameters
+from refnx.reflect import Component
+
 
 class VolMono(Component):
     def __init__(self, b_heads, thick_heads, b_tails, tanford_length,
@@ -99,6 +100,7 @@ def set_constraints(lipids, vary_tails=False):
         lipids[i].tail_mol_vol.constraint = lipids[0].tail_mol_vol
         lipids[i].head_mol_vol.constraint = lipids[0].head_mol_vol
     return lipids
+
 
 def get_scattering_length(component, neutron=False):
     if not neutron:

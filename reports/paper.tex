@@ -208,7 +208,7 @@ DPPC (> 99 \%, C$_{16}$ tails), DMPC (> 99 \%, C$_{14}$ tails), and DMPG (> 99 \
 	\caption{\ Lipid component volumes extracted from different literature sources. $V_l$ corresponds to the total lipid volume, MD to molecular dynamics simulation, WAXS to wide-angle X-ray scattering, NB to neutral buoyancy and DVTD to differential vibrating tube densimetry. $^a$ The values for the head component in Kucerka \emph{et al.},\cite{Kucerka2004} were taken from Balgav\'{y} \emph{et al}.\cite{Balgavy2001}}
 	\label{tab:water}
 	\begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}l|lll|ll|ll|l|l}
-		%\hline
+		\hline
     Lipid & DPPC & & & DMPC & & DLPC & & DMPG & POPG \\
     \hline
     Reference & [\citen{Armen1998}] & [\citen{Sun1994}] & [\citen{Kucerka2004,Balgavy2001}]$^a$ & [\citen{Armen1998}] & [\citen{Kucerka2004,Balgavy2001}]$^a$ & [\citen{Armen1998}] & [\citen{Kucerka2004,Balgavy2001}]$^a$ & [\citen{Pan2012}] & [\citen{Kucerka2012}] \\
@@ -218,7 +218,7 @@ DPPC (> 99 \%, C$_{16}$ tails), DMPC (> 99 \%, C$_{14}$ tails), and DMPG (> 99 \
     $V_h$/\AA$^3$ & $320.9\pm20.1$ & $319\pm6$ & $339.5\pm14.5$ & $320.9\pm20.1$ & $339.5\pm14.5$ & $320.9\pm20.1$ & $339.5\pm14.5$ & $291.0$ & $289$ \\
     Method & MD & WAXS & NB & MD & NB & MD & NB & DVTD & MD \\
     T/$^\circ$C & 50 & 24 & 30 & 50 & 30 & 50 & 30 & 20 & 25 \\
-    %\hline
+    \hline
 	\end{tabular*}
 \end{table*}
 In the XRR experiment, sample preparation was performed in situ using the standard method for the spreading of insoluble monolayers on water: a certain amount of the phospholipid solution was spread onto the liquid surface in order to provide a given surface concentration. After the evaporation of the chloroform, it is assumed that the resulting system is a solvent subphase with a monolayer of phospholipid at the interface. Surface concentration was modified by closing and opening the PTFE barriers of a Langmuir trough. In order to minimise the volumes used in the NR experiment (to keep the cost of deuterated compounds to a manageable level) it was not possible to use a Langmuir trough. Instead, small Delrin adsorption troughs were used that did not have controllable barriers. So, although the surface coverage was nominally the same as used in the X-ray studies, the lack of precise control over the surface pressure meant that it was not appropriate to co-refine XRR and NR contrasts together.
@@ -257,7 +257,7 @@ where, $\text{SLD}_{s}$ is the scattering length density of the subphase (DES), 
 %
 Based on the work of Campbell \emph{et al.},\cite{Campbell2018} a single value for the interfacial roughness was fitted for all of the interfaces, including the subphase (i.e. $\sigma_h$ = $\sigma_t$ = $\sigma_s$), as there is only a single lipid molecule type in each monolayer. Therefore, any capillary wave roughness at the air-DES interface is carried equally through the layers.
 
-In the first of two steps, this custom model was used to co-refine the component volume of the lipid head component, $V_h$, the volume of the tail component, $V_t$, and the head thickness, $d_h$ across XRR measurements at four different surface concentrations. The head thickness was not permitted to vary with surface pressure to reduce the dimensionality of the parameter space, an assumption that is based on our belief that increasing surface pressure should not significantly influence the head layer thickness. The following parameters were allowed to vary; $\theta_t$, and $\sigma_{t,h,s}$, independently across the surface pressures, while others, shown in Table \ref{tab:invariant}, were held constant at the values given. The length of the carbon chain was kept constant at the value determined by the Tanford equation,\cite{Tanford1980} since this is the maximum chain length possible and the most likely conformation at the surface pressures studied.\cite{Hollinshead2009} For each co-refinement of four XRR measurements, there were, in total, eleven degrees of freedom in the fitting process. Throughout all of the analysis, the reflectometry scale factor was allowed to vary freely, while the background as constrained to the intensity of either the largest or second-largest $q$-value.
+In the first of two steps, this custom model was used to co-refine the component volume of the lipid head component, $V_h$, the volume of the tail component, $V_t$, and the head thickness, $d_h$ across XRR measurements at four different surface concentrations. In keeping with the work of Campbell \emph{et al.},\cite{Campbell2018} a single value for the head thickness was fitted for each lipid across all surface pressures, as the thickness of the head layer was considered to be dependent on molecular dimensions only. The following parameters were allowed to vary; $\theta_t$, and $\sigma_{t,h,s}$, independently across the surface pressures, while others, shown in Table \ref{tab:invariant}, were held constant at the values given. The length of the carbon chain was kept constant at the value determined by the Tanford equation,\cite{Tanford1980} since this is the maximum chain length possible and the most likely conformation at the surface pressures studied.\cite{Hollinshead2009} For each co-refinement of four XRR measurements, there were, in total, eleven degrees of freedom in the fitting process. Throughout all of the analysis, the reflectometry scale factor was allowed to vary freely, while the background as constrained to the intensity of either the largest or second-largest $q$-value.
 
 %
 \begin{table}[h]
@@ -293,10 +293,10 @@ In both cases, the refinement of the custom model to the experimental data invol
 %
 \begin{figure}
 	\centering
-	\includegraphics[width=0.48\textwidth]{figures/DLPC_all_data}
-	\includegraphics[width=0.48\textwidth]{figures/DMPC_all_data}
-	\includegraphics[width=0.48\textwidth]{figures/DPPC_all_data}
-	\includegraphics[width=0.48\textwidth]{figures/DMPG_all_data}
+	\includegraphics[width=0.45\textwidth]{figures/dlpc_ref_sld}
+	\includegraphics[width=0.45\textwidth]{figures/dmpc_ref_sld}
+	\includegraphics[width=0.45\textwidth]{figures/dppc_ref_sld}
+	\includegraphics[width=0.45\textwidth]{figures/dmpg_ref_sld}
 	\caption{The XRR profiles (left) and SLD profiles (right) for each of the four lipids; (a) DLPC, (b) DMPC, (c) DPPC, (d) DMPG, at the four measured surface pressures; lowest surface pressure at the bottom and increasing moving up. The different surface pressure XRR profiles have been offset in the $y$-axis by an order of magnitude and SLD profiles offset in the $y$-axis by $5\times10^{-6}$ \AA$^{-2}$, for clarity. Source: Datasets, figure files and running/plotting scripts are available under CC-BY.\cite{mccluskey_2018}}
 	\label{fig:lipids}
 \end{figure}
@@ -335,10 +335,10 @@ Table \ref{tab:liptab} gives the best-fit values for each lipid at the highest s
 %
 \begin{figure}
 	\centering
-	\includegraphics[width=0.48\textwidth]{figures/DLPC_other_data}
-	\includegraphics[width=0.48\textwidth]{figures/DMPC_other_data}
-	\includegraphics[width=0.48\textwidth]{figures/DPPC_other_data}
-	\includegraphics[width=0.48\textwidth]{figures/DMPG_other_data}
+	\includegraphics[width=0.45\textwidth]{figures/dlpc_vh_dt_phi}
+	\includegraphics[width=0.45\textwidth]{figures/dmpc_vh_dt_phi}
+	\includegraphics[width=0.45\textwidth]{figures/dppc_vh_dt_phi}
+	\includegraphics[width=0.45\textwidth]{figures/dmpg_vh_dt_phi}
 	\caption{The PDFs of the head component volume (left) and variation of $d_t$ (blue squares) and $\phi_h$ (green circles) with surface pressure for each of the four lipids; (a) DLPC, (b) DMPC, (c) DPPC, (d) DMPG. Source: Datasets, figure files and running/plotting scripts are available under CC-BY.\cite{mccluskey_2018}}
 	\label{fig:lipresults}
 \end{figure}
@@ -363,8 +363,8 @@ The ability to fit the NR data, as shown in Figure \ref{fig:neutron} indicates t
 %
 \begin{figure}
 	\centering
-	\includegraphics[width=0.48\textwidth]{figures/nDMPC20_all_data}
-	\includegraphics[width=0.48\textwidth]{figures/nDPPC20_all_data}
+	\includegraphics[width=0.45\textwidth]{figures/nDMPC20_all_data}
+	\includegraphics[width=0.45\textwidth]{figures/nDPPC20_all_data}
 	\caption{The NR and SLD profiles at a surface pressure of 20 mNm$^{-1}$, the h-DES contrast is shown in blue while the hd-DES in green; (a) DMPC, (b) DPPC. The NR profiles have been offset in the $y$-axis by an order of magnitude and SLD profiles offset in the $y$-axis by $5\times10^{-6}$ \AA$^{-2}$, for clarity. Source: Datasets, figure files and running/plotting scripts are available under CC-BY.\cite{mccluskey_2018}}
 	\label{fig:neutron}
 \end{figure}
@@ -373,7 +373,7 @@ The ability to fit the NR data, as shown in Figure \ref{fig:neutron} indicates t
 	\small
 	\caption{\ The best-fit values, and associated 95 \% confidence intervals for the varying parameters in the co-refined NR models. The values of $d_t$ were found from the appropriate values of $\theta_t$ using Eqn. \ref{equ:tl}, and the values of $\phi_h$ were found using Eqn. \ref{equ:phih}.}
 	\label{tab:neutron}
-	\begin{tabular*}{0.48\textwidth}{@{\extracolsep{\fill}}lllll}
+	\begin{tabular*}{0.48\textwidth}{@{\extracolsep{\fill}}l|ll|ll}
 		\hline
 		Lipid & d$_{54}$-DMPC & & d$_{62}$-DPPC & \\
     SP/mNm$^{-1}$ & 20 & 25 & 15 & 20 \\

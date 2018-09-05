@@ -154,7 +154,7 @@ fitter.sample(200, random_state=1)
 fitter.sampler.reset()
 # The collection is across 5000*200 samples
 # The random_state seed is to allow for reproducibility
-res = fitter.sample(1000, nthin=1, random_state=1, f='{}{}{}_chain_neutron.txt'.format(analysis_dir, lipid, sp))
+res = fitter.sample(1000, nthin=1, random_state=1, f='{}/{}/{}_chain_neutron.txt'.format(analysis_dir, lipid, sp))
 flatchain = fitter.sampler.flatchain
 
 
