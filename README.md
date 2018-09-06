@@ -6,9 +6,13 @@ This is the electronic supplementary information (ESI) associated with the publi
 
 ### Data
 
-The experimental data can be obtained from the University of Bath Research Data Achieve.
+The X-ray reflectometry data can be obtained from the University of Bath Research Data Archive.
 
 DOI: [some doi]()
+
+The neutron reflectometry data can be obtained from the ILL Data Archive.
+
+DOI: [10.5291/ILL-DATA.9-13-612](http://doi.org/10.5291/ILL-DATA.9-13-612)
 
 ### Analysis
 
@@ -21,14 +25,12 @@ Requirements:
 
 The supplied Makefile, will reproduce all of the analysis, plot the figures, and build a preprint version of the paper when run. Be aware that the analyses within this work are non-trivial and take many hours to run so **use caution** before re-running all the analysis.
 
-If you **still** want to re-run all of the analysis, the following commands can be used:
+If you **still** want to re-run all of the analysis, first you must download the data from the links above before running the following commands:
 
 ```
 conda create --name paper_env python
 
 source activate paper_env
-
-wget **BATH DATA TO COME**
 
 pip install -r config/requirements.txt
 
