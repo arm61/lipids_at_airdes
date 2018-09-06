@@ -199,7 +199,7 @@ DPPC (> 99 \%, C$_{16}$ tails), DMPC (> 99 \%, C$_{14}$ tails), and DMPG (> 99 \
 \begin{figure}
 	\centering
 	\includegraphics[width=0.30\textwidth]{figures/head_groups}
-	\caption{The two lipid classes with different head components compared in this study, where R indicates the hydrocarbon tail; (a) phosphatidylglycerol, (b) phosphocholine. Source: Datasets, figure files and running/plotting scripts are available under CC-BY.\cite{mccluskey_2018}}
+	\caption{The two lipid classes with different head components compared in this study, where R indicates the hydrocarbon tail; (a) phosphatidylglycerol, (b) phosphocholine.}
 	\label{fig:heads}
 \end{figure}
 
@@ -233,7 +233,7 @@ The use of XRR and NR to analyse the structure of phospholipids on the surface o
 
 In Table \ref{tab:water}, there appears to be a general consensus that the component volume of the phosphocholine (PC) head is in the range from 320-360 \AA$^3$ while the phosphatidylglycerol (PG) head is in the range 289-291 \AA$^3$. However, we do not know whether the head component volumes used in the literature, that are derived from water-based measurements, will be appropriate for this work, which involves a non-aqueous solvent. The charged nature of the zwitterionic and anionic lipid heads means that they are likely to have different interactions with polar, but neutral, water as compared to the charged DES components.\cite{Sanchez-Fernandez2018} Furthermore, it has been shown that in the liquid expanded and condensed phases, which are often present at high surface pressure, the lipid tails will become compressed resulting in a component volume less than measured from other techniques,\cite{Marsh2010,Small1984} and the need to take into account the compaction of the hydrocarbon chains of phospholipid monolayers according to their phase in the modelling of NR data has recently been demonstrated.\cite{Campbell2018}
 
-In this work we would therefore like to use a model that does not assume the molecular volume while remaining physical meaningful. To do this we have allowed the lipid component volumes to vary while constraining the overall system to be self-consistent across multiple different measurements. To do this we have used the Python library refnx\cite{Nelson2018}. This software allows the inclusion of a custom model to be defined, from which parameters feed into the Abel\`{e}s reflectivity model (a model that is widely used to calculate reflectivity \cite{Abeles1950,Parratt1954}). This custom model, along with a series of Jupyter notebooks showing, in full, the analysis performed, can be found in the ESI and is available under CC-BY.\cite{mccluskey_2018}
+In this work we would therefore like to use a model that does not assume the molecular volume while remaining physical meaningful. To do this we have allowed the lipid component volumes to vary while constraining the overall system to be self-consistent across multiple different measurements. To do this we have used the Python library refnx\cite{Nelson2018}. This software allows the inclusion of a custom model to be defined, from which parameters feed into the Abel\`{e}s reflectivity model (a model that is widely used to calculate reflectivity \cite{Abeles1950,Parratt1954}). This custom model, along with a series of Jupyter notebooks showing, in full, the analysis performed, can be found in the ESI and is available under CC-BY.\cite{mccluskey_2018c}
 
 Our chemically-consistent model is made up of two layers to define the lipid monolayer; the head layer at the interface with the solvent and tail layer at the interface with the air. The head components have a calculated scattering length, $b_h$, (found as a summation of the X-ray or neutron atomic scattering lengths), and a component volume, $V_h$. These head components make up a layer with a given thickness, $d_h$, and roughness, $\sigma_h$, within which some volume fraction of solvent can intercalate, $\phi_h$. The tail components also have a calculated scattering length, $b_t$, roughness, $\sigma_t$, and a component volume, $V_t$. We have defined the thickness of the tail layer, $d_t$, in terms of the maximum (all-trans) length of the carbon tail, $t_t$, and the angle that the chain is tilted by with respect to the interface normal, $\theta_t$,
 %
@@ -297,7 +297,7 @@ In both cases, the refinement of the custom model to the experimental data invol
 	\includegraphics[width=0.45\textwidth]{figures/dmpc_ref_sld}
 	\includegraphics[width=0.45\textwidth]{figures/dppc_ref_sld}
 	\includegraphics[width=0.45\textwidth]{figures/dmpg_ref_sld}
-	\caption{The XRR profiles (left) and SLD profiles (right) for each of the four lipids; (a) DLPC, (b) DMPC, (c) DPPC, (d) DMPG, at the four measured surface pressures; lowest surface pressure at the bottom and increasing moving up. The different surface pressure XRR profiles have been offset in the $y$-axis by an order of magnitude and SLD profiles offset in the $y$-axis by $5\times10^{-6}$ \AA$^{-2}$, for clarity. Source: Datasets, figure files and running/plotting scripts are available under CC-BY.\cite{mccluskey_2018}}
+	\caption{The XRR profiles (left) and SLD profiles (right) for each of the four lipids; (a) DLPC, (b) DMPC, (c) DPPC, (d) DMPG, at the four measured surface pressures; lowest surface pressure at the bottom and increasing moving up. The different surface pressure XRR profiles have been offset in the $y$-axis by an order of magnitude and SLD profiles offset in the $y$-axis by $5\times10^{-6}$ \AA$^{-2}$, for clarity.}
 	\label{fig:lipids}
 \end{figure}
 %
@@ -339,7 +339,7 @@ Table \ref{tab:liptab} gives the best-fit values for each lipid at the highest s
 	\includegraphics[width=0.45\textwidth]{figures/dmpc_vh_dt_phi}
 	\includegraphics[width=0.45\textwidth]{figures/dppc_vh_dt_phi}
 	\includegraphics[width=0.45\textwidth]{figures/dmpg_vh_dt_phi}
-	\caption{The PDFs of the head component volume (left) and variation of $d_t$ (blue squares) and $\phi_h$ (green circles) with surface pressure for each of the four lipids; (a) DLPC, (b) DMPC, (c) DPPC, (d) DMPG. Source: Datasets, figure files and running/plotting scripts are available under CC-BY.\cite{mccluskey_2018}}
+	\caption{The PDFs of the head component volume (left) and variation of $d_t$ (blue squares) and $\phi_h$ (green circles) with surface pressure for each of the four lipids; (a) DLPC, (b) DMPC, (c) DPPC, (d) DMPG.}
 	\label{fig:lipresults}
 \end{figure}
 %
@@ -363,9 +363,9 @@ The ability to fit the NR data, as shown in Figure \ref{fig:neutron} indicates t
 %
 \begin{figure}
 	\centering
-	\includegraphics[width=0.45\textwidth]{figures/nDMPC20_all_data}
-	\includegraphics[width=0.45\textwidth]{figures/nDPPC20_all_data}
-	\caption{The NR and SLD profiles at a surface pressure of 20 mNm$^{-1}$, the h-DES contrast is shown in blue while the hd-DES in green; (a) DMPC, (b) DPPC. The NR profiles have been offset in the $y$-axis by an order of magnitude and SLD profiles offset in the $y$-axis by $5\times10^{-6}$ \AA$^{-2}$, for clarity. Source: Datasets, figure files and running/plotting scripts are available under CC-BY.\cite{mccluskey_2018}}
+	\includegraphics[width=0.45\textwidth]{figures/dmpc_20n_ref_sld}
+	\includegraphics[width=0.45\textwidth]{figures/dppc_20n_ref_sld}
+	\caption{The NR and SLD profiles at a surface pressure of 20 mNm$^{-1}$, the h-DES contrast is shown in blue while the hd-DES in green; (a) DMPC, (b) DPPC. The NR profiles have been offset in the $y$-axis by an order of magnitude and SLD profiles offset in the $y$-axis by $5\times10^{-6}$ \AA$^{-2}$, for clarity.}
 	\label{fig:neutron}
 \end{figure}
 %

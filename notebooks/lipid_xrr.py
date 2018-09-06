@@ -32,23 +32,6 @@ sys.path.insert(0, '../src/tools')
 import helper
 
 
-# These are parameters to make the plots pretty.
-
-# In[ ]:
-
-
-mpl.rcParams['axes.labelsize']=44
-mpl.rcParams['xtick.labelsize']=32
-mpl.rcParams['ytick.labelsize']=32
-mpl.rcParams['grid.linestyle'] = ''
-mpl.rcParams['axes.grid'] = True
-mpl.rcParams['axes.facecolor'] = 'w'
-mpl.rcParams['axes.linewidth'] = 1
-mpl.rcParams['axes.edgecolor'] = 'k'
-mpl.rcParams['xtick.bottom'] = True
-mpl.rcParams['ytick.left'] = True
-
-
 # When running the `Makefile` in the top directory of this ESI, a this notebook is converted to a Python script and running for four different lipids, each at four surface pressures. The necessary variables are assigned here. 
 
 # In[ ]:
@@ -177,7 +160,7 @@ structure_lipid3 = air(0, 0) | lipid3 | des(0, 3.3)
 structure_lipid4 = air(0, 0) | lipid4 | des(0, 3.3)
 
 
-# The variables, and bounds for each of the four surface pressures are setup
+# The variables, and bounds for each of the four surface pressures are setup.
 
 # In[ ]:
 
@@ -277,7 +260,7 @@ objective4 = Objective(model_lipid4, dataset4, transform=Transform('YX4'))
 global_objective = GlobalObjective([objective1, objective2, objective3, objective4])
 
 
-# ## Analysis 
+# ## Fitting 
 # 
 # The differential evolution algorithm is used to find optimal parameters, before the MCMC algorithm probes the parameter space for 1000 steps.
 
@@ -299,225 +282,6 @@ flatchain = fitter.sampler.flatchain
 
 
 print(global_objective)
-
-
-# Using the probability distribution functions, the PDFs for the tail layer thickness and the solvent content of the headgroup are defined. 
-
-# In[ ]:
-
-
-tail1 = flatchain[:, 2] * lipid1.tail_length.value
-tail2 = flatchain[:, 7] * lipid2.tail_length.value
-tail3 = flatchain[:, 10] * lipid3.tail_length.value
-tail4 = flatchain[:, 13] * lipid4.tail_length.value
-
-solh1 = 1 - (flatchain[:, 4] / flatchain[:, 3]) * (tail1 / flatchain[:, 1])
-solh2 = 1 - (flatchain[:, 4] / flatchain[:, 3]) * (tail2 / flatchain[:, 1])
-solh3 = 1 - (flatchain[:, 4] / flatchain[:, 3]) * (tail3 / flatchain[:, 1])
-solh4 = 1 - (flatchain[:, 4] / flatchain[:, 3]) * (tail4 / flatchain[:, 1])
-
-
-# The reflectometry and SLD profile are then plotted. 
-
-# In[ ]:
-
-
-fig = plt.figure(figsize=(20, 7.5))
-gs = mpl.gridspec.GridSpec(1, 3)
-colorblind = ["#0173B2", "#DE8F05", "#029E73", "#D55E00"]
-
-for i, dataset in enumerate(datasets):
-    choose = global_objective.pgen(ngen=100)
-    ax1 = plt.subplot(gs[0, 0:2])
-    ax2 = plt.subplot(gs[0, 2])
-    ax1.errorbar(dataset.x, dataset.y*(dataset.x)**4 * 10**(i-1), 
-                 yerr=dataset.y_err*(dataset.x)**4 * 10**(i-1), 
-                 linestyle='', marker='s', markersize=7, markeredgecolor='k', 
-                 markerfacecolor='k', ecolor='k')
-    for pvec in choose:
-        global_objective.setp(pvec)
-        ax1.plot(dataset.x, models[i](dataset.x, x_err=dataset.x_err)*(dataset.x)**4 * 10**(i-1), 
-                 linewidth=4, color=colorblind[i], alpha=0.1)
-        zs, sld = structures[i].sld_profile()
-        ax2.plot(zs, sld + i*5, color=colorblind[i], linewidth=2, alpha=0.1)
-    ax1.set_ylabel(r'$Rq^4$/Å$^{-4}$')
-    ax1.set_yscale('log')
-    ax1.set_xlabel(r'$q$/Å$^{-1}$')
-    ax2.set_xlabel(r'$z$/Å')
-    ax2.set_ylabel(r'SLD/$10^{-6}$Å$^{-2}$')
-ax2.text(0.80, 0.05, '(' + label + ')', fontsize=44, transform=ax2.transAxes)
-plt.tight_layout()
-plt.savefig('{}{}_ref_sld.pdf'.format(figures_dir, lipid))
-plt.close()
-
-
-# The PDFs for the head volumes of the lipid and the variation of the tail thickness and solvent content with surface pressure are plotted. 
-
-# In[ ]:
-
-
-fig = plt.figure(figsize=(20, 5.5))
-gs = mpl.gridspec.GridSpec(1, 2) 
-ax1 = plt.subplot(gs[0, 0])
-a = mquantiles(flatchain[:, 4], prob=[0.025, 0.5, 0.975])
-weights = np.ones_like(flatchain[:, 4])/float(len(flatchain[:, 4]))
-ax1.hist(flatchain[:, 4], bins=50, histtype='stepfilled', weights=weights)
-ax1.set_ylabel('PDF({}-$V_h$)'.format(lipid.upper()))
-ax1.set_xlabel('{}-$V_h$/Å$^3$'.format(lipid.upper()))
-ax1.set_xticks([a[0], a[1], a[2]])
-ax1.set_xlim([np.min(flatchain[:, 4])-0.01, np.max(flatchain[:, 4])+0.01])
-ax1.set_xticklabels(['{:.1f}'.format(a[0]), '{:.1f}'.format(a[1]), '{:.1f}'.format(a[2])])
-ax2 = plt.subplot(gs[0, 1])
-ax3 = ax2.twinx()
-ax2.plot([sp1, sp2, sp3, sp4], 
-         [np.average(tail1), np.average(tail2), np.average(tail3), np.average(tail4)], 
-          c="#0173B2", marker='s', ls='', ms=15)
-ax3.plot([sp1, sp2, sp3, sp4], 
-         np.array([np.average(solh1), np.average(solh2), np.average(solh3), np.average(solh4)]) * 100, 
-         c="#DE8F05", marker='o', ls='', ms=15)
-ax2.set_xlabel(r'Surface Pressure/mNm$^{-1}$')
-ax2.set_ylabel(r'$d_t$/Å')
-ax3.set_ylabel(r'$\phi_h$/$\times 10^2$')
-
-ax2.yaxis.label.set_color("#0173B2")
-ax3.yaxis.label.set_color("#DE8F05")
-ax2.text(0.88, 0.07, '(' + label + ')', fontsize=44, transform=ax2.transAxes)
-ax2.tick_params(axis='y', colors="#0173B2")
-ax3.tick_params(axis='y', colors="#DE8F05")
-plt.tight_layout()
-plt.savefig('{}{}_vh_dt_phi.pdf'.format(figures_dir, lipid))
-plt.close()
-
-
-# Each of the variables is output to a text file, so that they may be easily imported into the final document if necessary. 
-
-# In[ ]:
-
-
-lab = ['scale{}'.format(sp1), 'head{}'.format(sp1), 'angle{}'.format(sp1), 'vt', 'vh', 'rough{}'.format(sp1), 
-       'scale{}'.format(sp2), 'angle{}'.format(sp2), 'rough{}'.format(sp2), 
-       'scale{}'.format(sp3), 'angle{}'.format(sp3), 'rough{}'.format(sp3), 
-       'scale{}'.format(sp4), 'angle{}'.format(sp4), 'rough{}'.format(sp4)]
-for i in range(0, flatchain.shape[1]):
-    f_out = open('{}{}/{}.txt'.format(analysis_dir, lipid, lab[i]), 'w')
-    a = mquantiles(flatchain[:, i], prob=[0.025, 0.5, 0.975])
-    if 'angle' in lab[i]:
-        c = np.rad2deg(np.arccos(a))
-        k = [c[1], c[0] - c[1], c[1] - c[2]]
-        q = '{:.2f}'.format(k[0])
-        w = '{:.2f}'.format(k[1])
-        e = '{:.2f}'.format(k[2])
-        f_out.write(helper.latex_asym(q, e, w))
-    elif 'sol' in lab[i]:
-        k = [a[1]*100, (a[1] - a[0])*100, (a[2] - a[1])*100]
-        q = '{:.2f}'.format(k[0])
-        e = '{:.2f}'.format(k[1])
-        w = '{:.2f}'.format(k[2])
-        f_out.write(helper.latex_asym(q, e, w))
-    else:
-        k = [a[1], a[1] - a[0], a[2] - a[1]]
-        q = '{:.2f}'.format(k[0])
-        e = '{:.2f}'.format(k[1])
-        w = '{:.2f}'.format(k[2])
-        f_out.write(helper.latex_asym(q, e, w))
-    f_out.close()
-            
-lab = ['tail{}'.format(sp1), 'tail{}'.format(sp2), 'tail{}'.format(sp3), 'tail{}'.format(sp4)]
-kl = [tail1, tail2, tail3, tail4]
-for i in range(0, len(lab)):
-    f_out = open('{}{}/{}.txt'.format(analysis_dir, lipid, lab[i]), 'w')
-    a = mquantiles(kl[i], prob=[0.025, 0.5, 0.975])
-    k = [a[1], a[1] - a[0], a[2] - a[1]]
-    q = '{:.2f}'.format(k[0])
-    e = '{:.2f}'.format(k[1])
-    w = '{:.2f}'.format(k[2])
-    f_out.write(helper.latex_asym(q, e, w))
-    f_out.close()
-    
-lab = ['solh{}'.format(sp1), 'solh{}'.format(sp2), 'solh{}'.format(sp3), 'solh{}'.format(sp4)]
-kl = [solh1, solh2, solh3, solh4]
-for i in range(0, len(lab)):
-    f_out = open('{}{}/{}.txt'.format(analysis_dir, lipid, lab[i]), 'w')
-    a = mquantiles(kl[i], prob=[0.025, 0.5, 0.975])
-    k = [a[1]*100, (a[1] - a[0])*100, (a[2] - a[1])*100]
-    q = '{:.2f}'.format(k[0])
-    e = '{:.2f}'.format(k[1])
-    w = '{:.2f}'.format(k[2])
-    f_out.write(helper.latex_asym(q, e, w))
-    f_out.close()
-
-
-# The corner plots for each of the surface pressures is produced, these are presented in the ESI.
-
-# In[ ]:
-
-
-# plotting pdfs
-import corner
-
-mpl.rcParams['axes.labelsize']=22
-mpl.rcParams['xtick.labelsize']=14
-mpl.rcParams['ytick.labelsize']=14
-mpl.rcParams['axes.linewidth'] = 1
-mpl.rcParams['axes.edgecolor'] = 'k'
-
-
-label=['$V_t$/Å$^3$', '$V_h$/Å$^3$', '$d_h$/Å', 'θ$_t$/°', r'ϕ$_h/\times10^{-2}$', 'σ$_{t,h,s}$/Å']
-
-new_flat = np.zeros((flatchain.shape[0], 6))
-
-new_flat[:, 0] = list(flatchain[:, 3].flatten())
-new_flat[:, 1] = list(flatchain[:, 4].flatten())
-new_flat[:, 3] = list(np.rad2deg(np.arccos(flatchain[:, 2].flatten())))
-new_flat[:, 5] = list(flatchain[:, 5].flatten())
-new_flat[:, 2] = list(flatchain[:, 1].flatten())
-new_flat[:, 4] = list(solh1 * 100)
-
-plt1 = corner.corner(new_flat, max_n_ticks=3, labels=label)
-plt.savefig('{}{}1_all_corner.pdf'.format(figures_dir, lipid))
-plt.close()
-
-new_flat = np.zeros((flatchain.shape[0], 6))
-
-new_flat[:, 0] = list(flatchain[:, 3].flatten())
-new_flat[:, 1] = list(flatchain[:, 4].flatten())
-new_flat[:, 3] = list(np.rad2deg(np.arccos(flatchain[:, 7].flatten())))
-new_flat[:, 5] = list(flatchain[:, 8].flatten())
-new_flat[:, 2] = list(flatchain[:, 1].flatten())
-new_flat[:, 4] = list(solh2 * 100)
-
-plt1 = corner.corner(new_flat, max_n_ticks=3, labels=label)
-plt.savefig('{}{}2_all_corner.pdf'.format(figures_dir, lipid))
-plt.close()
-
-new_flat = np.zeros((flatchain.shape[0], 6))
-
-new_flat[:, 0] = list(flatchain[:, 3].flatten())
-new_flat[:, 1] = list(flatchain[:, 4].flatten())
-new_flat[:, 3] = list(np.rad2deg(np.arccos(flatchain[:, 10].flatten())))
-new_flat[:, 5] = list(flatchain[:, 11].flatten())
-new_flat[:, 2] = list(flatchain[:, 1].flatten())
-new_flat[:, 4] = list(solh3 * 100)
-
-
-plt1 = corner.corner(new_flat, max_n_ticks=3, labels=label)
-plt.savefig('{}{}3_all_corner.pdf'.format(figures_dir, lipid))
-plt.close()
-
-
-new_flat = np.zeros((flatchain.shape[0], 6))
-
-new_flat[:, 0] = list(flatchain[:, 3].flatten())
-new_flat[:, 1] = list(flatchain[:, 4].flatten())
-new_flat[:, 3] = list(np.rad2deg(np.arccos(flatchain[:, 13].flatten())))
-new_flat[:, 5] = list(flatchain[:, 14].flatten())
-new_flat[:, 2] = list(flatchain[:, 1].flatten())
-new_flat[:, 4] = list(solh4 * 100)
-                      
-
-plt1 = corner.corner(new_flat, max_n_ticks=3, labels=label)
-plt.savefig('{}{}4_all_corner.pdf'.format(figures_dir, lipid))
-plt.close()
 
 
 # ## Bibliography

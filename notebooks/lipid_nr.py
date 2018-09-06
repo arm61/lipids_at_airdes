@@ -1,6 +1,12 @@
 
 # coding: utf-8
 
+# # Neutron reflectometry analysis
+# 
+# This is a custom Python analysis notebook for analysing XRR data using the class `VolMono`, as defined in `src/models/mol_vol.py`, and the refnx [1] package. 
+# 
+# It is first necessary to import the necessary modules for the analysis.
+
 # In[ ]:
 
 
@@ -23,20 +29,43 @@ import mol_vol as mv
 sys.path.insert(0, '../src/tools')
 import helper
 
+
+# When running the `Makefile` in the top directory of this ESI, a this notebook is converted to a Python script and running for four different lipids, each at four surface pressures. The necessary variables are assigned here. 
+
+# In[ ]:
+
+
 lipid = sys.argv[1]
 length = int(sys.argv[2])
 sp = sys.argv[3]
+
+
+# Here we assign the directories that contain the data, as well as where the figures and analysis outputs should be stored. If you directory structure does not match that in the GitHub repository these should be adapted. 
+
+# In[ ]:
+
 
 data_dir = '../data/processed/{}/'.format(lipid)
 figures_dir = '../reports/figures/'
 analysis_dir = '../output/'
 
 
+# In order for the analysis to be exactly reproducible the same package versions must be used. The conda packaging manager, and pip, can be used to ensure this is the case. The versions of refnx and scipy used original are:
+# 
+# ```
+# refnx.version.full_version = 0.0.17
+# scipy.version.version = 1.1.0
+# ```
+
 # In[ ]:
 
 
 refnx.version.full_version, scipy.version.version
 
+
+# ## Setup of the analysis
+# 
+# The experimental datafiles are then read in.
 
 # In[ ]:
 
@@ -45,6 +74,8 @@ refnx.version.full_version, scipy.version.version
 dataset_1 = ReflectDataset('{}nr_h_sp_{}.dat'.format(data_dir, sp))
 dataset_2 = ReflectDataset('{}nr_hd_sp_{}.dat'.format(data_dir, sp))
 
+
+# The scattering lengths for the head and tail components are defined.
 
 # In[ ]:
 
@@ -55,6 +86,12 @@ tail = {'C': length * 2, 'D': length * 4 + 2}
 head_sl = mv.get_scattering_length(head, neutron=True)
 tail_sl = mv.get_scattering_length(tail, neutron=True)
 
+
+# Initial 'guesses' for a series of parameters are defined.
+
+# In[ ]:
+
+
 solvent_sld = [0.43, 3.15]
 super_sld = [0, 0]
 thick_heads = 13.1117
@@ -62,6 +99,8 @@ tail_length = 1.54 + 1.265 * length
 chain_tilt = 0.792674
 vols = [200.497, 891.]
 
+
+# The `VolMono` class objects are defined. 
 
 # In[ ]:
 
@@ -71,6 +110,8 @@ lipid_1 = mv.VolMono(head_sl, thick_heads, tail_sl, tail_length, chain_tilt, vol
 lipid_2 = mv.VolMono(head_sl, thick_heads, tail_sl, tail_length, chain_tilt, vols, 
                       reverse_monolayer=True, name='{}_2'.format(lipid))
 
+
+# A series of structures for each surface pressure is defined. 
 
 # In[ ]:
 
@@ -84,6 +125,8 @@ structure_lipid_1 = air(0, 0) | lipid_1 | des_1(0, 0)
 structure_lipid_2 = air(0, 0) | lipid_2 | des_2(0, 0)
 
 
+# A function is defined to allow floats to be obtained from previously defined output text files. 
+
 # In[ ]:
 
 
@@ -94,6 +137,8 @@ def get_value(file):
     l = k.split('$')[1].split('^')[0]
     return float(l)
 
+
+# The variables, and bounds for both surface pressures are setup.
 
 # In[ ]:
 
@@ -120,6 +165,8 @@ lipid_2.cos_rad_chain_tilt.constraint = lipid_1.cos_rad_chain_tilt
 structure_lipid_2[-1].rough.constraint = structure_lipid_1[-1].rough
 
 
+# Each model is then associated with a dataset
+
 # In[ ]:
 
 
@@ -132,6 +179,8 @@ model_lipid_2.scale.setp(vary=True, bounds=(0.005, 10))
 model_lipid_2.bkg.setp(dataset_2.y[-2], vary=False)
 
 
+# The global objective fitting object is defined and the fitting and MCMC performed. 
+
 # In[ ]:
 
 
@@ -141,6 +190,10 @@ objective_n2 = Objective(model_lipid_2, dataset_2, transform=Transform('YX4'))
 
 global_objective = GlobalObjective([objective_n1, objective_n2])
 
+
+# ## Fitting 
+# 
+# The differential evolution algorithm is used to find optimal parameters, before the MCMC algorithm probes the parameter space for 1000 steps.
 
 # In[ ]:
 
@@ -154,9 +207,11 @@ fitter.sample(200, random_state=1)
 fitter.sampler.reset()
 # The collection is across 5000*200 samples
 # The random_state seed is to allow for reproducibility
-res = fitter.sample(1000, nthin=1, random_state=1, f='{}/{}/{}_chain_neutron.txt'.format(analysis_dir, lipid, sp))
+res = fitter.sample(1000, nthin=1, random_state=1, f='{}{}/{}_chain_neutron.txt'.format(analysis_dir, lipid, sp))
 flatchain = fitter.sampler.flatchain
 
+
+# The `global_objective` is printed containing information about the models.
 
 # In[ ]:
 
@@ -165,109 +220,6 @@ flatchain = fitter.sampler.flatchain
 print(global_objective)
 
 
-# In[ ]:
-
-
-def printref(n, dataset, model, objective, analysis_dir, choose):
-    file_open = open('{}{}{}_ref_neutron.txt'.format(analysis_dir, lipid, n), 'w')
-    saved_params = np.array(objective.parameters)
-    for i in range(0, len(dataset.x)):
-        file_open.write('{} '.format(dataset.x[i]))
-    file_open.write('\n')
-    for i in range(0, len(dataset.x)):
-        file_open.write('{} '.format(dataset.y[i]*(dataset.x[i])**4))
-    file_open.write('\n')
-    for i in range(0, len(dataset.x)):
-        file_open.write('{} '.format(dataset.y_err[i]*(dataset.x[i])**4))
-    file_open.write('\n')
-    for i in range(0, len(dataset.x)):
-        file_open.write('{} '.format((model(dataset.x, x_err=dataset.x_err)[i])*(dataset.x[i])**4))
-    file_open.write('\n')
-    for pvec in choose:
-        objective.setp(pvec)
-        calc = model(dataset.x, x_err=dataset.x_err) * np.power(dataset.x, 4)
-        for i in range(0, len(dataset.x)):
-            file_open.write('{} '.format(calc[i]))
-        file_open.write('\n')
-    file_open.close()
-    
-def printsld(n, structure, objective, choose):
-    file_open = open('{}{}{}_sld_neutron.txt'.format(analysis_dir, lipid, n), 'w')
-    z, true_sld = structure.sld_profile()
-    for i in range(0, len(z)):
-        file_open.write('{} '.format(z[i]))
-    file_open.write('\n')
-    for i in range(0, len(z)):
-        file_open.write('{} '.format(true_sld[i]))
-    file_open.write('\n')
-    for pvec in choose:
-        objective.setp(pvec)
-        zs, sld = structure.sld_profile()
-        for i in range(0, len(z)):
-            file_open.write('{} '.format(sld[i]))   
-        file_open.write('\n')
-    file_open.close()
-    
-choose = global_objective.pgen(ngen=100)
-printref("{}_1".format(sp), dataset_1, model_lipid_1, global_objective, analysis_dir, choose)
-printsld("{}_1".format(sp), structure_lipid_1, global_objective, choose)
-printref("{}_2".format(sp), dataset_2, model_lipid_2, global_objective, analysis_dir, choose)
-printsld("{}_2".format(sp), structure_lipid_2, global_objective, choose)
-
-
-# In[ ]:
-
-
-lab = ['scale{}'.format(sp), 'angle{}'.format(sp), 'rough{}'.format(sp), 'scalea{}'.format(sp)]
-
-for i in range(0, flatchain.shape[1]):
-    total_pearsons = open('{}{}/{}_neutron.txt'.format(analysis_dir, lipid, lab[i]), 'w')
-    a = mquantiles(flatchain[:, i], prob=[0.025, 0.5, 0.975])
-    if 'angle' in lab[i]:
-        c = np.rad2deg(np.arccos(a))
-        k = [c[1], c[0] - c[1], c[1] - c[2]]
-        q = '{:.2f}'.format(k[0])
-        w = '{:.2f}'.format(k[1])
-        e = '{:.2f}'.format(k[2])
-        total_pearsons.write('$' + str(q) + '^{+' + str(w) + '}_{-' + str(e) + '}$')
-    elif 'sol' in lab[i]:
-        k = [a[1]*100, (a[1] - a[0])*100, (a[2] - a[1])*100]
-        q = '{:.2f}'.format(k[0])
-        e = '{:.2f}'.format(k[1])
-        w = '{:.2f}'.format(k[2])
-        total_pearsons.write('$' + str(q) + '^{+' + str(w) + '}_{-' + str(e) + '}$')
-    else:
-        k = [a[1], a[1] - a[0], a[2] - a[1]]
-        q = '{:.2f}'.format(k[0])
-        e = '{:.2f}'.format(k[1])
-        w = '{:.2f}'.format(k[2])
-        total_pearsons.write('$' + str(q) + '^{+' + str(w) + '}_{-' + str(e) + '}$')
-    total_pearsons.close()
-    
-lab2 = ['solh{}'.format(sp)]
-kl = 1 - ((lipid_1.head_mol_vol.value * flatchain[:, 1] * 
-           lipid_1.tail_length.value) / (lipid_1.tail_mol_vol.value * lipid_1.thick_heads.value))
-kl = kl * 100
-for i in range(0, len(lab2)):
-    total_pearsons = open('{}{}/{}_neutron.txt'.format(analysis_dir, lipid, lab2[i]), 'w')
-    a = mquantiles(kl, prob=[0.025, 0.5, 0.975])
-    c = a
-    k = [a[1], a[1] - a[0], a[2] - a[1]]
-    q = '{:.2f}'.format(k[0])
-    w = '{:.2f}'.format(k[1])
-    e = '{:.2f}'.format(k[2])
-    total_pearsons.write('$' + str(q) + '^{+' + str(w) + '}_{-' + str(e) + '}$')
-    total_pearsons.close()
-    
-lab2 = ['tail{}'.format(sp)]
-kl = flatchain[:, 1] * lipid_1.tail_length.value
-for i in range(0, len(lab2)):
-    total_pearsons = open('{}{}/{}_neutron.txt'.format(analysis_dir, lipid, lab2[i]), 'w')
-    a = mquantiles(kl, prob=[0.025, 0.5, 0.975])
-    k = [a[1], a[1] - a[0], a[2] - a[1]]
-    q = '{:.2f}'.format(k[0])
-    e = '{:.2f}'.format(k[1])
-    w = '{:.2f}'.format(k[2])
-    total_pearsons.write('$' + str(q) + '^{+' + str(w) + '}_{-' + str(e) + '}$')
-    total_pearsons.close()
-
+# ## Bibliography
+# 
+# 1. Andrew Nelson, Stuart Prescott, Isaac Gresham, & Andrew R. McCluskey. (2018, August 3). refnx/refnx: v0.0.17 (Version v0.0.17). Zenodo. http://doi.org/10.5281/zenodo.1345464

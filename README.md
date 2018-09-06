@@ -47,7 +47,7 @@ Cite as:
 
 ### Acknowledgements
 
-A. R. M. Is grateful to the University of Bath and Diamond Light Source for co-funding a studentship (Studentship Number STU0149). The authors thank th European Spallation Source and the University of Bath Alumni Fund for supporting A. S.-F.
+A. R. M. Is grateful to the University of Bath and Diamond Light Source for co-funding a studentship (Studentship Number STU0149). The authors thank the European Spallation Source and the University of Bath Alumni Fund for supporting A. S.-F.
 
 ### Bibliography
 
