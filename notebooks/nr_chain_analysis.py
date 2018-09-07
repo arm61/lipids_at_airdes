@@ -47,6 +47,7 @@ mpl.rcParams['axes.linewidth'] = 1
 mpl.rcParams['axes.edgecolor'] = 'k'
 mpl.rcParams['xtick.bottom'] = True
 mpl.rcParams['ytick.left'] = True
+mpl.rcParams['legend.fontsize'] = 32
 
 
 # When running the `Makefile` in the top directory of this ESI, a this notebook is converted to a Python script and running for four different lipids, each at four surface pressures. The necessary variables are assigned here. 
@@ -195,7 +196,8 @@ print(global_objective)
 
 fig = plt.figure(figsize=(20, 7.5))
 gs = mpl.gridspec.GridSpec(1, 3)
-colorblind = ["#0173B2", "#DE8F05"]
+lines = ['--', '-']
+contrast = ['hDES', 'hdDES']
 
 for i, dataset in enumerate(datasets):
     choose = global_objective.pgen(ngen=100)
@@ -208,15 +210,19 @@ for i, dataset in enumerate(datasets):
     for pvec in choose:
         global_objective.setp(pvec)
         ax1.plot(dataset.x, models[i](dataset.x, x_err=dataset.x_err)*(dataset.x)**4 * 10**(i-1), 
-                 linewidth=4, color=colorblind[i], alpha=0.1)
+                 linewidth=4, color='k', ls=lines[i], alpha=0.1)
         zs, sld = structures[i].sld_profile()
-        ax2.plot(zs, sld + i*5, color=colorblind[i], linewidth=2, alpha=0.1)
+        ax2.plot(zs, sld + i*5, color='k', ls=lines[i], linewidth=2, alpha=0.1)
+    ax1.plot(dataset.x, models[i](dataset.x, x_err=dataset.x_err)*(dataset.x)**4 * 10**(i-1), 
+                 linewidth=4, color='k', ls=lines[i], label = contrast[i])
     ax1.set_ylabel(r'$Rq^4$/Å$^{-4}$')
     ax1.set_yscale('log')
     ax1.set_xlabel(r'$q$/Å$^{-1}$')
     ax2.set_xlabel(r'$z$/Å')
     ax2.set_ylabel(r'SLD/$10^{-6}$Å$^{-2}$')
-ax2.text(0.80, 0.05, '(' + label + ')', fontsize=44, transform=ax2.transAxes)
+ax1.legend(bbox_to_anchor=(0., 1.02, 1.57, .102), loc=3,
+                ncol=2, mode="expand", borderaxespad=0., frameon=False)
+ax2.text(0.80, 0.87, '(' + label + ')', fontsize=44, transform=ax2.transAxes)
 plt.tight_layout()
 plt.savefig('{}{}_{}n_ref_sld.pdf'.format(figures_dir, lipid, sp))
 plt.close()

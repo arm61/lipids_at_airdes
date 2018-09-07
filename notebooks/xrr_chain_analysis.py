@@ -47,6 +47,7 @@ mpl.rcParams['axes.linewidth'] = 1
 mpl.rcParams['axes.edgecolor'] = 'k'
 mpl.rcParams['xtick.bottom'] = True
 mpl.rcParams['ytick.left'] = True
+mpl.rcParams['legend.fontsize'] = 32
 
 
 # When running the `Makefile` in the top directory of this ESI, a this notebook is converted to a Python script and running for four different lipids, each at four surface pressures. The necessary variables are assigned here. 
@@ -62,6 +63,7 @@ sp2 = sys.argv[4]
 sp3 = sys.argv[5]
 sp4 = sys.argv[6]
 label = sys.argv[7]
+sps = [sp1, sp2, sp3, sp4]
 
 
 # Here we assign the directories that contain the data, as well as where the figures and analysis outputs should be stored. If you directory structure does not match that in the GitHub repository these should be adapted. 
@@ -252,7 +254,7 @@ solh4 = 1 - (processed_chain[4].chain / processed_chain[3].chain) * (
 
 fig = plt.figure(figsize=(20, 7.5))
 gs = mpl.gridspec.GridSpec(1, 3)
-colorblind = ["#0173B2", "#DE8F05", "#029E73", "#D55E00"]
+lines = [':', '-.', '--', '-']
 
 for i, dataset in enumerate(datasets):
     choose = global_objective.pgen(ngen=100)
@@ -265,14 +267,19 @@ for i, dataset in enumerate(datasets):
     for pvec in choose:
         global_objective.setp(pvec)
         ax1.plot(dataset.x, models[i](dataset.x, x_err=dataset.x_err)*(dataset.x)**4 * 10**(i-1), 
-                 linewidth=4, color=colorblind[i], alpha=0.1)
+                 linewidth=4, color='k', ls=lines[i], alpha=0.1)
         zs, sld = structures[i].sld_profile()
-        ax2.plot(zs, sld + i*5, color=colorblind[i], linewidth=2, alpha=0.1)
+        ax2.plot(zs, sld + i*5, color='k', ls=lines[i], linewidth=2, 
+                 alpha=0.1)
+    ax1.plot(dataset.x, models[i](dataset.x, x_err=dataset.x_err)*(dataset.x)**4 * 10**(i-1), 
+             linewidth=4, color='k', ls=lines[i], label = sps[i] + ' mNm$^{-1}$')
     ax1.set_ylabel(r'$Rq^4$/Å$^{-4}$')
     ax1.set_yscale('log')
     ax1.set_xlabel(r'$q$/Å$^{-1}$')
     ax2.set_xlabel(r'$z$/Å')
     ax2.set_ylabel(r'SLD/$10^{-6}$Å$^{-2}$')
+ax1.legend(bbox_to_anchor=(0., 1.02, 1.57, .102), loc=3,
+                ncol=4, mode="expand", borderaxespad=0., frameon=False)
 ax2.text(0.80, 0.05, '(' + label + ')', fontsize=44, transform=ax2.transAxes)
 plt.tight_layout()
 plt.savefig('{}{}_ref_sld.pdf'.format(figures_dir, lipid))
@@ -290,7 +297,8 @@ ax1 = plt.subplot(gs[0, 0])
 a = mquantiles(processed_chain[4].chain.flatten(), prob=[0.025, 0.5, 0.975])
 weights = np.ones_like(processed_chain[4].chain.flatten())/float(
     len(processed_chain[4].chain.flatten()))
-ax1.hist(processed_chain[4].chain.flatten(), bins=50, histtype='stepfilled', weights=weights)
+ax1.hist(processed_chain[4].chain.flatten(), bins=50, histtype='stepfilled', 
+         color='k', weights=weights)
 ax1.set_ylabel('PDF({}-$V_h$)'.format(lipid.upper()))
 ax1.set_xlabel('{}-$V_h$/Å$^3$'.format(lipid.upper()))
 ax1.set_xticks([a[0], a[1], a[2]])
@@ -301,19 +309,19 @@ ax2 = plt.subplot(gs[0, 1])
 ax3 = ax2.twinx()
 ax2.plot([sp1, sp2, sp3, sp4], 
          [np.average(tail1), np.average(tail2), np.average(tail3), np.average(tail4)], 
-          c="#0173B2", marker='s', ls='', ms=15)
+          c='k', marker='s', ls='', ms=15)
 ax3.plot([sp1, sp2, sp3, sp4], 
          np.array([np.average(solh1), np.average(solh2), np.average(solh3), np.average(solh4)]) * 100, 
-         c="#DE8F05", marker='o', ls='', ms=15)
+         c='k', marker='o', ls='', ms=15)
 ax2.set_xlabel(r'Surface Pressure/mNm$^{-1}$')
 ax2.set_ylabel(r'$d_t$/Å')
 ax3.set_ylabel(r'$\phi_h$/$\times 10^{-2}$')
 
-ax2.yaxis.label.set_color("#0173B2")
-ax3.yaxis.label.set_color("#DE8F05")
+ax2.yaxis.label.set_color('k')
+ax3.yaxis.label.set_color('k')
 ax2.text(0.88, 0.07, '(' + label + ')', fontsize=44, transform=ax2.transAxes)
-ax2.tick_params(axis='y', colors="#0173B2")
-ax3.tick_params(axis='y', colors="#DE8F05")
+ax2.tick_params(axis='y', colors='k')
+ax3.tick_params(axis='y', colors='k')
 plt.tight_layout()
 plt.savefig('{}{}_vh_dt_phi.pdf'.format(figures_dir, lipid))
 plt.close()

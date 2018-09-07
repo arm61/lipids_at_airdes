@@ -41,26 +41,26 @@ all : reports/paper.pdf reports/esi.pdf reports/apssamp.pdf reports/esi2.pdf
 clean :
 	rm reports/paper.pdf reports/esi.pdf $(FIG_DIR)/*ref_sld.pdf  $(FIG_DIR)/*vh_dt_phi.pdf $(FIG_DIR)/*all_corner.pdf $(FIG_DIR)/*n_all_corner*.pdf $(PLOT_DIR)/*.py notebooks/DLPC/*.py notebooks/DMPC/*.py notebooks/DPPC/*.py notebooks/DMPG/*.py output/* output/dlpc/* output/dppc/* output/dmpc/* output/dmpg/*
 
-reports/paper.pdf : reports/paper.tex reports/rsc.bib $(PAPER_FIG) $(PAPER_OUT)
+reports/paper.pdf : reports/paper.tex reports/rsc.bib $(PAPER_FIG) $(PAPER_OUT) reports/esi.pdf
 	cd reports && pdflatex paper.tex
 	cd reports && bibtex paper.aux
 	cd reports && pdflatex paper.tex
 	cd reports && pdflatex paper.tex
-#reports/esi.pdf : reports/esi.tex $(ESI_FIGS) $(ESI_OUT)
-#	cd reports && pdflatex esi.tex
-#	cd reports && bibtex esi.aux
-#	cd reports && pdflatex esi.tex
-#	cd reports && pdflatex esi.tex
-reports/apssamp.pdf : reports/apssamp.tex reports/rsc.bib $(PAPER_FIG) $(PAPER_OUT)
+reports/esi.pdf : reports/esi.tex $(ESI_FIGS) $(ESI_OUT)
+	cd reports && pdflatex esi.tex
+	cd reports && bibtex esi.aux
+	cd reports && pdflatex esi.tex
+	cd reports && pdflatex esi.tex
+reports/apssamp.pdf : reports/apssamp.tex reports/rsc.bib $(PAPER_FIG) $(PAPER_OUT) reports/esi2.pdf
 	cd reports && pdflatex apssamp.tex
 	cd reports && bibtex apssamp.aux
 	cd reports && pdflatex apssamp.tex
 	cd reports && pdflatex apssamp.tex
-#reports/esi2.pdf : reports/esi2.tex $(ESI_FIGS) $(ESI_OUT)
-#	cd reports && pdflatex esi2.tex
-#	cd reports && bibtex esi2.aux
-#	cd reports && pdflatex esi2.tex
-#	cd reports && pdflatex esi2.tex
+reports/esi2.pdf : reports/esi2.tex $(ESI_FIGS) $(ESI_OUT)
+	cd reports && pdflatex esi2.tex
+	cd reports && bibtex esi2.aux
+	cd reports && pdflatex esi2.tex
+	cd reports && pdflatex esi2.tex
 
 output/dlpc/chain.txt : notebooks/lipid_xrr.py src/models/mol_vol.py
 	cd notebooks && ipython lipid_xrr.py dlpc 11 20 25 30 35 a
