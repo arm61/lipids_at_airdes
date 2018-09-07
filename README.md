@@ -43,16 +43,6 @@ make
 
 PDF versions of the figures, can be found in the `reports/figures` directory.
 
-## Citing this ESI
-
-Cite as:
-
-#### BibteX
-
-```
-bibtex here
-```
-
 ## Acknowledgements
 
 A. R. M. Is grateful to the University of Bath and Diamond Light Source for co-funding a studentship (Studentship Number STU0149). The authors thank the European Spallation Source and the University of Bath Alumni Fund for supporting A. S.-F.

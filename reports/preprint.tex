@@ -4,7 +4,7 @@
 \usepackage[super,sort&compress,comma]{natbib}
 \usepackage{hyperref}
 \usepackage{xr}
-\externaldocument{esi}
+\externaldocument{si}
 
 
 \title{Bayesian determination of the effect of a deep eutectic solvent on the structure of lipid monolayers}
@@ -63,8 +63,9 @@ Bayesian inference gives an understanding of the PDF for the fitted parameters a
 
 %
 \begin{figure}
+\centering
 \includegraphics[width=0.3\textwidth]{figures/head_groups}
-\caption{\label{fig:heads} The two lipid classes with different head groups compared in this study, where R indicates the hydrocarbon tail; (a) phosphatidylglycerol (PG), (b) phosphocholine (PC).}
+\caption{\label{fig:heads}\small The two lipid classes with different head groups compared in this study, where R indicates the hydrocarbon tail; (a) phosphatidylglycerol (PG), (b) phosphocholine (PC).}
 \end{figure}
 %
 We developed a chemically-consistent model (detail in the ESI) that allowed for the co-refinement of XRR and NR measurements at different surface concentration.
@@ -82,7 +83,7 @@ Furthermore, the effect of pressure, which is not necessarily accounted for the 
 	\includegraphics[width=0.45\textwidth]{figures/dmpc_ref_sld}
 	\includegraphics[width=0.45\textwidth]{figures/dppc_ref_sld}
 	\includegraphics[width=0.45\textwidth]{figures/dmpg_ref_sld}
-	\caption{The XRR profiles (left) and SLD profiles (right) for each of the four lipids; (a) DLPC, (b) DMPC, (c) DPPC, (d) DMPG, at the four measured surface pressures; see legend above each plot. The different surface pressure XRR profiles have been offset in the $y$-axis by an order of magnitude and SLD profiles offset in the $y$-axis by \SI{5e-6}{\per\square\angstrom}, for clarity.}
+	\caption{\small The XRR profiles (left) and SLD profiles (right) for each of the four lipids; (a) DLPC, (b) DMPC, (c) DPPC, (d) DMPG, at the four measured surface pressures; see legend above each plot. The different surface pressure XRR profiles have been offset in the $y$-axis by an order of magnitude and SLD profiles offset in the $y$-axis by \SI{5e-6}{\per\square\angstrom}, for clarity.}
 	\label{fig:lipids}
 \end{figure}
 %
@@ -93,7 +94,7 @@ In addition to the head and tail volumes, $V_h$ and $V_t$ respectively, and the 
 %
 \begin{table*}
   \centering
-	\caption{\label{tab:liptab} The best-fit values, and associated 95 \% confidence intervals for the varying parameters in the XRR models, at the highest surface pressure (SP) measured. The values of $d_t$ were found from the appropriate values of $\theta_t$ using Eqn. \ref{equ:tl} and the values for $\phi_h$ were obtained from the appropriate use of Eqn. \ref{equ:phih}.}
+	\caption{\label{tab:liptab}\small  The best-fit values, and associated 95 \% confidence intervals for the varying parameters in the XRR models, at the highest surface pressure (SP) measured. The values of $d_t$ were found from the appropriate values of $\theta_t$ using Eqn. \ref{equ:tl} and the values for $\phi_h$ were obtained from the appropriate use of Eqn. \ref{equ:phih}.}
 	\begin{tabular}{ccccc}
 		Lipid & DLPC & DMPC & DPPC & DMPG \\
     SP/\si{\milli\newton\per\meter} & 35 & 40 & 30 & 30 \\
@@ -123,7 +124,7 @@ This phenomenon has been noted before for DMPC\cite{Bayerl1990} and DPPC\cite{Ca
 	\includegraphics[width=0.45\textwidth]{figures/dmpc_vh_dt_phi}
 	\includegraphics[width=0.45\textwidth]{figures/dppc_vh_dt_phi}
 	\includegraphics[width=0.45\textwidth]{figures/dmpg_vh_dt_phi}
-	\caption{The PDFs of the head volume (left) and variation of $d_t$ (squares) and $\phi_h$ (circles) with surface pressure for each of the four lipids; (a) DLPC, (b) DMPC, (c) DPPC, (d) DMPG. The values of $d_t$ were found from the appropriate values of $\theta_t$ using Eqn. \ref{equ:tl}.}
+	\caption{\small The PDFs of the head volume (left) and variation of $d_t$ (squares) and $\phi_h$ (circles) with surface pressure for each of the four lipids; (a) DLPC, (b) DMPC, (c) DPPC, (d) DMPG. The values of $d_t$ were found from the appropriate values of $\theta_t$ using Eqn. \ref{equ:tl}.}
 	\label{fig:lipresults}
 \end{figure}
 %
@@ -167,14 +168,14 @@ Futhermore, the trends present with varying surface pressure in the XRR models a
 	\centering
 	\includegraphics[width=0.45\textwidth]{figures/dmpc_20n_ref_sld}
 	\includegraphics[width=0.45\textwidth]{figures/dppc_20n_ref_sld}
-	\caption{The NR and SLD profiles at a surface pressure of 20 mNm$^{-1}$ for two contrasts (see legend above each plot); (a) DMPC, (b) DPPC. The NR profiles have been offset in the $y$-axis by an order of magnitude and SLD profiles offset in the $y$-axis by \SI{5e-6}{\per\square\angstrom}, for clarity.}
+	\caption{\small The NR and SLD profiles at a surface pressure of 20 mNm$^{-1}$ for two contrasts (see legend above each plot); (a) DMPC, (b) DPPC. The NR profiles have been offset in the $y$-axis by an order of magnitude and SLD profiles offset in the $y$-axis by \SI{5e-6}{\per\square\angstrom}, for clarity.}
 	\label{fig:neutron}
 \end{figure}
 %
 %
 \begin{table*}
   \centering
-	\caption{\label{tab:neutron} he best-fit values, and associated 95 \% confidence intervals for the varying parameters in the co-refined NR models. The values of $d_t$ were found from the appropriate values of $\theta_t$ using Eqn. \ref{equ:tl}, and the values of $\phi_h$ were found using Eqn. \ref{equ:phih}.}
+	\caption{\label{tab:neutron}\small The best-fit values, and associated 95 \% confidence intervals for the varying parameters in the co-refined NR models. The values of $d_t$ were found from the appropriate values of $\theta_t$ using Eqn. \ref{equ:tl}, and the values of $\phi_h$ were found using Eqn. \ref{equ:phih}.}
 	\begin{tabular}{ccccc}
     Lipid & \multicolumn{2}{c}{d$_{54}$-DMPC} & \multicolumn{2}{c}{d$_{62}$-DPPC} \\
     SP/mNm$^{-1}$ & 20 & 25 & 15 & 20 \\
