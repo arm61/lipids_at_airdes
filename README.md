@@ -23,7 +23,7 @@ Requirements:
 - anaconda or miniconda python
 - make
 
-The supplied Makefile, will reproduce all of the analysis, plot the figures, and build a preprint version of the paper when run. Be aware that the analyses within this work are non-trivial and take many hours to run so **use caution** before re-running.
+The supplied Makefile, will reproduce all of the analysis, plot the figures, and build a preprint version of the paper (`reports/preprint.pdf`) when run. Be aware that the analyses within this work are non-trivial and take many hours to run so **use caution** before re-running.
 
 If you **still** want to re-run all of the analysis, please download the [experimental data](https://researchdata.bath.ac.uk/id/eprint/548), place it in a directory named `data/processed` before running the following commands:
 
