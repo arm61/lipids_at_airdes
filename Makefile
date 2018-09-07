@@ -47,35 +47,35 @@ DMPG_OUT_ESI = output/dmpg/angle15.txt output/dmpg/rough15.txt output/dmpg/solh1
 ESI_OUT = $(DLPC_OUT_ESI) $(DMPC_OUT_ESI) $(DPPC_OUT_ESI) $(DMPG_OUT_ESI)
 
 
-all : reports/paper_rsc.pdf reports/esi.pdf reports/paper_prl.pdf reports/esi_rsc.pdf reports/preprint.pdf
+all : reports/paper_rsc.pdf reports/si.pdf reports/paper_prl.pdf reports/si_rsc.pdf reports/preprint.pdf
 clean :
 	rm reports/paper.pdf reports/esi.pdf $(FIG_DIR)/*ref_sld.pdf  $(FIG_DIR)/*vh_dt_phi.pdf $(FIG_DIR)/*all_corner.pdf $(FIG_DIR)/*n_all_corner*.pdf $(PLOT_DIR)/*.py notebooks/DLPC/*.py notebooks/DMPC/*.py notebooks/DPPC/*.py notebooks/DMPG/*.py output/* output/dlpc/* output/dppc/* output/dmpc/* output/dmpg/*
 
-reports/paper_rsc.pdf : reports/paper_rsc.tex reports/rsc.bib $(PAPER_FIG) $(PAPER_OUT) reports/esi_rsc.pdf
+reports/paper_rsc.pdf : reports/paper_rsc.tex reports/rsc.bib $(PAPER_FIG) $(PAPER_OUT) reports/si_rsc.pdf
 	cd reports && pdflatex paper_rsc.tex
 	cd reports && bibtex paper_rsc.aux
 	cd reports && pdflatex paper_rsc.tex
 	cd reports && pdflatex paper_rsc.tex
-reports/esi.pdf : reports/esi.tex $(ESI_FIGS) $(ESI_OUT)
-	cd reports && pdflatex esi.tex
-	cd reports && bibtex esi.aux
-	cd reports && pdflatex esi.tex
-	cd reports && pdflatex esi.tex
-reports/paper_prl.pdf : reports/paper_prl.tex reports/rsc.bib $(PAPER_FIG) $(PAPER_OUT) reports/esi.pdf
+reports/si.pdf : reports/si.tex $(ESI_FIGS) $(ESI_OUT)
+	cd reports && pdflatex si.tex
+	cd reports && bibtex si.aux
+	cd reports && pdflatex si.tex
+	cd reports && pdflatex si.tex
+reports/paper_prl.pdf : reports/paper_prl.tex reports/rsc.bib $(PAPER_FIG) $(PAPER_OUT) reports/si.pdf
 	cd reports && pdflatex paper_prl.tex
 	cd reports && bibtex paper_prl.aux
 	cd reports && pdflatex paper_prl.tex
 	cd reports && pdflatex paper_prl.tex
-reports/preprint.pdf : reports/preprint.tex reports/rsc.bib $(PAPER_FIG) $(PAPER_OUT) reports/esi.pdf
+reports/preprint.pdf : reports/preprint.tex reports/rsc.bib $(PAPER_FIG) $(PAPER_OUT) reports/si.pdf
 	cd reports && pdflatex preprint.tex
 	cd reports && bibtex preprint.aux
 	cd reports && pdflatex preprint.tex
 	cd reports && pdflatex preprint.tex
-reports/esi_rsc.pdf : reports/esi_rsc.tex $(ESI_FIGS) $(ESI_OUT)
-	cd reports && pdflatex esi_rsc.tex
-	cd reports && bibtex esi_rsc.aux
-	cd reports && pdflatex esi_rsc.tex
-	cd reports && pdflatex esi_rsc.tex
+reports/si_rsc.pdf : reports/si_rsc.tex $(ESI_FIGS) $(ESI_OUT)
+	cd reports && pdflatex si_rsc.tex
+	cd reports && bibtex si_rsc.aux
+	cd reports && pdflatex si_rsc.tex
+	cd reports && pdflatex si_rsc.tex
 
 output/dlpc/chain.txt : notebooks/lipid_xrr.py src/models/mol_vol.py $(DLPC_DATA)
 	cd notebooks && ipython lipid_xrr.py dlpc 11 20 25 30 35 a

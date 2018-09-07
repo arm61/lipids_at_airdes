@@ -2,7 +2,7 @@
 
 [Andrew R. McCluskey](https://orcid.org/0000-0003-3381-5911)
 
-This is the electronic supplementary information (ESI) associated with the publication "Bayesian determination of the effect of a deep eutectic solvent on the structure of lipid monolayers" [1].
+This is the electronic supplementary information (ESI) associated with the publication "Bayesian determination of the effect of a deep eutectic solvent on the structure of lipid monolayers".
 
 ### [Data](https://researchdata.bath.ac.uk/id/eprint/548)
 
@@ -56,10 +56,6 @@ bibtex here
 ### Acknowledgements
 
 A. R. M. Is grateful to the University of Bath and Diamond Light Source for co-funding a studentship (Studentship Number STU0149). The authors thank the European Spallation Source and the University of Bath Alumni Fund for supporting A. S.-F.
-
-### Bibliography
-
-1. REFERENCE TO THE PAPER
 
 ### Project Organization
 
