@@ -45,7 +45,7 @@ sp = sys.argv[3]
 # In[ ]:
 
 
-data_dir = '../data/processed/{}/'.format(lipid)
+data_dir = '../data/processed/{}_'.format(lipid)
 figures_dir = '../reports/figures/'
 analysis_dir = '../output/'
 

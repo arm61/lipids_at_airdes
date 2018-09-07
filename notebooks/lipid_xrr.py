@@ -53,7 +53,7 @@ label = sys.argv[7]
 
 
 # Relative directory locations
-data_dir = '../data/processed/{}/'.format(lipid)
+data_dir = '../data/processed/{}_'.format(lipid)
 figures_dir = '../reports/figures/'
 analysis_dir = '../output/'
 

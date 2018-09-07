@@ -7,6 +7,16 @@ DPPC_DIR = output/dppc
 DMPG_DIR = output/dmpg
 DATA_DIR = data/processed
 
+DLPC_DATA = $(DATA_DIR)/dlpc_xrr_sp_20.dat $(DATA_DIR)/dlpc_xrr_sp_25.dat $(DATA_DIR)/dlpc_xrr_sp_30.dat $(DATA_DIR)/dlpc_xrr_sp_35.dat
+DMPC_DATA = $(DATA_DIR)/dmpc_xrr_sp_20.dat $(DATA_DIR)/dmpc_xrr_sp_25.dat $(DATA_DIR)/dmpc_xrr_sp_30.dat $(DATA_DIR)/dmpc_xrr_sp_40.dat
+DPPC_DATA = $(DATA_DIR)/dppc_xrr_sp_15.dat $(DATA_DIR)/dppc_xrr_sp_20.dat $(DATA_DIR)/dppc_xrr_sp_25.dat $(DATA_DIR)/dlpc_xrr_sp_30.dat
+DMPG_DATA = $(DATA_DIR)/dmpg_xrr_sp_15.dat $(DATA_DIR)/dmpg_xrr_sp_20.dat $(DATA_DIR)/dmpg_xrr_sp_25.dat $(DATA_DIR)/dlpc_xrr_sp_30.dat
+
+NDMPC2_DATA = $(DATA_DIR)/dmpc_nr_hd_sp_20.dat $(DATA_DIR)/dmpc_nr_h_sp_20.dat
+NDMPC1_DATA = $(DATA_DIR)/dmpc_nr_hd_sp_25.dat $(DATA_DIR)/dmpc_nr_h_sp_25.dat
+NDPPC2_DATA = $(DATA_DIR)/dppc_nr_hd_sp_15.dat $(DATA_DIR)/dppc_nr_h_sp_15.dat
+NDPPC1_DATA = $(DATA_DIR)/dppc_nr_hd_sp_20.dat $(DATA_DIR)/dppc_nr_h_sp_20.dat
+
 PAPER_FIGS = $(FIG_DIR)/head_groups.png $(FIG_DIR)/dlpc_ref_sld.pdf $(FIG_DIR)/dmpc_ref_sld.pdf $(FIG_DIR)/dppc_ref_sld.pdf $(FIG_DIR)/dmpg_ref_sld.pdf $(FIG_DIR)/dlpc_vh_dt_phi.pdf $(FIG_DIR)/dmpc_vh_dt_phi.pdf $(FIG_DIR)/dppc_vh_dt_phi.pdf $(FIG_DIR)/dmpg_vh_dt_phi.pdf $(FIG_DIR)/dmpc_20n_ref_sld.pdf $(FIG_DIR)/dppc_20n_ref_sld.pdf
 
 PDF_FIGS = $(FIG_DIR)/dlpc1_all_corner.pdf $(FIG_DIR)/dlpc2_all_corner.pdf $(FIG_DIR)/dlpc3_all_corner.pdf $(FIG_DIR)/dlpc4_all_corner.pdf $(FIG_DIR)/dmpc1_all_corner.pdf $(FIG_DIR)/dmpc2_all_corner.pdf $(FIG_DIR)/dmpc3_all_corner.pdf $(FIG_DIR)/dmpc4_all_corner.pdf $(FIG_DIR)/dppc1_all_corner.pdf $(FIG_DIR)/dppc2_all_corner.pdf $(FIG_DIR)/dppc3_all_corner.pdf $(FIG_DIR)/dppc4_all_corner.pdf $(FIG_DIR)/dmpg1_all_corner.pdf $(FIG_DIR)/dmpg2_all_corner.pdf $(FIG_DIR)/dmpg3_all_corner.pdf $(FIG_DIR)/dmpg4_all_corner.pdf $(FIG_DIR)/dmpc_20n_all_corner.pdf $(FIG_DIR)/dmpc_25n_all_corner.pdf $(FIG_DIR)/dppc_15n_all_corner.pdf $(FIG_DIR)/dppc_20n_all_corner.pdf
@@ -37,64 +47,69 @@ DMPG_OUT_ESI = output/dmpg/angle15.txt output/dmpg/rough15.txt output/dmpg/solh1
 ESI_OUT = $(DLPC_OUT_ESI) $(DMPC_OUT_ESI) $(DPPC_OUT_ESI) $(DMPG_OUT_ESI)
 
 
-all : reports/paper.pdf reports/esi.pdf reports/apssamp.pdf reports/esi2.pdf
+all : reports/paper_rsc.pdf reports/esi.pdf reports/paper_prl.pdf reports/esi_rsc.pdf reports/preprint.pdf
 clean :
 	rm reports/paper.pdf reports/esi.pdf $(FIG_DIR)/*ref_sld.pdf  $(FIG_DIR)/*vh_dt_phi.pdf $(FIG_DIR)/*all_corner.pdf $(FIG_DIR)/*n_all_corner*.pdf $(PLOT_DIR)/*.py notebooks/DLPC/*.py notebooks/DMPC/*.py notebooks/DPPC/*.py notebooks/DMPG/*.py output/* output/dlpc/* output/dppc/* output/dmpc/* output/dmpg/*
 
-reports/paper.pdf : reports/paper.tex reports/rsc.bib $(PAPER_FIG) $(PAPER_OUT) reports/esi.pdf
-	cd reports && pdflatex paper.tex
-	cd reports && bibtex paper.aux
-	cd reports && pdflatex paper.tex
-	cd reports && pdflatex paper.tex
+reports/paper_rsc.pdf : reports/paper_rsc.tex reports/rsc.bib $(PAPER_FIG) $(PAPER_OUT) reports/esi_rsc.pdf
+	cd reports && pdflatex paper_rsc.tex
+	cd reports && bibtex paper_rsc.aux
+	cd reports && pdflatex paper_rsc.tex
+	cd reports && pdflatex paper_rsc.tex
 reports/esi.pdf : reports/esi.tex $(ESI_FIGS) $(ESI_OUT)
 	cd reports && pdflatex esi.tex
 	cd reports && bibtex esi.aux
 	cd reports && pdflatex esi.tex
 	cd reports && pdflatex esi.tex
-reports/apssamp.pdf : reports/apssamp.tex reports/rsc.bib $(PAPER_FIG) $(PAPER_OUT) reports/esi2.pdf
-	cd reports && pdflatex apssamp.tex
-	cd reports && bibtex apssamp.aux
-	cd reports && pdflatex apssamp.tex
-	cd reports && pdflatex apssamp.tex
-reports/esi2.pdf : reports/esi2.tex $(ESI_FIGS) $(ESI_OUT)
-	cd reports && pdflatex esi2.tex
-	cd reports && bibtex esi2.aux
-	cd reports && pdflatex esi2.tex
-	cd reports && pdflatex esi2.tex
+reports/paper_prl.pdf : reports/paper_prl.tex reports/rsc.bib $(PAPER_FIG) $(PAPER_OUT) reports/esi.pdf
+	cd reports && pdflatex paper_prl.tex
+	cd reports && bibtex paper_prl.aux
+	cd reports && pdflatex paper_prl.tex
+	cd reports && pdflatex paper_prl.tex
+reports/preprint.pdf : reports/preprint.tex reports/rsc.bib $(PAPER_FIG) $(PAPER_OUT) reports/esi.pdf
+	cd reports && pdflatex preprint.tex
+	cd reports && bibtex preprint.aux
+	cd reports && pdflatex preprint.tex
+	cd reports && pdflatex preprint.tex
+reports/esi_rsc.pdf : reports/esi_rsc.tex $(ESI_FIGS) $(ESI_OUT)
+	cd reports && pdflatex esi_rsc.tex
+	cd reports && bibtex esi_rsc.aux
+	cd reports && pdflatex esi_rsc.tex
+	cd reports && pdflatex esi_rsc.tex
 
-output/dlpc/chain.txt : notebooks/lipid_xrr.py src/models/mol_vol.py
+output/dlpc/chain.txt : notebooks/lipid_xrr.py src/models/mol_vol.py $(DLPC_DATA)
 	cd notebooks && ipython lipid_xrr.py dlpc 11 20 25 30 35 a
-$(DLPC_OUT_PAPER) $(DLPC_OUT_ESI) $(FIG_DIR)/DLPC_ref_sld.pdf $(FIG_DIR)/DLPC_vh_dt_phi.pdf: notebooks/xrr_chain_analysis.py src/models/mol_vol.py $(DLPC_OUT)
+$(DLPC_OUT_PAPER) $(DLPC_OUT_ESI) $(FIG_DIR)/DLPC_ref_sld.pdf $(FIG_DIR)/DLPC_vh_dt_phi.pdf: notebooks/xrr_chain_analysis.py src/models/mol_vol.py output/dlpc/chain.txt
 	cd notebooks && ipython xrr_chain_analysis.py dlpc 11 20 25 30 35 a
-output/dmpc/chain.txt : notebooks/lipid_xrr.py src/models/mol_vol.py
+output/dmpc/chain.txt : notebooks/lipid_xrr.py src/models/mol_vol.py $(DMPC_DATA)
 	cd notebooks && ipython lipid_xrr.py dmpc 13 20 25 30 40 b
-$(DMPC_OUT_PAPER) $(DMPC_OUT_ESI) $(FIG_DIR)/DMPC_ref_sld.pdf $(FIG_DIR)/DMPC_vh_dt_phi.pdf: notebooks/xrr_chain_analysis.py src/models/mol_vol.py $(DMPC_OUT)
+$(DMPC_OUT_PAPER) $(DMPC_OUT_ESI) $(FIG_DIR)/DMPC_ref_sld.pdf $(FIG_DIR)/DMPC_vh_dt_phi.pdf: notebooks/xrr_chain_analysis.py src/models/mol_vol.py output/dmpc/chain.txt
 	cd notebooks && ipython xrr_chain_analysis.py dmpc 13 20 25 30 40 b
-output/dppc/chain.txt : notebooks/lipid_xrr.py src/models/mol_vol.py
+output/dppc/chain.txt : notebooks/lipid_xrr.py src/models/mol_vol.py $(DPPC_DATA)
 	cd notebooks && ipython lipid_xrr.py dppc 15 15 20 25 30 c
-$(DPPC_OUT_PAPER) $(DPPC_OUT_ESI) $(FIG_DIR)/DPPC_ref_sld.pdf $(FIG_DIR)/DPPC_vh_dt_phi.pdf: notebooks/xrr_chain_analysis.py src/models/mol_vol.py $(DPPC_OUT)
+$(DPPC_OUT_PAPER) $(DPPC_OUT_ESI) $(FIG_DIR)/DPPC_ref_sld.pdf $(FIG_DIR)/DPPC_vh_dt_phi.pdf: notebooks/xrr_chain_analysis.py src/models/mol_vol.py output/dppc/chain.txt
 	cd notebooks && ipython xrr_chain_analysis.py dppc 15 15 20 25 30 c
-output/dmpg/chain.txt : notebooks/lipid_xrr.py src/models/mol_vol.py
+output/dmpg/chain.txt : notebooks/lipid_xrr.py src/models/mol_vol.py $(DMPG_DATA)
 	cd notebooks && ipython lipid_xrr.py dmpg 13 15 20 25 30 d
-$(DMPG_OUT_PAPER) $(DMPG_OUT_ESI) $(FIG_DIR)/DMPG_ref_sld.pdf $(FIG_DIR)/DMPG_vh_dt_phi.pdf: notebooks/xrr_chain_analysis.py src/models/mol_vol.py $(DMPG_OUT)
+$(DMPG_OUT_PAPER) $(DMPG_OUT_ESI) $(FIG_DIR)/DMPG_ref_sld.pdf $(FIG_DIR)/DMPG_vh_dt_phi.pdf: notebooks/xrr_chain_analysis.py src/models/mol_vol.py output/dmpg/chain.txt
 	cd notebooks && ipython xrr_chain_analysis.py dmpg 13 15 20 25 30 d
 
 
-output/dmpc/25_chain_neutron.txt : notebooks/lipid_nr.py src/models/mol_vol.py
+output/dmpc/25_chain_neutron.txt : notebooks/lipid_nr.py src/models/mol_vol.py $(DMPC1_DATA)
 	cd notebooks && ipython lipid_nr.py dmpc 13 25 a
-$(NDMPC1_OUT_PAPER) $(FIG_DIR)/dmpc_25n_ref_sld.pdf $(FIG_DIR)/dmpc_25n_all_corner.pdf : notebooks/nr_chain_analysis.py src/models/mol_vol.py $(NDMPC1_OUT)
+$(NDMPC1_OUT_PAPER) $(FIG_DIR)/dmpc_25n_ref_sld.pdf $(FIG_DIR)/dmpc_25n_all_corner.pdf : notebooks/nr_chain_analysis.py src/models/mol_vol.py output/dmpc/25_chain_neutron.txt
 	cd notebooks && ipython nr_chain_analysis.py dmpc 13 25 a
-output/dmpc/20_chain_neutron.txt : notebooks/lipid_nr.py src/models/mol_vol.py
+output/dmpc/20_chain_neutron.txt : notebooks/lipid_nr.py src/models/mol_vol.py $(DMPC2_DATA)
 	cd notebooks && ipython lipid_nr.py dmpc 13 20 a
-$(NDMPC2_OUT_PAPER) $(FIG_DIR)/dmpc_20n_ref_sld.pdf $(FIG_DIR)/dmpc_20n_all_corner.pdf : notebooks/nr_chain_analysis.py src/models/mol_vol.py $(NDMPC2_OUT)
+$(NDMPC2_OUT_PAPER) $(FIG_DIR)/dmpc_20n_ref_sld.pdf $(FIG_DIR)/dmpc_20n_all_corner.pdf : notebooks/nr_chain_analysis.py src/models/mol_vol.py output/dmpc/20_chain_neutron.txt
 	cd notebooks && ipython nr_chain_analysis.py dmpc 13 20 a
-output/dppc/20_chain_neutron.txt : notebooks/lipid_nr.py src/models/mol_vol.py
+output/dppc/20_chain_neutron.txt : notebooks/lipid_nr.py src/models/mol_vol.py $(DPPC1_DATA)
 	cd notebooks && ipython lipid_nr.py dppc 15 20 b
-$(NDPPC1_OUT_PAPER) $(FIG_DIR)/dppc_20n_ref_sld.pdf $(FIG_DIR)/dppc_20n_all_corner.pdf : notebooks/nr_chain_analysis.py src/models/mol_vol.py $(NDPPC1_OUT)
+$(NDPPC1_OUT_PAPER) $(FIG_DIR)/dppc_20n_ref_sld.pdf $(FIG_DIR)/dppc_20n_all_corner.pdf : notebooks/nr_chain_analysis.py src/models/mol_vol.py output/dppc/20_chain_neutron.txt
 	cd notebooks && ipython nr_chain_analysis.py dppc 15 20 b
-output/dppc/15_chain_neutron.txt : notebooks/lipid_nr.py src/models/mol_vol.py
+output/dppc/15_chain_neutron.txt : notebooks/lipid_nr.py src/models/mol_vol.py $(DPPC2_DATA)
 	cd notebooks && ipython lipid_nr.py dppc 15 15 b
-$(NDPPC2_OUT_PAPER) $(FIG_DIR)/dppc_15n_ref_sld.pdf $(FIG_DIR)/dppc_15n_all_corner.pdf : notebooks/nr_chain_analysis.py src/models/mol_vol.py $(NDPPC2_OUT)
+$(NDPPC2_OUT_PAPER) $(FIG_DIR)/dppc_15n_ref_sld.pdf $(FIG_DIR)/dppc_15n_all_corner.pdf : notebooks/nr_chain_analysis.py src/models/mol_vol.py output/dppc/15_chain_neutron.txt
 	cd notebooks && ipython nr_chain_analysis.py dppc 15 15 b
 
 

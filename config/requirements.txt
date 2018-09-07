@@ -1,6 +1,6 @@
 cython
 numpy
-scipy
+scipy==1.1.0
 matplotlib
 seaborn
 pandas
@@ -8,5 +8,5 @@ corner
 h5py
 tqdm
 xlrd
-refnx
+refnx==0.0.17
 jupyter_nbcontrib_extensions
