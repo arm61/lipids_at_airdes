@@ -1,10 +1,10 @@
-## ESI for "Bayesian determination of the effect of a deep eutectic solvent on the structure of lipid monolayers"
+# ESI for "Bayesian determination of the effect of a deep eutectic solvent on the structure of lipid monolayers"
 
 [Andrew R. McCluskey](https://orcid.org/0000-0003-3381-5911)
 
 This is the electronic supplementary information (ESI) associated with the publication "Bayesian determination of the effect of a deep eutectic solvent on the structure of lipid monolayers".
 
-### [Data](https://researchdata.bath.ac.uk/id/eprint/548)
+## [Data](https://researchdata.bath.ac.uk/id/eprint/548)
 
 The reduced X-ray  and neutron reflectometry data can be obtained from the University of Bath Research Data Archive.
 
@@ -14,7 +14,7 @@ The full neutron reflectometry data can be obtained from the ILL Data Archive.
 
 DOI: [10.5291/ILL-DATA.9-13-612](http://doi.org/10.5291/ILL-DATA.9-13-612)
 
-### Analysis
+## Analysis
 
 This ESI aims to provide a fully reproducible workflow to the data analysis presented within the paper.
 
@@ -39,11 +39,11 @@ make clean # this will remove all of the output from previous runs
 make
 ```
 
-### [Figures](/reports/figures)
+## [Figures](/reports/figures)
 
 PDF versions of the figures, can be found in the `reports/figures` directory.
 
-### Citing this ESI
+## Citing this ESI
 
 Cite as:
 
@@ -53,11 +53,11 @@ Cite as:
 bibtex here
 ```
 
-### Acknowledgements
+## Acknowledgements
 
 A. R. M. Is grateful to the University of Bath and Diamond Light Source for co-funding a studentship (Studentship Number STU0149). The authors thank the European Spallation Source and the University of Bath Alumni Fund for supporting A. S.-F.
 
-### Project Organization
+## Project Organization
 
     .
     ├── AUTHORS.md
