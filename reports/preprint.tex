@@ -17,7 +17,7 @@ ${c}$~European Spallation Source, SE-211 00 Lund, Sweden. \\
 ${d}$~Department of Physical Chemistry, Lund University, SE-211 00 Lund, Sweden. \\
 ${e}$~Institut Laue-Langevin, 71 avenue des Martyrs, 38000, Grenoble, France. \\
 ${f}$~Division of Pharmacy and Optometry, University of Manchester, Manchester, \\
-\indent M13 9PT, UK. \\
+M13 9PT, UK. \\
 ${g}$~ISIS Neutron and Muon Source, Science and Technology Facilities Council, \\
 Rutherford Appleton Laboratory, Harwell Oxford, Didcot OX11 0QX, UK. \\
 ${\P}$~Present address: Department of Food Technology, Lund University, SE-211 00 \\
@@ -32,7 +32,11 @@ $\ast$~k.edler@bath.ac.uk; tom.arnold@esss.se}
 \maketitle
 
 \begin{abstract}
-  Deep eutectic solvents present a novel class of non-aqueous room temperature solvent with tunable properties, that are capable of promoting the self-assembly of surfactant molecules. However, the solvation model in these systems still challenges the classic understanding of amphiphilicity. In this work, we present the first example of the self-assembly of phospholipid monolayers at the interface between air and a non-aqueous solvent. Furthermore, we use novel, chemically-consistent Bayesian modelling of X-ray and neutron reflectometry measurements to show the ability of the deep eutectic solvent to interact with the phosphatidylglycerol lipid head, leading to an apparent increase in the volume compared to that observed in water. No such change was observed for the phosphocholine head, indicating that the interaction is head specific.
+  Deep eutectic solvents present a novel class of non-aqueous room temperature solvent with tunable properties, that are capable of promoting the self-assembly of surfactant molecules.
+  However, the solvation model in these systems still challenges the classic understanding of amphiphilicity.
+  In this work, we present the first example of the self-assembly of phospholipid monolayers at the interface between air and a non-aqueous solvent.
+  Furthermore, we use novel, chemically-consistent Bayesian modelling of X-ray and neutron reflectometry measurements to show the ability of the deep eutectic solvent to interact with the phosphatidylglycerol lipid head, leading to an apparent increase in the volume compared to that observed in water.
+  No such change was observed for the phosphocholine head, indicating that the interaction is head specific.
 \begin{description}
 \item[Usage]
 Electronic Supplementary Information (ESI) available: All analysis/plotting scripts and figure files, allowing for a fully reproducible, and automated, analysis workflow for the work presented is available at \url{https://github.com/arm61/lipids_at_airdes} (DOI: **some doi**) under an MIT license. Reduced experimental datasets are available at \url{https://researchdata.bath.ac.uk/id/eprint/548}, under a CC-BY 4.0 license.
@@ -156,7 +160,7 @@ A similar structure may occur for the PG head, with a weaker interaction between
 Therefore, the observed increase found for the PG volume in DES when compared with water may be due to the unfolding of the PG head, where the solvent is capable of providing a greater screening effect to the PG head than that present in water.
 This may not be observed for the PC head due to the greater strength of the folding interaction arising from the formally-charged nature of the ammonium group.
 It would be anticipated that this unfolding would result in an increase in the thickness of the lipid head layer.
-Previously, DPPG has been reported to have a head layer thickness of \SI[separate-uncertainty=true]{10.3\pm0.4}{\angstrom} at \SI{22}{\milli\newton\per\meter} from NR measurements\cite{Clifton2012}, which it slightly less than the \input{../output/dmpg/head.txt}\si{angstrom} determined in the current work, further suggesting that the unfolding of the PG head.
+Previously, DPPG has been reported to have a head layer thickness of \SI[separate-uncertainty=true]{10.3\pm0.4}{\angstrom} at \SI{22}{\milli\newton\per\meter} from NR measurements\cite{Clifton2012}, which it slightly less than the \input{../output/dmpg/head.txt}\si{\angstrom} determined in the current work, further suggesting that the unfolding of the PG head.
 Previously, the presence of short range, electrostatic interactions has been noted to impact the solution structure adopted by zwitterionic surfactants in choline chloride:glycerol\cite{Sanchez-Fernandez2018}.
 
 The determined volumes for the head and tails, and the thickness of the head layers, for DMPC and DPPC were then used as constraints in the co-refinement of the custom model against two contrasts NR data (Figure \ref{fig:neutron}). In these analysis the only two varying parameters were the tail tilt angle, $\theta_t$, and the interfacial roughness, $\sigma$.
@@ -203,6 +207,7 @@ Futhermore, this work presents the first, to our knowledge, use of chemically-co
 
 The authors thank the European Spallation Source and the University of Bath Alumni Fund for supporting A.S.-F. A.R.M. is grateful to the University of Bath and Diamond Light Source for co-funding a studentship (Studentship Number STU0149). We also thank Diamond Light Source (Experiment number SI10546-1) and Institut Laue-Langevin (DOI: \href{http://doi.org/10.5291/ILL-DATA.9-13-612}{10.5291/ILL-DATA.9-13-612}) for the awarded beamtime.
 
+\setlength{\bibsep}{1pt}
 \bibliography{rsc}% Produces the bibliography via BibTeX.
 \bibliographystyle{rsc}
 \end{document}
