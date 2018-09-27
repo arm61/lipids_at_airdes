@@ -1,4 +1,4 @@
-cython
+Cython
 numpy
 scipy==1.1.0
 matplotlib
@@ -7,6 +7,7 @@ pandas
 corner
 h5py
 tqdm
+periodictable
 xlrd
 refnx==0.0.17
-jupyter_nbcontrib_extensions
+jupyter_contrib_nbextensions

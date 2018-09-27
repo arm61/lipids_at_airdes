@@ -32,6 +32,8 @@ conda create --name paper_env python
 
 source activate paper_env
 
+pip install --upgrade pip 
+
 pip install -r config/requirements.txt
 
 make clean # this will remove all of the output from previous runs
