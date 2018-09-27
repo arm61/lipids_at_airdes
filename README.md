@@ -32,7 +32,7 @@ conda create --name paper_env python
 
 source activate paper_env
 
-pip install --upgrade pip 
+pip install --upgrade pip
 
 pip install -r config/requirements.txt
 
@@ -47,7 +47,7 @@ PDF versions of the figures, can be found in the `reports/figures` directory.
 
 ## Acknowledgements
 
-A. R. M. Is grateful to the University of Bath and Diamond Light Source for co-funding a studentship (Studentship Number STU0149). The authors thank the European Spallation Source and the University of Bath Alumni Fund for supporting A. S.-F.
+A. R. M. is grateful to the University of Bath and Diamond Light Source for co-funding a studentship (Studentship Number STU0149). The authors thank the European Spallation Source and the University of Bath Alumni Fund for supporting A. S.-F.
 
 ## Project Organization
 
