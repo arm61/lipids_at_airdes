@@ -4,6 +4,7 @@
 \usepackage{amsfonts}
 \usepackage[super,sort&compress,comma]{natbib}
 \usepackage{amssymb}
+\usepackage{float}
 \usepackage{graphicx}
 \usepackage{hyperref}
 \usepackage[detect-all]{siunitx}
@@ -192,7 +193,7 @@ Tables \ref{tab:liptab1}-\ref{tab:liptab3} gives the best fit values for the cus
 \section{Neutron reflectometry and SLD profiles}
 Figure \ref{fig:neutron} shows the neutron reflectomery and scattering length density profiles for DMPC at \SI{25}{\milli\newton\per\meter} (two contrasts) and DPPC at \SI{15}{\milli\newton\per\meter} (two contrasts).
 %
-\begin{figure}
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=0.9\textwidth]{figures/dmpc_25n_ref_sld}
 	\includegraphics[width=0.9\textwidth]{figures/dppc_15n_ref_sld}
@@ -204,134 +205,134 @@ Figure \ref{fig:neutron} shows the neutron reflectomery and scattering length de
 \section{Grazing incident X-ray diffraction (GIXD)}
 \label{sec:gixd}
 GIXD was measured for DPPC and DMPC at \SI{30}{\milli\newton\per\meter} at \SI{22}{\celsius} (and \SI{7}{\celsius} for DMPC), and are shown in Figure \ref{fig:dppcgixd}. All figures contain an artifact from the X-ray beam interacting with the Teflon of the Langmuir trough. However, in figures \ref{fig:dppcgixd} and \ref{fig:dmpcgixd7} it is possible to identify a (2, 0) diffraction peak that indicates the presence of a similar structure to that found under the same conditions in water.\cite{Watkins2009} Based on this information we believe that, similar to water, the phase of the lipid tails is likely to be in the liquid condensed phase at all surface pressures measured.
-\begin{figure}[h]
+\begin{figure}[H]
 	\centering
-	\includegraphics[width=0.50\textwidth]{figures/206041}
-	\caption{The GIXD pattern for (a) DPPC at \SI{30}{\milli\newton\per\meter} at \SI{22}{\celsius}, (b) DMPC at \SI{30}{\milli\newton\per\meter} at \SI{22}{\celsius}, and (c) DMPC at \SI{30}{\milli\newton\per\meter} at \SI{7}{\celsius}. Source: Datasets, figure files and running/plotting scripts are available under CC-BY.\cite{mccluskey_2018}}
+	\includegraphics[width=0.50\textwidth]{figures/gixd}
+	\caption{The GIXD pattern for (a) DPPC at \SI{30}{\milli\newton\per\meter} at \SI{22}{\celsius}, (b) DMPC at \SI{30}{\milli\newton\per\meter} at \SI{22}{\celsius}, and (c) DMPC at \SI{30}{\milli\newton\per\meter} at \SI{7}{\celsius}.}
 	\label{fig:dppcgixd}
 \end{figure}
 
 \section{Probability distribution functions}
 
 The two-dimensional probability distribution functions (PDFs) for all parameters and all lipids from the X-ray reflectometry models are given in Figures \ref{fig:dlpc2}-\ref{fig:dmpg5}. The two-dimensional probability distribution functions (PDFs) for all parameters and all lipids from the neutron reflectometry models are given in Figures \ref{fig:dmpcn1}-\ref{fig:dppcn2}.
-\begin{figure}[h]
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=0.50\textwidth]{figures/dlpc1_all_corner}
-	\caption{The multi-parameter PDFs for the chemically-relevant model of DLPC X-ray reflectometry data at 20 mNm$^{-1}$. Source: Datasets, figure files and running/plotting scripts are available under CC-BY.\cite{mccluskey_2018}}
+	\caption{The multi-parameter PDFs for the chemically-relevant model of DLPC X-ray reflectometry data at 20 mNm$^{-1}$.}
 	\label{fig:dlpc2}
 \end{figure}
-\begin{figure}[h]
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=0.50\textwidth]{figures/dlpc2_all_corner}
-	\caption{The multi-parameter PDFs for the chemically-relevant model of DLPC X-ray reflectometry data at 25 mNm$^{-1}$. Source: Datasets, figure files and running/plotting scripts are available under CC-BY.\cite{mccluskey_2018}}
+	\caption{The multi-parameter PDFs for the chemically-relevant model of DLPC X-ray reflectometry data at 25 mNm$^{-1}$.}
 	\label{fig:dlpc3}
 \end{figure}
-\begin{figure}[h]
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=0.50\textwidth]{figures/dlpc3_all_corner}
-	\caption{The multi-parameter PDFs for the chemically-relevant model of DLPC X-ray reflectometry data at 30 mNm$^{-1}$. Source: Datasets, figure files and running/plotting scripts are available under CC-BY.\cite{mccluskey_2018}}
+	\caption{The multi-parameter PDFs for the chemically-relevant model of DLPC X-ray reflectometry data at 30 mNm$^{-1}$.}
 	\label{fig:dlpc4}
 \end{figure}
-\begin{figure}
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=0.50\textwidth]{figures/dlpc4_all_corner}
-	\caption{The multi-parameter PDFs for the chemically-relevant model of DLPC X-ray reflectometry data at 35 mNm$^{-1}$. Source: Datasets, figure files and running/plotting scripts are available under CC-BY.\cite{mccluskey_2018}}
+	\caption{The multi-parameter PDFs for the chemically-relevant model of DLPC X-ray reflectometry data at 35 mNm$^{-1}$.}
 	\label{fig:dlpc5}
 \end{figure}
-\begin{figure}[h]
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=0.50\textwidth]{figures/dmpc1_all_corner}
-	\caption{The multi-parameter PDFs for the chemically-relevant model of DMPC X-ray reflectometry data at 20 mNm$^{-1}$. Source: Datasets, figure files and running/plotting scripts are available under CC-BY.\cite{mccluskey_2018}}
+	\caption{The multi-parameter PDFs for the chemically-relevant model of DMPC X-ray reflectometry data at 20 mNm$^{-1}$.}
 	\label{fig:dmpc2}
 \end{figure}
-\begin{figure}[h]
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=0.50\textwidth]{figures/dmpc2_all_corner}
-	\caption{The multi-parameter PDFs for the chemically-relevant model of DMPC X-ray reflectometry data at 25 mNm$^{-1}$. Source: Datasets, figure files and running/plotting scripts are available under CC-BY.\cite{mccluskey_2018}}
+	\caption{The multi-parameter PDFs for the chemically-relevant model of DMPC X-ray reflectometry data at 25 mNm$^{-1}$.}
 	\label{fig:dmpc3}
 \end{figure}
-\begin{figure}[h]
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=0.50\textwidth]{figures/dmpc3_all_corner}
-	\caption{The multi-parameter PDFs for the chemically-relevant model of DMPC X-ray reflectometry data at 30 mNm$^{-1}$. Source: Datasets, figure files and running/plotting scripts are available under CC-BY.\cite{mccluskey_2018}}
+	\caption{The multi-parameter PDFs for the chemically-relevant model of DMPC X-ray reflectometry data at 30 mNm$^{-1}$.}
 	\label{fig:dmpc4}
 \end{figure}
-\begin{figure}
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=0.50\textwidth]{figures/dmpc4_all_corner}
-	\caption{The multi-parameter PDFs for the chemically-relevant model of DMPC X-ray reflectometry data at 40 mNm$^{-1}$. Source: Datasets, figure files and running/plotting scripts are available under CC-BY.\cite{mccluskey_2018}}
+	\caption{The multi-parameter PDFs for the chemically-relevant model of DMPC X-ray reflectometry data at 40 mNm$^{-1}$.}
 	\label{fig:dmpc5}
 \end{figure}
-\begin{figure}[h]
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=0.50\textwidth]{figures/dppc1_all_corner}
-	\caption{The multi-parameter PDFs for the chemically-relevant model of DPPC X-ray reflectometry data at 15 mNm$^{-1}$. Source: Datasets, figure files and running/plotting scripts are available under CC-BY.\cite{mccluskey_2018}}
+	\caption{The multi-parameter PDFs for the chemically-relevant model of DPPC X-ray reflectometry data at 15 mNm$^{-1}$.}
 	\label{fig:dppc2}
 \end{figure}
-\begin{figure}[h]
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=0.50\textwidth]{figures/dppc2_all_corner}
-	\caption{The multi-parameter PDFs for the chemically-relevant model of DPPC X-ray reflectometry data at 20 mNm$^{-1}$. Source: Datasets, figure files and running/plotting scripts are available under CC-BY.\cite{mccluskey_2018}}
+	\caption{The multi-parameter PDFs for the chemically-relevant model of DPPC X-ray reflectometry data at 20 mNm$^{-1}$.}
 	\label{fig:dppc3}
 \end{figure}
-\begin{figure}[h]
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=0.50\textwidth]{figures/dppc3_all_corner}
-	\caption{The multi-parameter PDFs for the chemically-relevant model of DPPC X-ray reflectometry data at 25 mNm$^{-1}$. Source: Datasets, figure files and running/plotting scripts are available under CC-BY.\cite{mccluskey_2018}}
+	\caption{The multi-parameter PDFs for the chemically-relevant model of DPPC X-ray reflectometry data at 25 mNm$^{-1}$.}
 	\label{fig:dppc4}
 \end{figure}
-\begin{figure}
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=0.50\textwidth]{figures/dppc4_all_corner}
-	\caption{The multi-parameter PDFs for the chemically-relevant model of DPPC X-ray reflectometry data at 30 mNm$^{-1}$. Source: Datasets, figure files and running/plotting scripts are available under CC-BY.\cite{mccluskey_2018}}
+	\caption{The multi-parameter PDFs for the chemically-relevant model of DPPC X-ray reflectometry data at 30 mNm$^{-1}$.}
 	\label{fig:dppc5}
 \end{figure}
-\begin{figure}[h]
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=0.50\textwidth]{figures/dmpg1_all_corner}
-	\caption{The multi-parameter PDFs for the chemically-relevant model of DMPG X-ray reflectometry data at 15 mNm$^{-1}$. Source: Datasets, figure files and running/plotting scripts are available under CC-BY.\cite{mccluskey_2018}}
+	\caption{The multi-parameter PDFs for the chemically-relevant model of DMPG X-ray reflectometry data at 15 mNm$^{-1}$.}
 	\label{fig:dmpg2}
 \end{figure}
-\begin{figure}[h]
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=0.50\textwidth]{figures/dmpg2_all_corner}
-	\caption{The multi-parameter PDFs for the chemically-relevant model of DMPG X-ray reflectometry data at 20 mNm$^{-1}$. Source: Datasets, figure files and running/plotting scripts are available under CC-BY.\cite{mccluskey_2018}}
+	\caption{The multi-parameter PDFs for the chemically-relevant model of DMPG X-ray reflectometry data at 20 mNm$^{-1}$. }
 	\label{fig:dmpg3}
 \end{figure}
-\begin{figure}[h]
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=0.50\textwidth]{figures/dmpg3_all_corner}
-	\caption{The multi-parameter PDFs for the chemically-relevant model of DMPG X-ray reflectometry data at 25 mNm$^{-1}$. Source: Datasets, figure files and running/plotting scripts are available under CC-BY.\cite{mccluskey_2018}}
+	\caption{The multi-parameter PDFs for the chemically-relevant model of DMPG X-ray reflectometry data at 25 mNm$^{-1}$.}
 	\label{fig:dmpg4}
 \end{figure}
-\begin{figure}
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=0.50\textwidth]{figures/dmpg4_all_corner}
-	\caption{The multi-parameter PDFs for the chemically-relevant model of DMPG X-ray reflectometry data at 30 mNm$^{-1}$. Source: Datasets, figure files and running/plotting scripts are available under CC-BY.\cite{mccluskey_2018}}
+	\caption{The multi-parameter PDFs for the chemically-relevant model of DMPG X-ray reflectometry data at 30 mNm$^{-1}$.}
 	\label{fig:dmpg5}
 \end{figure}
-\begin{figure}[h]
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=0.50\textwidth]{figures/dmpc_20n_all_corner}
-	\caption{The multi-parameter PDFs for the chemically-relevant model of two contrast DMPC neutron reflectometry data at 20 mNm$^{-1}$. Source: Datasets, figure files and running/plotting scripts are available under CC-BY.\cite{mccluskey_2018}}
+	\caption{The multi-parameter PDFs for the chemically-relevant model of two contrast DMPC neutron reflectometry data at 20 mNm$^{-1}$.}
 	\label{fig:dmpcn1}
 \end{figure}
-\begin{figure}[h]
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=0.50\textwidth]{figures/dmpc_25n_all_corner}
-	\caption{The multi-parameter PDFs for the chemically-relevant model of two contrast DMPC neutron reflectometry data at 25 mNm$^{-1}$. Source: Datasets, figure files and running/plotting scripts are available under CC-BY.\cite{mccluskey_2018}}
+	\caption{The multi-parameter PDFs for the chemically-relevant model of two contrast DMPC neutron reflectometry data at 25 mNm$^{-1}$.}
 	\label{fig:dmpcn2}
 \end{figure}
-\begin{figure}[h]
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=0.50\textwidth]{figures/dppc_15n_all_corner}
-	\caption{The multi-parameter PDFs for the chemically-relevant model of two contrast DPPC neutron reflectometry data at 15 mNm$^{-1}$. Source: Datasets, figure files and running/plotting scripts are available under CC-BY.\cite{mccluskey_2018}}
+	\caption{The multi-parameter PDFs for the chemically-relevant model of two contrast DPPC neutron reflectometry data at 15 mNm$^{-1}$.}
 	\label{fig:dppcn1}
 \end{figure}
-\begin{figure}[h]
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=0.50\textwidth]{figures/dppc_20n_all_corner}
-	\caption{The multi-parameter PDFs for the chemically-relevant model of two contrast DMPC neutron reflectometry data at 20 mNm$^{-1}$. Source: Datasets, figure files and running/plotting scripts are available under CC-BY.\cite{mccluskey_2018}}
+	\caption{The multi-parameter PDFs for the chemically-relevant model of two contrast DMPC neutron reflectometry data at 20 mNm$^{-1}$.}
 	\label{fig:dppcn2}
 \end{figure}
 
