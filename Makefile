@@ -21,7 +21,7 @@ PAPER_FIGS = $(FIG_DIR)/head_groups.png $(FIG_DIR)/dlpc_ref_sld.pdf $(FIG_DIR)/d
 
 PDF_FIGS = $(FIG_DIR)/dlpc1_all_corner.pdf $(FIG_DIR)/dlpc2_all_corner.pdf $(FIG_DIR)/dlpc3_all_corner.pdf $(FIG_DIR)/dlpc4_all_corner.pdf $(FIG_DIR)/dmpc1_all_corner.pdf $(FIG_DIR)/dmpc2_all_corner.pdf $(FIG_DIR)/dmpc3_all_corner.pdf $(FIG_DIR)/dmpc4_all_corner.pdf $(FIG_DIR)/dppc1_all_corner.pdf $(FIG_DIR)/dppc2_all_corner.pdf $(FIG_DIR)/dppc3_all_corner.pdf $(FIG_DIR)/dppc4_all_corner.pdf $(FIG_DIR)/dmpg1_all_corner.pdf $(FIG_DIR)/dmpg2_all_corner.pdf $(FIG_DIR)/dmpg3_all_corner.pdf $(FIG_DIR)/dmpg4_all_corner.pdf $(FIG_DIR)/dmpc_20n_all_corner.pdf $(FIG_DIR)/dmpc_25n_all_corner.pdf $(FIG_DIR)/dppc_15n_all_corner.pdf $(FIG_DIR)/dppc_20n_all_corner.pdf
 
-GIXD_FIGS = $(FIG_DIR)/206041.pdf $(FIG_DIR)/206151.pdf $(FIG_DIR)/206161.pdf
+GIXD_FIGS = $(FIG_DIR)/gixd.png
 
 ESI_FIGS = $(PDF_FIGS) $(GIXD_FIGS)
 
