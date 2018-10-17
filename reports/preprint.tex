@@ -45,7 +45,6 @@ Reduced experimental datasets are available at \url{https://researchdata.bath.ac
 \end{description}
 \end{abstract}
 
-
 Deep eutectic solvents (DES) are green, sustainable liquids that are obtained through the combination of ionic species with compounds that act as hydrogen bond donors, such as sugars, alcohols, amines, and carboxylic acids\cite{Smith2014,Dai2013}.
 The resulting extensive hydrogen bonding network is able to stabilise the ionic species and allows the eutectic mixture to remain liquid at room temperature\cite{Hammond2016,Hammond2017,Araujo2017}.
 Through different combinations of the precursor materials, it is possible to tune the solvent's physicochemical properties, such as polarity\cite{Pandey2014}, viscosity and surface tension\cite{Smith2014}, network charge\cite{Zahn2016}, and hydrophobicity\cite{Ribeiro2015,vanOsch2015}.
@@ -112,20 +111,19 @@ In order to constrain the fitting process only $\theta_t$ and $\sigma$ were allo
 %
 \begin{table*}
   \centering
-	\caption{\label{tab:liptab} The best-fit values, and associated 95 \% confidence intervals for the varying parameters in the XRR models, at the highest surface pressure (SP) measured. The values of $d_t$ were found from the appropriate values of $\theta_t$ using Eqn. \ref{equ:tl} and the values for $\phi_h$ were obtained from the appropriate use of Eqn. \ref{equ:phih}.}
+	\caption{\label{tab:liptab} The best-fit values, and associated 95 \% confidence intervals for the varying parameters in the XRR models, at the \SI{30}{\milli\newton\per\meter}. The values of $d_t$ were found from the appropriate values of $\theta_t$ using Eqn. \ref{equ:tl} and the values for $\phi_h$ were obtained from the appropriate use of Eqn. \ref{equ:phih}.}
 	\begin{tabular}{ccccc}
 		Lipid & DLPC & DMPC & DPPC & DMPG \\
-    SP/\si{\milli\newton\per\meter} & 35 & 40 & 30 & 30 \\
 		\hline
-		$\theta_t$/\si{\degree} & \input{../output/dlpc/angle35.txt} & \input{../output/dmpc/angle40.txt} & \input{../output/dppc/angle30.txt} & \input{../output/dmpg/angle30.txt} \\
-		$\sigma$/\si{\angstrom} & \input{../output/dlpc/rough35.txt} & \input{../output/dmpc/rough40.txt} & \input{../output/dppc/rough30.txt} & \input{../output/dmpg/rough30.txt} \\
+		$\theta_t$/\si{\degree} & \input{../output/dlpc/angle30.txt} & \input{../output/dmpc/angle30.txt} & \input{../output/dppc/angle30.txt} & \input{../output/dmpg/angle30.txt} \\
+		$\sigma$/\si{\angstrom} & \input{../output/dlpc/rough30.txt} & \input{../output/dmpc/rough30.txt} & \input{../output/dppc/rough30.txt} & \input{../output/dmpg/rough30.txt} \\
     \hline
     $V_t$/\si{\cubic\angstrom} & \input{../output/dlpc/vt.txt} & \input{../output/dmpc/vt.txt} & \input{../output/dppc/vt.txt} & \input{../output/dmpg/vt.txt} \\
 		$V_h$/\si{\cubic\angstrom} & \input{../output/dlpc/vh.txt} & \input{../output/dmpc/vh.txt} & \input{../output/dppc/vh.txt} & \input{../output/dmpg/vh.txt} \\
 		$d_h$/\si{\angstrom} & \input{../output/dlpc/head.txt} & \input{../output/dmpc/head.txt} & \input{../output/dppc/head.txt} & \input{../output/dmpg/head.txt} \\
     \hline
-    $\phi_h$/$\times10^{-2}$ & \input{../output/dlpc/solh35.txt} & \input{../output/dmpc/solh40.txt} & \input{../output/dppc/solh30.txt} & \input{../output/dmpg/solh30.txt} \\
-		$d_t$/\si{\angstrom} & \input{../output/dlpc/tail35.txt} & \input{../output/dmpc/tail40.txt} & \input{../output/dppc/tail30.txt} & \input{../output/dmpg/tail30.txt} \\
+    $\phi_h$/$\times10^{-2}$ & \input{../output/dlpc/solh30.txt} & \input{../output/dmpc/solh30.txt} & \input{../output/dppc/solh30.txt} & \input{../output/dmpg/solh30.txt} \\
+		$d_t$/\si{\angstrom} & \input{../output/dlpc/tail30.txt} & \input{../output/dmpc/tail30.txt} & \input{../output/dppc/tail30.txt} & \input{../output/dmpg/tail30.txt} \\
 	\end{tabular}
 \end{table*}
 %
@@ -165,19 +163,13 @@ In general our results are at least self-consistent while comparisons to the lit
 Figure \ref{fig:lipresults} shows the PDFs for the head volume for each of the four lipids.
 The three lipids with the PC head are consistent with values of around \SI{330}{\cubic\angstrom}, regardless of hydrocarbon tail.
 This agrees well with the values found for the same head in water (Table \ref{tab:water}).
-Interestingly, the volume for the PG head is similar to that for the PC head with a value of \input{../output/dmpg/vh.txt}\si{\cubic\angstrom}, whereas it is considered to be smaller in water when measured by either DMPG using differential vibrating tube densimetry\cite{Pan2012} (\SI{291}{\cubic\angstrom}) or POPG using molecular dynamics simulations\cite{Kucerka2012} (\SI{289}{\cubic\angstrom}).
-This indicates that there may be some effect arising from the solvation in DES causing an apparent increase in the PG head volume when compared with water.
-
-Figure \ref{fig:lipresults} shows the PDFs for the head volume for each of the four lipids.
-The three lipids with the PC head are consistent with values of around \SI{330}{\cubic\angstrom}, regardless of hydrocarbon tail.
-This agrees well with the values found for the same head in water (Table \ref{tab:water}).
 Interestingly, the volume for the PG head is similar to that for the PC head with a value of \input{../output/dmpg/vh.txt}\si{\cubic\angstrom}, which is significantly larger than values quoted in the literature for DMPG\cite{Pan2012} (\SI{291}{\cubic\angstrom}) or POPG\cite{Kucerka2012} (\SI{289}{\cubic\angstrom}).
 This suggests that there may be some effect arising from the solvation in DES.
 
 The major difference between the two heads is the fact PG head is negatively charged whereas the PC head is zwitterionic (Figure \ref{fig:heads}).
 It has been shown previously that the PC head is folded in water\cite{Gilliams2016}, while the presence of strong electrostatic interactions in DES is known to effect the structure of surfactants micelles\cite{Sanchez-Fernandez2018}.
 If we infer a similar folded structure for the PG head driven by a weaker interaction between the alcohol and phosphate groups, then we may explain the observed increase in volume to be due to unfolding of the PG head because we expect that the DES provides a greater charge screening effect than water.
-If so then we would also expect an increase in the thickness of the head layer in DES. This does seem to be the case: The PG head layer thickness was found to be \SI[separate-uncertainty=true]{10.3\pm0.4}{\angstrom} at \SI{22}{\milli\newton\per\meter} \cite{Clifton2012} and \SI[separate-uncertainty=true]{9.7\pm1.0}{\angstrom} at \SI{15}{\milli\newton\per\meter} \cite{Ciumac2017} from NR measurements.
+If so then we would also expect an increase in the thickness of the head layer in DES. This does seem to be the case: The PG head layer thickness was found to be \SI[separate-uncertainty=true]{10.3\pm0.4}{\angstrom} at \SI{22}{\milli\newton\per\meter} \cite{Clifton2012} and \SI[separate-uncertainty=true]{9.7\pm1.0}{\angstrom} at \SI{15}{\milli\newton\per\meter} \cite{Ciumac2017} from NR measurements at the air-water interface.
 For the PC head the stronger folding interaction, due to the formal charge on the ammonium group, means that no unfolding effect is observed.
 
 The volumes determined for the head and tails, and the thickness of the head layers, for DMPC and DPPC were used to constrain the fitting of corresponding NR data (Figure \ref{fig:neutron}). This leaves only two variables, $\theta_t$ and $\sigma$ to fit this data.
