@@ -55,7 +55,7 @@ ESI_OUT = $(DLPC_OUT_ESI) $(DMPC_OUT_ESI) $(DPPC_OUT_ESI) $(DMPG_OUT_ESI)
 
 all : reports/si.pdf reports/paper.pdf
 clean :
-	rm -r reports/paper.pdf reports/si.pdf $(FIG_DIR)/*ref_sld.pdf  $(FIG_DIR)/*vh_dt_phi.pdf $(FIG_DIR)/*all_corner.pdf $(PLOT_DIR)/*.py notebooks/*.py output/*
+	rm -r reports/paper.pdf reports/si.pdf $(FIG_DIR)/*ref_sld.pdf  $(FIG_DIR)/*vh_dt_phi.pdf $(FIG_DIR)/*all_corner.pdf $(PLOT_DIR)/*.py notebooks/*.py output/dlpc/* output/dmpc/* output/dppc/* output/dmpg/* 
 
 reports/si.pdf : reports/si.tex reports/bibi.bib $(ESI_FIGS) $(ESI_OUT)
 	cd reports && pdflatex si.tex

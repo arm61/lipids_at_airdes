@@ -24,6 +24,7 @@ Requirements:
 
 - anaconda or miniconda python
 - make
+- [REVTeX](https://journals.aps.org/revtex)
 
 The supplied Makefile, will reproduce all of the analysis, plot the figures, and build a preprint version of the paper (`reports/preprint.pdf`) when run. Be aware that the analyses within this work are non-trivial and take many hours to run so **use caution** before re-running.
 
