@@ -9,7 +9,7 @@
 \usepackage{hyperref}
 \usepackage[detect-all]{siunitx}
 \usepackage{xr}
-\externaldocument{apssamp}
+\externaldocument{preprint}
 \usepackage{rotating}
 \usepackage[margin=2cm]{geometry}
 \renewcommand{\thefigure}{S\arabic{figure}}
@@ -60,7 +60,7 @@ The NR experiments were performed on FIGARO at the Institut Laue-Langevin using 
 The range of volumes used for phospholipid heads and tails are somewhat inconsistent in the literature. There is a general consensus that the volume of the phosphocholine (PC) head is \SIrange{320}{360}{\cubic\angstrom}, while the phosphatidylglycerol (PG) head is \SIrange{289}{291}{\cubic\angstrom} (see Table \ref{tab:water}).
 Tail volumes are also quite variable and, as discussed in the main text, the compaction in chain volumes on a phase transition is often not accounted for\cite{Campbell2018}.
 We are interested in comparing the volumes of the lipid components on a non-aqueous liquid.
-To allow this comparison, table \ref{tab:water} gives a variety of literature values for the component volumes of the lipids investigated in this work.
+To allow this comparison, Table \ref{tab:water} gives a variety of literature values for the component volumes of the lipids investigated in this work.
 
 \section{Chemically-consistant model}
 Our chemically-consistent model is made up of two layers to define the lipid monolayer; the head layer at the interface with the solvent and tail layer at the interface with the air. The head components have a calculated scattering length, $b_h$, (found as a summation of the X-ray or neutron atomic scattering lengths), and a component volume, $V_h$. These head components make up a layer with a given thickness, $d_h$, and roughness, $\sigma_h$, within which some volume fraction of solvent can intercalate, $\phi_h$. The tail components also have a calculated scattering length, $b_t$, roughness, $\sigma_t$, and a component volume, $V_t$. We have defined the thickness of the tail layer, $d_t$, in terms of the maximum (all-trans) length of the carbon tail, $t_t$, and the angle that the chain is tilted by with respect to the interface normal, $\theta_t$,
@@ -95,7 +95,7 @@ Figure \ref{fig:neutron} shows the neutron reflectomery and scattering length de
 \section{Grazing incident X-ray diffraction (GIXD)}
 \label{sec:gixd}
 We have already indicated that the surface pressure was measured using an Aluminium Wilhelmy plate because the standard paper plates did not wet properly. This method did allow us to measure Langmuir isotherms, but these were inconsistent and as such, not a reliable method for determining the phase of the lipid monolayers.
-Instead we were able to measure GIXD for DPPC and DMPC over a range of different surface pressures and temperatures and representative data from these measurements are shown in Figure \ref{fig:gixd} for \SI{30}{\milli\newton\per\meter} and \SI{22}{\celsius} (and \SI{7}{\celsius} for DMPC).  Unfortunately, despite our best efforts, the quality of GIXD data obtained was not entirely satisfactory. All of data contains a weak artefact which we believe is due to scattering from the Teflon trough, which is probably due to the relatively low meniscus of the DES (due to its low surface tension compared to water). In addition we cannot see the expected (1,1) peak observed for these lipids on water. It is unclear whether this is because these peaks are absent or too weak to be measured. Nonetheless, figure \ref{fig:gixd} shows clear diffraction peaks (which we assume to be the (2, 0)) for DPPC at \SI{22}{\celsius} and for DMPC at \SI{7}{\celsius}. These peaks are also visible at lower surface pressures (data not shown). The presence of any diffraction feature indicates the presence of an LC phase at these temperatures. Importantly there is no such peak observed for DMPC at \SI{22}{\celsius} (see \ref{fig:gixd}), indicating that DMPC is in the LE phase at this temperature. The position of the (2,0) peak, approx \SI{1.48}{\AA^{-1}}, is similar to that found under the same conditions in water.\cite{Watkins2009}
+Instead we were able to measure GIXD for DPPC and DMPC over a range of different surface pressures and temperatures and representative data from these measurements are shown in Figure \ref{fig:gixd} for \SI{30}{\milli\newton\per\meter} and \SI{22}{\celsius} (and \SI{7}{\celsius} for DMPC).  Unfortunately, despite our best efforts, the quality of GIXD data obtained was not entirely satisfactory. All of data contains a weak artefact which we believe is due to scattering from the Teflon trough, which is probably due to the relatively low meniscus of the DES (due to its low surface tension compared to water). In addition we cannot see the expected (1,1) peak observed for these lipids on water. It is unclear whether this is because these peaks are absent or too weak to be measured. Nonetheless, Figure \ref{fig:gixd} shows clear diffraction peaks (which we assume to be the (2, 0)) for DPPC at \SI{22}{\celsius} and for DMPC at \SI{7}{\celsius}. These peaks are also visible at lower surface pressures (data not shown). The presence of any diffraction feature indicates the presence of an LC phase at these temperatures. Importantly there is no such peak observed for DMPC at \SI{22}{\celsius} (see \ref{fig:gixd}), indicating that DMPC is in the LE phase at this temperature. The position of the (2,0) peak, approx \SI{1.48}{\AA^{-1}}, is similar to that found under the same conditions in water.\cite{Watkins2009}
 We therefore assume that the phase behaviour on the DES is similar to that observed on water and that the phases observed at \SI{30}{\milli\newton\per\meter} are the same at the other surface pressures measured with XRR and NR. While we have no direct evidence, we have extended this assumption to DLPC and DMPG since there is no reason to believe that the phases of these molecules should be different from that observed for DMPC.
 
 \section{Probability distribution functions}
@@ -223,7 +223,7 @@ The two-dimensional probability distribution functions (PDFs) for all parameters
 	\centering
 	\includegraphics[width=0.50\textwidth]{figures/gixd}
 	\caption{The GIXD pattern for (a) DPPC at \SI{30}{\milli\newton\per\meter} at \SI{22}{\celsius}, (b) DMPC at \SI{30}{\milli\newton\per\meter} at \SI{22}{\celsius}, and (c) DMPC at \SI{30}{\milli\newton\per\meter} at \SI{7}{\celsius}.}
-	\label{fig:dppcgixd}
+	\label{fig:gixd}
 \end{figure}
 
 \begin{figure}[H]
