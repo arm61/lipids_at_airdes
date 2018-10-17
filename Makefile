@@ -53,20 +53,20 @@ DMPG_OUT_ESI = output/dmpg/angle15.txt output/dmpg/rough15.txt output/dmpg/solh1
 ESI_OUT = $(DLPC_OUT_ESI) $(DMPC_OUT_ESI) $(DPPC_OUT_ESI) $(DMPG_OUT_ESI)
 
 
-all : reports/si.pdf reports/preprint.pdf
+all : reports/si.pdf reports/paper.pdf
 clean :
-	rm -r reports/preprint.pdf reports/si.pdf $(FIG_DIR)/*ref_sld.pdf  $(FIG_DIR)/*vh_dt_phi.pdf $(FIG_DIR)/*all_corner.pdf $(PLOT_DIR)/*.py notebooks/*.py output/* 
+	rm -r reports/paper.pdf reports/si.pdf $(FIG_DIR)/*ref_sld.pdf  $(FIG_DIR)/*vh_dt_phi.pdf $(FIG_DIR)/*all_corner.pdf $(PLOT_DIR)/*.py notebooks/*.py output/*
 
 reports/si.pdf : reports/si.tex reports/bibi.bib $(ESI_FIGS) $(ESI_OUT)
 	cd reports && pdflatex si.tex
 	cd reports && bibtex si.aux
 	cd reports && pdflatex si.tex
 	cd reports && pdflatex si.tex
-reports/preprint.pdf : reports/preprint.tex reports/bibi.bib $(PAPER_FIG) $(PAPER_OUT) reports/si.pdf
-	cd reports && pdflatex preprint.tex
-	cd reports && bibtex preprint.aux
-	cd reports && pdflatex preprint.tex
-	cd reports && pdflatex preprint.tex
+reports/paper.pdf : reports/paper.tex reports/bibi.bib $(PAPER_FIG) $(PAPER_OUT) reports/si.pdf
+	cd reports && pdflatex paper.tex
+	cd reports && bibtex paper.aux
+	cd reports && pdflatex paper.tex
+	cd reports && pdflatex paper.tex
 
 output/dlpc/chain.txt : notebooks/lipid_xrr.py src/models/mol_vol.py $(DLPC_DATA)
 	cd notebooks && ipython lipid_xrr.py dlpc 11 20 25 30 35 a
