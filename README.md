@@ -1,8 +1,8 @@
 # ESI for "Bayesian determination of the effect of a deep eutectic solvent on the structure of lipid monolayers"
 
-[Andrew R. McCluskey](https://orcid.org/0000-0003-3381-5911)*, [Adrian Sanchez-Fernandez](https://orcid.org/0000-0002-0241-1191), [Karen J. Edler](https://orcid.org/0000-0001-5822-0127), [Stephen C. Parker](https://orcid.org/0000-0003-3804-0975), [Andrew J. Jackson](https://orcid.org/0000-0002-6296-0336), [Richard A. Campbell](https://orcid.org/0000-0002-6296-314X), and [Thomas Arnold](https://orcid.org/0000-0001-7196-7831)*.
+[Andrew R. McCluskey](https://orcid.org/0000-0003-3381-5911)&ast;, [Adrian Sanchez-Fernandez](https://orcid.org/0000-0002-0241-1191), [Karen J. Edler](https://orcid.org/0000-0001-5822-0127), [Stephen C. Parker](https://orcid.org/0000-0003-3804-0975), [Andrew J. Jackson](https://orcid.org/0000-0002-6296-0336), [Richard A. Campbell](https://orcid.org/0000-0002-6296-314X), and [Thomas Arnold](https://orcid.org/0000-0001-7196-7831)&ast;.
 
-* [a.r.mccluskey@bath.ac.uk](a.r.mccluskey@bath.ac.uk) & [tom.arnold@esss.se](tom.arnold@esss.se)
+&ast; [a.r.mccluskey@bath.ac.uk](a.r.mccluskey@bath.ac.uk) & [tom.arnold@esss.se](tom.arnold@esss.se)
 
 This is the electronic supplementary information (ESI) associated with the publication "Bayesian determination of the effect of a deep eutectic solvent on the structure of lipid monolayers".
 
