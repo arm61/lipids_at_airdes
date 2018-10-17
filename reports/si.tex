@@ -99,7 +99,8 @@ Instead we were able to measure GIXD for DPPC and DMPC over a range of different
 We therefore assume that the phase behaviour on the DES is similar to that observed on water and that the phases observed at \SI{30}{\milli\newton\per\meter} are the same at the other surface pressures measured with XRR and NR. While we have no direct evidence, we have extended this assumption to DLPC and DMPG since there is no reason to believe that the phases of these molecules should be different from that observed for DMPC.
 
 \section{Probability distribution functions}
-The two-dimensional probability distribution functions (PDFs) for all parameters and all lipids from the X-ray reflectometry models are given in Figures \ref{fig:dlpc2}-\ref{fig:dmpg5}. The two-dimensional probability distribution functions (PDFs) for all parameters and all lipids from the neutron reflectometry models are given in Figures \ref{fig:dmpcn1}-\ref{fig:dppcn2}.
+The two-dimensional probability distribution functions (PDFs) for all parameters and all lipids from the X-ray reflectometry models are given in Figures \ref{fig:dlpc2}-\ref{fig:dmpg5}.
+The two-dimensional probability distribution functions (PDFs) for all parameters and all lipids from the neutron reflectometry models are given in Figures \ref{fig:dmpcn1}-\ref{fig:dppcn2}.
 
 \section{Tables and Figures}
 
@@ -147,6 +148,27 @@ The two-dimensional probability distribution functions (PDFs) for all parameters
 \end{table}
 %
 
+%
+\begin{table}
+  \centering
+	\caption{\ The best-fit values, and associated 95 \% confidence intervals for the varying parameters in the XRR models, at the highest surface pressure (SP) measured. The values of $d_t$ were found from the values of $\theta_t$ using Eqn. \ref{equ:tl} and the values for $\phi_h$ were obtained from the use of Eqn. \ref{equ:phih}}
+	\label{tab:liptab1}
+	\begin{tabular}{l|l|l|l|l}
+		Lipid & DLPC & DMPC & DPPC & DMPG \\
+    SP/mNm$^{-1}$ & 30 & 30 & 25 & 25 \\
+		\hline
+		$\theta_t$/$^\circ$ & \input{../output/dlpc/angle35.txt} & \input{../output/dmpc/angle40.txt} & \input{../output/dppc/angle30.txt} & \input{../output/dmpg/angle30.txt} \\
+		$\sigma_{t,h,s}$/\AA & \input{../output/dlpc/rough35.txt} & \input{../output/dmpc/rough40.txt} & \input{../output/dppc/rough30.txt} & \input{../output/dmpg/rough30.txt} \\
+    \hline
+    $V_t$/\AA$^3$ & \input{../output/dlpc/vt.txt} & \input{../output/dmpc/vt.txt} & \input{../output/dppc/vt.txt} & \input{../output/dmpg/vt.txt} \\
+		$V_h$/\AA$^3$ & \input{../output/dlpc/vh.txt} & \input{../output/dmpc/vh.txt} & \input{../output/dppc/vh.txt} & \input{../output/dmpg/vh.txt} \\
+		$d_h$/\AA & \input{../output/dlpc/head.txt} & \input{../output/dmpc/head.txt} & \input{../output/dppc/head.txt} & \input{../output/dmpg/head.txt} \\
+    \hline
+    $\phi_h$/$\times10^{-2}$ & \input{../output/dlpc/solh35.txt} & \input{../output/dmpc/solh40.txt} & \input{../output/dppc/solh30.txt} & \input{../output/dmpg/solh30.txt} \\
+		$d_t$/\AA & \input{../output/dlpc/tail35.txt} & \input{../output/dmpc/tail40.txt} & \input{../output/dppc/tail30.txt} & \input{../output/dmpg/tail30.txt} \\
+	\end{tabular}
+\end{table}
+%
 %
 \begin{table}
   \centering
