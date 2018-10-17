@@ -19,7 +19,13 @@ NDPPC1_DATA = $(DATA_DIR)/dppc_nr_hd_sp_20.dat $(DATA_DIR)/dppc_nr_h_sp_20.dat
 
 PAPER_FIGS = $(FIG_DIR)/head_groups.png $(FIG_DIR)/dlpc_ref_sld.pdf $(FIG_DIR)/dmpc_ref_sld.pdf $(FIG_DIR)/dppc_ref_sld.pdf $(FIG_DIR)/dmpg_ref_sld.pdf $(FIG_DIR)/dlpc_vh_dt_phi.pdf $(FIG_DIR)/dmpc_vh_dt_phi.pdf $(FIG_DIR)/dppc_vh_dt_phi.pdf $(FIG_DIR)/dmpg_vh_dt_phi.pdf $(FIG_DIR)/dmpc_20n_ref_sld.pdf $(FIG_DIR)/dppc_20n_ref_sld.pdf
 
-PDF_FIGS = $(FIG_DIR)/dlpc1_all_corner.pdf $(FIG_DIR)/dlpc2_all_corner.pdf $(FIG_DIR)/dlpc3_all_corner.pdf $(FIG_DIR)/dlpc4_all_corner.pdf $(FIG_DIR)/dmpc1_all_corner.pdf $(FIG_DIR)/dmpc2_all_corner.pdf $(FIG_DIR)/dmpc3_all_corner.pdf $(FIG_DIR)/dmpc4_all_corner.pdf $(FIG_DIR)/dppc1_all_corner.pdf $(FIG_DIR)/dppc2_all_corner.pdf $(FIG_DIR)/dppc3_all_corner.pdf $(FIG_DIR)/dppc4_all_corner.pdf $(FIG_DIR)/dmpg1_all_corner.pdf $(FIG_DIR)/dmpg2_all_corner.pdf $(FIG_DIR)/dmpg3_all_corner.pdf $(FIG_DIR)/dmpg4_all_corner.pdf $(FIG_DIR)/dmpc_20n_all_corner.pdf $(FIG_DIR)/dmpc_25n_all_corner.pdf $(FIG_DIR)/dppc_15n_all_corner.pdf $(FIG_DIR)/dppc_20n_all_corner.pdf
+DLPC_PDF_FIGS = $(FIG_DIR)/dlpc1_all_corner.pdf $(FIG_DIR)/dlpc2_all_corner.pdf $(FIG_DIR)/dlpc3_all_corner.pdf $(FIG_DIR)/dlpc4_all_corner.pdf
+DMPC_PDF_FIGS = $(FIG_DIR)/dmpc1_all_corner.pdf $(FIG_DIR)/dmpc2_all_corner.pdf $(FIG_DIR)/dmpc3_all_corner.pdf $(FIG_DIR)/dmpc4_all_corner.pdf
+DPPC_PDF_FIGS = $(FIG_DIR)/dppc1_all_corner.pdf $(FIG_DIR)/dppc2_all_corner.pdf $(FIG_DIR)/dppc3_all_corner.pdf $(FIG_DIR)/dppc4_all_corner.pdf
+DMPG_PDF_FIGS = $(FIG_DIR)/dmpg1_all_corner.pdf $(FIG_DIR)/dmpg2_all_corner.pdf $(FIG_DIR)/dmpg3_all_corner.pdf $(FIG_DIR)/dmpg4_all_corner.pdf
+NDPPC_PDF_FIGS = $(FIG_DIR)/dppc_15n_all_corner.pdf $(FIG_DIR)/dppc_20n_all_corner.pdf
+NDMPC_PDF_FIGS = $(FIG_DIR)/dmpc_20n_all_corner.pdf $(FIG_DIR)/dmpc_25n_all_corner.pdf
+PDF_FIGS = $(DLPC_PDF_FIGS) $(DMPC_PDF_FIGS) $(DPPC_PDF_FIGS) $(DMPG_PDF_FIGS) $(NDPPC_PDF_FIGS) $(NDMPC_PDF_FIGS)
 
 GIXD_FIGS = $(FIG_DIR)/gixd.png
 
@@ -49,7 +55,7 @@ ESI_OUT = $(DLPC_OUT_ESI) $(DMPC_OUT_ESI) $(DPPC_OUT_ESI) $(DMPG_OUT_ESI)
 
 all : reports/si.pdf reports/preprint.pdf
 clean :
-	rm reports/preprint.pdf reports/si.pdf $(FIG_DIR)/*ref_sld.pdf  $(FIG_DIR)/*vh_dt_phi.pdf $(FIG_DIR)/*all_corner.pdf $(PLOT_DIR)/*.py notebooks/DLPC/*.py notebooks/*.py output/* output/dlpc/* output/dppc/* output/dmpc/* output/dmpg/*
+	rm -r reports/preprint.pdf reports/si.pdf $(FIG_DIR)/*ref_sld.pdf  $(FIG_DIR)/*vh_dt_phi.pdf $(FIG_DIR)/*all_corner.pdf $(PLOT_DIR)/*.py notebooks/DLPC/*.py notebooks/*.py output/* output/dlpc/* output/dppc/* output/dmpc/* output/dmpg/*
 
 reports/si.pdf : reports/si.tex reports/bibi.bib $(ESI_FIGS) $(ESI_OUT)
 	cd reports && pdflatex si.tex
@@ -64,19 +70,19 @@ reports/preprint.pdf : reports/preprint.tex reports/bibi.bib $(PAPER_FIG) $(PAPE
 
 output/dlpc/chain.txt : notebooks/lipid_xrr.py src/models/mol_vol.py $(DLPC_DATA)
 	cd notebooks && ipython lipid_xrr.py dlpc 11 20 25 30 35 a
-$(DLPC_OUT_PAPER) $(DLPC_OUT_ESI) $(FIG_DIR)/DLPC_ref_sld.pdf $(FIG_DIR)/DLPC_vh_dt_phi.pdf: notebooks/xrr_chain_analysis.py src/models/mol_vol.py output/dlpc/chain.txt
+$(DLPC_OUT_PAPER) $(DLPC_OUT_ESI) $(FIG_DIR)/DLPC_ref_sld.pdf $(FIG_DIR)/DLPC_vh_dt_phi.pdf $(DLPC_PDF_FIGS): notebooks/xrr_chain_analysis.py src/models/mol_vol.py output/dlpc/chain.txt
 	cd notebooks && ipython xrr_chain_analysis.py dlpc 11 20 25 30 35 a
 output/dmpc/chain.txt : notebooks/lipid_xrr.py src/models/mol_vol.py $(DMPC_DATA)
 	cd notebooks && ipython lipid_xrr.py dmpc 13 20 25 30 40 b
-$(DMPC_OUT_PAPER) $(DMPC_OUT_ESI) $(FIG_DIR)/DMPC_ref_sld.pdf $(FIG_DIR)/DMPC_vh_dt_phi.pdf: notebooks/xrr_chain_analysis.py src/models/mol_vol.py output/dmpc/chain.txt
+$(DMPC_OUT_PAPER) $(DMPC_OUT_ESI) $(FIG_DIR)/DMPC_ref_sld.pdf $(FIG_DIR)/DMPC_vh_dt_phi.pdf $(DMPC_PDF_FIGS): notebooks/xrr_chain_analysis.py src/models/mol_vol.py output/dmpc/chain.txt
 	cd notebooks && ipython xrr_chain_analysis.py dmpc 13 20 25 30 40 b
 output/dppc/chain.txt : notebooks/lipid_xrr.py src/models/mol_vol.py $(DPPC_DATA)
 	cd notebooks && ipython lipid_xrr.py dppc 15 15 20 25 30 c
-$(DPPC_OUT_PAPER) $(DPPC_OUT_ESI) $(FIG_DIR)/DPPC_ref_sld.pdf $(FIG_DIR)/DPPC_vh_dt_phi.pdf: notebooks/xrr_chain_analysis.py src/models/mol_vol.py output/dppc/chain.txt
+$(DPPC_OUT_PAPER) $(DPPC_OUT_ESI) $(FIG_DIR)/DPPC_ref_sld.pdf $(FIG_DIR)/DPPC_vh_dt_phi.pdf $(DPPC_PDF_FIGS): notebooks/xrr_chain_analysis.py src/models/mol_vol.py output/dppc/chain.txt
 	cd notebooks && ipython xrr_chain_analysis.py dppc 15 15 20 25 30 c
 output/dmpg/chain.txt : notebooks/lipid_xrr.py src/models/mol_vol.py $(DMPG_DATA)
 	cd notebooks && ipython lipid_xrr.py dmpg 13 15 20 25 30 d
-$(DMPG_OUT_PAPER) $(DMPG_OUT_ESI) $(FIG_DIR)/DMPG_ref_sld.pdf $(FIG_DIR)/DMPG_vh_dt_phi.pdf: notebooks/xrr_chain_analysis.py src/models/mol_vol.py output/dmpg/chain.txt
+$(DMPG_OUT_PAPER) $(DMPG_OUT_ESI) $(FIG_DIR)/DMPG_ref_sld.pdf $(FIG_DIR)/DMPG_vh_dt_phi.pdf $(DMPG_PDF_FIGS): notebooks/xrr_chain_analysis.py src/models/mol_vol.py output/dmpg/chain.txt
 	cd notebooks && ipython xrr_chain_analysis.py dmpg 13 15 20 25 30 d
 
 
