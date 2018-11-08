@@ -61,7 +61,7 @@ A. R. M. is grateful to the University of Bath and Diamond Light Source for co-f
 
     .
     ├── AUTHORS.md
-    ├── LICENSE              # MIT License
+    ├── LICENSE              # CC-BY-SA-4.0 License
     ├── README.md            # You are here
     ├── Makefile             # Makefile to outline workflow
     ├── output               # Files and data output by analysis scripts
