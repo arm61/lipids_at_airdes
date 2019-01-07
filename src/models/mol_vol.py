@@ -5,8 +5,8 @@ from refnx.reflect import Component
 
 
 class VolMono(Component):
-    def __init__(self, b_heads, thick_heads, b_tails, tanford_length,
-                 chain_tilt, molvols, reverse_monolayer=True, name=''):
+    def __init__(self, b_heads, thick_heads, b_tails, tanford_length, molvols,
+        reverse_monolayer=True, name=''):
         super(VolMono, self).__init__()
         self.head_mol_vol = possibly_create_parameter(
                 molvols[0], '{} - head_molecular_volume'.format(name))
@@ -35,10 +35,8 @@ class VolMono(Component):
 
         self.thick_heads = possibly_create_parameter(
                 thick_heads, name='{} - thick_heads'.format(name))
-        self.tail_length = possibly_create_parameter(
-                tanford_length, name='{} - tail_length'.format(name))
-        self.cos_rad_chain_tilt = possibly_create_parameter(
-                chain_tilt, name='{} - chain_tilt'.format(name))
+        self.thick_tails = possibly_create_parameter(
+                tanford_length, name='{} - thick_tails'.format(name))
 
         self.phit = possibly_create_parameter(
                 0., name='{} - phit'.format(name))
@@ -63,7 +61,7 @@ class VolMono(Component):
         """
         layers = np.zeros((2, 5))
 
-        layers[0, 0] = self.tail_length * self.cos_rad_chain_tilt
+        layers[0, 0] = self.thick_tails
         layers[0, 1] = self.b_tails_real * 1.e6 / self.tail_mol_vol
         layers[0, 2] = self.b_tails_imag * 1.e6 / self.tail_mol_vol
         layers[0, 3] = self.rough_preceding_mono
@@ -81,9 +79,8 @@ class VolMono(Component):
     def parameters(self):
         p = Parameters(name=self.name)
         p.extend([self.b_heads_real, self.b_heads_imag, self.b_tails_real,
-                  self.b_tails_imag, self.thick_heads, self.tail_length,
-                  self.cos_rad_chain_tilt, self.tail_mol_vol,
-                  self.head_mol_vol, self.rough_head_tail,
+                  self.b_tails_imag, self.thick_heads, self.thick_tails,
+                  self.tail_mol_vol, self.head_mol_vol, self.rough_head_tail,
                   self.rough_preceding_mono, self.phit, self.phih])
         return p
 
@@ -95,7 +92,7 @@ def set_constraints(lipids, vary_tails=False):
     for i in range(1, len(lipids)):
         lipids[i].thick_heads.constraint = lipids[0].thick_heads
         if not vary_tails:
-            lipids[i].tail_length.constraint = lipids[0].tail_length
+            lipids[i].thick_tails.constraint = lipids[0].thick_tails
         lipids[i].phit.constraint = lipids[0].phit
         lipids[i].tail_mol_vol.constraint = lipids[0].tail_mol_vol
         lipids[i].head_mol_vol.constraint = lipids[0].head_mol_vol

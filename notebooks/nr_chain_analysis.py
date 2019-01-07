@@ -1,4 +1,4 @@
-
+#!/usr/bin/env python
 # coding: utf-8
 
 # # NR reflectometry analysis
@@ -109,12 +109,11 @@ solvent_sld = [0.43, 3.15]
 super_sld = [0, 0]
 thick_heads = 13.1117
 tail_length = 1.54 + 1.265 * length
-chain_tilt = 0.792674
 vols = [200.497, 891.]
 
-lipid_1 = mv.VolMono(head_sl, thick_heads, tail_sl, tail_length, chain_tilt, vols, 
+lipid_1 = mv.VolMono(head_sl, thick_heads, tail_sl, tail_length, vols, 
                       reverse_monolayer=True, name='{}_1'.format(lipid))
-lipid_2 = mv.VolMono(head_sl, thick_heads, tail_sl, tail_length, chain_tilt, vols, 
+lipid_2 = mv.VolMono(head_sl, thick_heads, tail_sl, tail_length, vols, 
                       reverse_monolayer=True, name='{}_2'.format(lipid))
 
 # build the structures
@@ -129,28 +128,29 @@ def get_value(file):
     f = open(analysis_dir + lipid + '/' + file + '.txt', 'r')
     for line in f:
         k = line
-    l = k.split('$')[1].split('^')[0]
+    if '^' in k:
+        l = k.split('$')[1].split('^')[0]
+    else:
+        l = k.split('$')[1].split('\\pm')[0]
     return float(l)
 
 lipid_1.head_mol_vol.setp(get_value('vh'), vary=False)
 lipid_1.tail_mol_vol.setp(get_value('vt'), vary=False)
-lipid_1.tail_length.setp(vary=False)
+lipid_1.thick_tails.setp(get_value('tail{}'.format(sp)), vary=True, bounds=(5, tail_length))
 lipid_1.rough_head_tail.constraint = structure_lipid_1[-1].rough
 lipid_1.rough_preceding_mono.constraint = structure_lipid_1[-1].rough
-lipid_1.phih.constraint = 1 - (lipid_1.head_mol_vol * lipid_1.tail_length * lipid_1.cos_rad_chain_tilt / 
+lipid_1.phih.constraint = 1 - (lipid_1.head_mol_vol * lipid_1.thick_tails / 
                                (lipid_1.tail_mol_vol * lipid_1.thick_heads))
 lipid_1.thick_heads.setp(get_value('head'), vary=False)
-lipid_1.cos_rad_chain_tilt.setp(np.cos(np.deg2rad(get_value('angle{}'.format(sp)))), vary=True, bounds=(0.001, 0.909))
 structure_lipid_1[-1].rough.setp(get_value('rough{}'.format(sp)), vary=True, bounds=(2.5, 6))
 
 lipid_2.head_mol_vol.constraint = lipid_1.head_mol_vol
 lipid_2.tail_mol_vol.constraint = lipid_1.tail_mol_vol
-lipid_2.tail_length.constraint = lipid_1.tail_length
+lipid_2.thick_tails.constraint = lipid_1.thick_tails
 lipid_2.rough_head_tail.constraint = structure_lipid_1[-1].rough
 lipid_2.rough_preceding_mono.constraint = structure_lipid_1[-1].rough
 lipid_2.phih.constraint = lipid_1.phih
 lipid_2.thick_heads.constraint = lipid_1.thick_heads
-lipid_2.cos_rad_chain_tilt.constraint = lipid_1.cos_rad_chain_tilt
 structure_lipid_2[-1].rough.constraint = structure_lipid_1[-1].rough
 
 model_lipid1 = ReflectModel(structure_lipid_1)
@@ -231,58 +231,56 @@ plt.close()
 # In[ ]:
 
 
-lab = ['scale{}'.format(sp), 'angle{}'.format(sp), 'rough{}'.format(sp), 'scalea{}'.format(sp)]
+lab = ['scale{}'.format(sp), 'tail{}'.format(sp), 'rough{}'.format(sp), 'scalea{}'.format(sp)]
+
+alpha = 0.05
 
 for i in range(0, len(processed_chain)):
+    len_to = int(processed_chain[i].chain.size/5000)
     total_pearsons = open('{}{}/{}_neutron.txt'.format(analysis_dir, lipid, lab[i]), 'w')
-    a = mquantiles(processed_chain[i].chain.flatten(), prob=[0.025, 0.5, 0.975])
-    if 'angle' in lab[i]:
-        c = np.rad2deg(np.arccos(a))
-        k = [c[1], c[0] - c[1], c[1] - c[2]]
-        q = '{:.2f}'.format(k[0])
-        w = '{:.2f}'.format(k[1])
-        e = '{:.2f}'.format(k[2])
-        total_pearsons.write('$' + str(q) + '^{+' + str(w) + '}_{-' + str(e) + '}$')
-    elif 'sol' in lab[i]:
-        k = [a[1]*100, (a[1] - a[0])*100, (a[2] - a[1])*100]
+    stat, p = scipy.stats.shapiro(processed_chain[i].chain[::len_to])
+    if p > alpha:
+        print('{} - normal'.format(lab[i]))
+        a = mquantiles(processed_chain[i].chain.flatten(), prob=[0.025, 0.5])
+        k = [a[1], a[1] - a[0]]
         q = '{:.2f}'.format(k[0])
         e = '{:.2f}'.format(k[1])
-        w = '{:.2f}'.format(k[2])
-        total_pearsons.write('$' + str(q) + '^{+' + str(w) + '}_{-' + str(e) + '}$')
+        total_pearsons.write(helper.latex_sym(q, e))
+        total_pearsons.close()
     else:
+        print('{} - not normal'.format(lab[i]))
+        a = mquantiles(processed_chain[i].chain.flatten(), prob=[0.025, 0.5, 0.975])
         k = [a[1], a[1] - a[0], a[2] - a[1]]
         q = '{:.2f}'.format(k[0])
-        e = '{:.2f}'.format(k[1])
+        e = '{:.2f}'.format(k[1])        
         w = '{:.2f}'.format(k[2])
-        total_pearsons.write('$' + str(q) + '^{+' + str(w) + '}_{-' + str(e) + '}$')
-    total_pearsons.close()
+        total_pearsons.write(helper.latex_asym(q, e, w))
+        total_pearsons.close()
     
 lab2 = ['solh{}'.format(sp)]
-kl = 1 - ((lipid_1.head_mol_vol.value * processed_chain[1].chain.flatten() * 
-           lipid_1.tail_length.value) / (lipid_1.tail_mol_vol.value * lipid_1.thick_heads.value))
+kl = 1 - ((lipid_1.head_mol_vol.value * processed_chain[1].chain.flatten()) / (lipid_1.tail_mol_vol.value * lipid_1.thick_heads.value))
 kl = kl * 100
 for i in range(0, len(lab2)):
+    len_to = int(kl.size/5000)
     total_pearsons = open('{}{}/{}_neutron.txt'.format(analysis_dir, lipid, lab2[i]), 'w')
-    a = mquantiles(kl, prob=[0.025, 0.5, 0.975])
-    c = a
-    k = [a[1], a[1] - a[0], a[2] - a[1]]
-    q = '{:.2f}'.format(k[0])
-    w = '{:.2f}'.format(k[1])
-    e = '{:.2f}'.format(k[2])
-    total_pearsons.write('$' + str(q) + '^{+' + str(w) + '}_{-' + str(e) + '}$')
-    total_pearsons.close()
-    
-lab2 = ['tail{}'.format(sp)]
-kl = processed_chain[1].chain.flatten() * lipid_1.tail_length.value
-for i in range(0, len(lab2)):
-    total_pearsons = open('{}{}/{}_neutron.txt'.format(analysis_dir, lipid, lab2[i]), 'w')
-    a = mquantiles(kl, prob=[0.025, 0.5, 0.975])
-    k = [a[1], a[1] - a[0], a[2] - a[1]]
-    q = '{:.2f}'.format(k[0])
-    e = '{:.2f}'.format(k[1])
-    w = '{:.2f}'.format(k[2])
-    total_pearsons.write('$' + str(q) + '^{+' + str(w) + '}_{-' + str(e) + '}$')
-    total_pearsons.close()
+    stat, p = scipy.stats.shapiro(kl[::len_to])
+    if p > alpha:
+        print('{} - normal'.format(lab2))
+        a = mquantiles(kl.flatten(), prob=[0.025, 0.5])
+        k = [a[1], a[1] - a[0]]
+        q = '{:.2f}'.format(k[0])
+        e = '{:.2f}'.format(k[1])
+        total_pearsons.write(helper.latex_sym(q, e))
+        total_pearsons.close()
+    else:
+        print('{} - not normal'.format(lab2))
+        a = mquantiles(kl.flatten(), prob=[0.025, 0.5, 0.975])
+        k = [a[1], a[1] - a[0], a[2] - a[1]]
+        q = '{:.2f}'.format(k[0])
+        e = '{:.2f}'.format(k[1])        
+        w = '{:.2f}'.format(k[2])
+        total_pearsons.write(helper.latex_asym(q, e, w))
+        total_pearsons.close()
 
 
 # The corner plots for each of the surface pressures is produced, these are presented in the ESI.
@@ -300,11 +298,11 @@ mpl.rcParams['axes.linewidth'] = 1
 mpl.rcParams['axes.edgecolor'] = 'k'
 
 
-label=['θ$_t$/°', r'ϕ$_h/\times10^{-2}$', 'σ$_{t,h,s}$/Å']
+label=['$d_t$/Å', r'ϕ$_h/\times10^{-2}$', 'σ$_{t,h,s}$/Å']
 
 new_flat = np.zeros((processed_chain[0].chain.size, 3))
 
-new_flat[:, 0] = np.rad2deg(np.arccos(processed_chain[1].chain.flatten()))
+new_flat[:, 0] = processed_chain[1].chain.flatten()
 new_flat[:, 1] = (1 - ((get_value('vh') * processed_chain[1].chain.flatten() * tail_length) / (
     get_value('head') * get_value('vt')))) * 100
 new_flat[:, 2] = processed_chain[2].chain.flatten()
@@ -317,3 +315,9 @@ plt.close()
 # ## Bibliography
 # 
 # 1. Andrew Nelson, Stuart Prescott, Isaac Gresham, & Andrew R. McCluskey. (2018, August 3). refnx/refnx: v0.0.17 (Version v0.0.17). Zenodo. http://doi.org/10.5281/zenodo.1345464
+
+# In[ ]:
+
+
+
+

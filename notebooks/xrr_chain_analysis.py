@@ -1,4 +1,4 @@
-
+#!/usr/bin/env python
 # coding: utf-8
 
 # # X-ray reflectometry analysis
@@ -115,7 +115,6 @@ head_sl = mv.get_scattering_length(head)
 tail_sl = mv.get_scattering_length(tail)
 
 thick_heads = 11.057
-chain_tilt = 0.792674
 if lipid == 'dlpc':
     vols = [330., 667.]
 if lipid == 'dmpg':
@@ -127,13 +126,13 @@ if lipid == 'dppc':
 
 tail_length = 1.54 + 1.265 * length
 
-lipid1 = mv.VolMono(head_sl, thick_heads, tail_sl, tail_length, chain_tilt, vols, 
+lipid1 = mv.VolMono(head_sl, thick_heads, tail_sl, tail_length, vols, 
                     reverse_monolayer=True, name='{}1'.format(lipid))
-lipid2 = mv.VolMono(head_sl, thick_heads, tail_sl, tail_length, chain_tilt, vols, 
+lipid2 = mv.VolMono(head_sl, thick_heads, tail_sl, tail_length, vols, 
                     reverse_monolayer=True, name='{}2'.format(lipid))
-lipid3 = mv.VolMono(head_sl, thick_heads, tail_sl, tail_length, chain_tilt, vols, 
+lipid3 = mv.VolMono(head_sl, thick_heads, tail_sl, tail_length, vols, 
                     reverse_monolayer=True, name='{}3'.format(lipid))
-lipid4 = mv.VolMono(head_sl, thick_heads, tail_sl, tail_length, chain_tilt, vols, 
+lipid4 = mv.VolMono(head_sl, thick_heads, tail_sl, tail_length, vols, 
                     reverse_monolayer=True, name='{}4'.format(lipid))
 
 air = SLD(0, 'air')
@@ -146,42 +145,41 @@ structure_lipid4 = air(0, 0) | lipid4 | des(0, 3.3)
 
 lipid1.head_mol_vol.setp(vary=True, bounds=(vols[0]*0.8, vols[0]*1.2))
 lipid1.tail_mol_vol.setp(vary=True, bounds=(vols[1]*0.8, vols[1]*1.2))
-lipid1.tail_length.setp(vary=False)
-lipid1.cos_rad_chain_tilt.setp(vary=True, bounds=(0.01, 0.99))
+lipid1.thick_tails.setp(vary=True, bounds=(5, tail_length))
 lipid1.rough_head_tail.constraint = structure_lipid1[-1].rough
 lipid1.rough_preceding_mono.constraint = structure_lipid1[-1].rough
 lipid1.phih.constraint = 1 - (lipid1.head_mol_vol /  lipid1.tail_mol_vol) * (
-    lipid1.cos_rad_chain_tilt * lipid1.tail_length / lipid1.thick_heads)
+    lipid1.thick_tails / lipid1.thick_heads)
 lipid1.thick_heads.setp(vary=True, bounds=(6, 20))
 structure_lipid1[-1].rough.setp(vary=True, bounds=(2.5, 6))
 
-lipid2.cos_rad_chain_tilt.setp(vary=True, bounds=(0.01, 0.99))
+lipid2.thick_tails.setp(vary=True, bounds=(5, tail_length))
 lipid2.rough_head_tail.constraint = structure_lipid2[-1].rough
 lipid2.rough_preceding_mono.constraint = structure_lipid2[-1].rough
 lipid2.thick_heads.setp(vary=True, bounds=(6, 20))
 lipid2.phih.constraint = 1 - (lipid2.head_mol_vol / lipid2.tail_mol_vol) * (
-    lipid2.cos_rad_chain_tilt * lipid2.tail_length / lipid2.thick_heads)
+    lipid2.thick_tails / lipid2.thick_heads)
 structure_lipid2[-1].rough.setp(vary=True, bounds=(2.5, 6))
 
-lipid3.cos_rad_chain_tilt.setp(0.57, vary=True, bounds=(0.01, 0.99))
+lipid3.thick_tails.setp(vary=True, bounds=(5, tail_length))
 lipid3.rough_head_tail.constraint = structure_lipid3[-1].rough
 lipid3.rough_preceding_mono.constraint = structure_lipid3[-1].rough
 lipid3.thick_heads.setp(vary=True, bounds=(6, 20))
 lipid3.phih.constraint = 1 - (lipid3.head_mol_vol / lipid3.tail_mol_vol) * (
-    lipid3.cos_rad_chain_tilt * lipid3.tail_length / lipid3.thick_heads)
+    lipid3.thick_tails / lipid3.thick_heads)
 structure_lipid3[-1].rough.setp(vary=True, bounds=(2.5, 6))
 
-lipid4.cos_rad_chain_tilt.setp(0.57, vary=True, bounds=(0.01, 0.99))
+lipid4.thick_tails.setp(vary=True, bounds=(5, tail_length))
 lipid4.rough_head_tail.constraint = structure_lipid4[-1].rough
 lipid4.rough_preceding_mono.constraint = structure_lipid4[-1].rough
 lipid4.thick_heads.setp(vary=True, bounds=(6, 20))
 lipid4.phih.constraint = 1 - (lipid4.head_mol_vol / lipid4.tail_mol_vol) * (
-    lipid4.cos_rad_chain_tilt * lipid4.tail_length / lipid4.thick_heads)
+    lipid4.thick_tails / lipid4.thick_heads)
 structure_lipid4[-1].rough.setp(vary=True, bounds=(2.5, 6))
 
 lipids = [lipid1, lipid2, lipid3, lipid4]
 structures = [structure_lipid1, structure_lipid2, structure_lipid3, structure_lipid4]
-lipids = mv.set_constraints(lipids)
+lipids = mv.set_constraints(lipids, vary_tails=True)
 
 model_lipid1 = ReflectModel(structure_lipid1)
 model_lipid1.scale.setp(vary=True, bounds=(0.005, 10))
@@ -232,10 +230,10 @@ print(global_objective)
 # In[33]:
 
 
-tail1 = processed_chain[2].chain * lipid1.tail_length.value
-tail2 = processed_chain[7].chain * lipid2.tail_length.value
-tail3 = processed_chain[10].chain * lipid3.tail_length.value
-tail4 = processed_chain[13].chain * lipid4.tail_length.value
+tail1 = processed_chain[2].chain
+tail2 = processed_chain[7].chain
+tail3 = processed_chain[10].chain
+tail4 = processed_chain[13].chain
 
 solh1 = 1 - (processed_chain[4].chain / processed_chain[3].chain) * (
     tail1 / processed_chain[1].chain)
@@ -332,57 +330,58 @@ plt.close()
 # In[40]:
 
 
-lab = ['scale{}'.format(sp1), 'head', 'angle{}'.format(sp1), 'vt', 'vh', 'rough{}'.format(sp1), 
-       'scale{}'.format(sp2), 'angle{}'.format(sp2), 'rough{}'.format(sp2), 
-       'scale{}'.format(sp3), 'angle{}'.format(sp3), 'rough{}'.format(sp3), 
-       'scale{}'.format(sp4), 'angle{}'.format(sp4), 'rough{}'.format(sp4)]
+lab = ['scale{}'.format(sp1), 'head', 'tail{}'.format(sp1), 'vt', 'vh', 'rough{}'.format(sp1), 
+       'scale{}'.format(sp2), 'tail{}'.format(sp2), 'rough{}'.format(sp2), 
+       'scale{}'.format(sp3), 'tail{}'.format(sp3), 'rough{}'.format(sp3), 
+       'scale{}'.format(sp4), 'tail{}'.format(sp4), 'rough{}'.format(sp4)]
+
+alpha = 0.05
+
 for i in range(0, len(processed_chain)):
+    len_to = int(processed_chain[i].chain.size/5000)
     f_out = open('{}{}/{}.txt'.format(analysis_dir, lipid, lab[i]), 'w')
-    a = mquantiles(processed_chain[i].chain, prob=[0.025, 0.5, 0.975])
-    if 'angle' in lab[i]:
-        c = np.rad2deg(np.arccos(a))
-        k = [c[1], c[0] - c[1], c[1] - c[2]]
-        q = '{:.2f}'.format(k[0])
-        w = '{:.2f}'.format(k[1])
-        e = '{:.2f}'.format(k[2])
-        f_out.write(helper.latex_asym(q, e, w))
-    elif 'sol' in lab[i]:
-        k = [a[1]*100, (a[1] - a[0])*100, (a[2] - a[1])*100]
+    stat, p = scipy.stats.shapiro(processed_chain[i].chain[::len_to])
+    if p > alpha:
+        print('{} - normal'.format(lab[i]))
+        a = mquantiles(processed_chain[i].chain, prob=[0.025, 0.5])
+        k = [a[1], a[1] - a[0]]
         q = '{:.2f}'.format(k[0])
         e = '{:.2f}'.format(k[1])
-        w = '{:.2f}'.format(k[2])
-        f_out.write(helper.latex_asym(q, e, w))
+        f_out.write(helper.latex_sym(q, e))
+        f_out.close()
     else:
+        print('{} - not normal'.format(lab[i]))
+        a = mquantiles(processed_chain[i].chain, prob=[0.025, 0.5, 0.975])
         k = [a[1], a[1] - a[0], a[2] - a[1]]
         q = '{:.2f}'.format(k[0])
         e = '{:.2f}'.format(k[1])
         w = '{:.2f}'.format(k[2])
         f_out.write(helper.latex_asym(q, e, w))
-    f_out.close()
-            
-lab = ['tail{}'.format(sp1), 'tail{}'.format(sp2), 'tail{}'.format(sp3), 'tail{}'.format(sp4)]
-kl = [tail1, tail2, tail3, tail4]
-for i in range(0, len(lab)):
-    f_out = open('{}{}/{}.txt'.format(analysis_dir, lipid, lab[i]), 'w')
-    a = mquantiles(kl[i], prob=[0.025, 0.5, 0.975])
-    k = [a[1], a[1] - a[0], a[2] - a[1]]
-    q = '{:.2f}'.format(k[0])
-    e = '{:.2f}'.format(k[1])
-    w = '{:.2f}'.format(k[2])
-    f_out.write(helper.latex_asym(q, e, w))
-    f_out.close()
+        f_out.close()
     
 lab = ['solh{}'.format(sp1), 'solh{}'.format(sp2), 'solh{}'.format(sp3), 'solh{}'.format(sp4)]
 kl = [solh1, solh2, solh3, solh4]
 for i in range(0, len(lab)):
+    len_to = int(kl[i].size/5000)
     f_out = open('{}{}/{}.txt'.format(analysis_dir, lipid, lab[i]), 'w')
-    a = mquantiles(kl[i], prob=[0.025, 0.5, 0.975])
-    k = [a[1]*100, (a[1] - a[0])*100, (a[2] - a[1])*100]
-    q = '{:.2f}'.format(k[0])
-    e = '{:.2f}'.format(k[1])
-    w = '{:.2f}'.format(k[2])
-    f_out.write(helper.latex_asym(q, e, w))
-    f_out.close()
+    stat, p = scipy.stats.shapiro(kl[i][::len_to])
+    if p > alpha:
+        print('{} - normal'.format(lab[i]))
+        a = mquantiles(kl[i], prob=[0.025, 0.5])
+        k = [a[1]*100, (a[1] - a[0])*100]
+        q = '{:.2f}'.format(k[0])
+        e = '{:.2f}'.format(k[1])
+        f_out.write(helper.latex_sym(q, e))
+        f_out.close()
+    else:
+        print('{} - not normal'.format(lab[i]))
+        a = mquantiles(kl[i], prob=[0.025, 0.5, 0.975])
+        k = [a[1]*100, (a[1] - a[0])*100, (a[2] - a[1])*100]
+        q = '{:.2f}'.format(k[0])
+        e = '{:.2f}'.format(k[1])
+        w = '{:.2f}'.format(k[2])
+        f_out.write(helper.latex_asym(q, e, w))
+        f_out.close()
 
 
 # The corner plots for each of the surface pressures is produced, these are presented in the ESI.
@@ -400,13 +399,13 @@ mpl.rcParams['axes.linewidth'] = 1
 mpl.rcParams['axes.edgecolor'] = 'k'
 
 
-label=['$V_t$/Å$^3$', '$V_h$/Å$^3$', '$d_h$/Å', 'θ$_t$/°', r'ϕ$_h/\times10^{-2}$', 'σ$_{t,h,s}$/Å']
+label=['$V_t$/Å$^3$', '$V_h$/Å$^3$', '$d_h$/Å', '$d_t$/Å', r'ϕ$_h/\times10^{-2}$', 'σ$_{t,h,s}$/Å']
 
 new_flat = np.zeros((processed_chain[0].chain.size, 6))
 
 new_flat[:, 0] = list(processed_chain[3].chain.flatten())
 new_flat[:, 1] = list(processed_chain[4].chain.flatten())
-new_flat[:, 3] = list(np.rad2deg(np.arccos(processed_chain[2].chain.flatten())))
+new_flat[:, 3] = list(processed_chain[2].chain.flatten())
 new_flat[:, 5] = list(processed_chain[5].chain.flatten())
 new_flat[:, 2] = list(processed_chain[1].chain.flatten())
 new_flat[:, 4] = list(solh1.flatten() * 100)
@@ -420,7 +419,7 @@ new_flat = np.zeros((processed_chain[0].chain.size, 6))
 
 new_flat[:, 0] = list(processed_chain[3].chain.flatten())
 new_flat[:, 1] = list(processed_chain[4].chain.flatten())
-new_flat[:, 3] = list(np.rad2deg(np.arccos(processed_chain[7].chain.flatten())))
+new_flat[:, 3] = list(processed_chain[7].chain.flatten())
 new_flat[:, 5] = list(processed_chain[8].chain.flatten())
 new_flat[:, 2] = list(processed_chain[1].chain.flatten())
 new_flat[:, 4] = list(solh2.flatten() * 100)
@@ -434,7 +433,7 @@ new_flat = np.zeros((processed_chain[0].chain.size, 6))
 
 new_flat[:, 0] = list(processed_chain[3].chain.flatten())
 new_flat[:, 1] = list(processed_chain[4].chain.flatten())
-new_flat[:, 3] = list(np.rad2deg(np.arccos(processed_chain[10].chain.flatten())))
+new_flat[:, 3] = list(processed_chain[10].chain.flatten())
 new_flat[:, 5] = list(processed_chain[11].chain.flatten())
 new_flat[:, 2] = list(processed_chain[1].chain.flatten())
 new_flat[:, 4] = list(solh3.flatten() * 100)
@@ -448,7 +447,7 @@ new_flat = np.zeros((processed_chain[0].chain.size, 6))
 
 new_flat[:, 0] = list(processed_chain[3].chain.flatten())
 new_flat[:, 1] = list(processed_chain[4].chain.flatten())
-new_flat[:, 3] = list(np.rad2deg(np.arccos(processed_chain[13].chain.flatten())))
+new_flat[:, 3] = list(processed_chain[13].chain.flatten())
 new_flat[:, 5] = list(processed_chain[14].chain.flatten())
 new_flat[:, 2] = list(processed_chain[1].chain.flatten())
 new_flat[:, 4] = list(solh4.flatten() * 100)                      
@@ -461,3 +460,9 @@ plt.close()
 # ## Bibliography
 # 
 # 1. Andrew Nelson, Stuart Prescott, Isaac Gresham, & Andrew R. McCluskey. (2018, August 3). refnx/refnx: v0.0.17 (Version v0.0.17). Zenodo. http://doi.org/10.5281/zenodo.1345464
+
+# In[ ]:
+
+
+
+

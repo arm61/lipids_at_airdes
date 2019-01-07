@@ -1,4 +1,4 @@
-
+#!/usr/bin/env python
 # coding: utf-8
 
 # # Neutron reflectometry analysis
@@ -96,7 +96,6 @@ solvent_sld = [0.43, 3.15]
 super_sld = [0, 0]
 thick_heads = 13.1117
 tail_length = 1.54 + 1.265 * length
-chain_tilt = 0.792674
 vols = [200.497, 891.]
 
 
@@ -105,9 +104,9 @@ vols = [200.497, 891.]
 # In[ ]:
 
 
-lipid_1 = mv.VolMono(head_sl, thick_heads, tail_sl, tail_length, chain_tilt, vols, 
+lipid_1 = mv.VolMono(head_sl, thick_heads, tail_sl, tail_length, vols, 
                       reverse_monolayer=True, name='{}_1'.format(lipid))
-lipid_2 = mv.VolMono(head_sl, thick_heads, tail_sl, tail_length, chain_tilt, vols, 
+lipid_2 = mv.VolMono(head_sl, thick_heads, tail_sl, tail_length, vols, 
                       reverse_monolayer=True, name='{}_2'.format(lipid))
 
 
@@ -134,7 +133,10 @@ def get_value(file):
     f = open(analysis_dir + lipid + '/' + file + '.txt', 'r')
     for line in f:
         k = line
-    l = k.split('$')[1].split('^')[0]
+    if '^' in k:
+        l = k.split('$')[1].split('^')[0]
+    else:
+        l = k.split('$')[1].split('\\pm')[0]
     return float(l)
 
 
@@ -145,23 +147,21 @@ def get_value(file):
 
 lipid_1.head_mol_vol.setp(get_value('vh'), vary=False)
 lipid_1.tail_mol_vol.setp(get_value('vt'), vary=False)
-lipid_1.tail_length.setp(vary=False)
+lipid_1.thick_tails.setp(get_value('tail{}'.format(sp)), vary=True, bounds=(5, tail_length))
 lipid_1.rough_head_tail.constraint = structure_lipid_1[-1].rough
 lipid_1.rough_preceding_mono.constraint = structure_lipid_1[-1].rough
-lipid_1.phih.constraint = 1 - (lipid_1.head_mol_vol * lipid_1.tail_length * lipid_1.cos_rad_chain_tilt / 
+lipid_1.phih.constraint = 1 - (lipid_1.head_mol_vol * lipid_1.thick_tails / 
                                (lipid_1.tail_mol_vol * lipid_1.thick_heads))
 lipid_1.thick_heads.setp(get_value('head'), vary=False)
-lipid_1.cos_rad_chain_tilt.setp(np.cos(np.deg2rad(get_value('angle{}'.format(sp)))), vary=True, bounds=(0.001, 0.909))
 structure_lipid_1[-1].rough.setp(get_value('rough{}'.format(sp)), vary=True, bounds=(2.5, 6))
 
 lipid_2.head_mol_vol.constraint = lipid_1.head_mol_vol
 lipid_2.tail_mol_vol.constraint = lipid_1.tail_mol_vol
-lipid_2.tail_length.constraint = lipid_1.tail_length
+lipid_2.thick_tails.constraint = lipid_1.thick_tails
 lipid_2.rough_head_tail.constraint = structure_lipid_1[-1].rough
 lipid_2.rough_preceding_mono.constraint = structure_lipid_1[-1].rough
 lipid_2.phih.constraint = lipid_1.phih
 lipid_2.thick_heads.constraint = lipid_1.thick_heads
-lipid_2.cos_rad_chain_tilt.constraint = lipid_1.cos_rad_chain_tilt
 structure_lipid_2[-1].rough.constraint = structure_lipid_1[-1].rough
 
 
@@ -223,3 +223,9 @@ print(global_objective)
 # ## Bibliography
 # 
 # 1. Andrew Nelson, Stuart Prescott, Isaac Gresham, & Andrew R. McCluskey. (2018, August 3). refnx/refnx: v0.0.17 (Version v0.0.17). Zenodo. http://doi.org/10.5281/zenodo.1345464
+
+# In[ ]:
+
+
+
+

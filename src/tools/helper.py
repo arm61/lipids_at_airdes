@@ -10,3 +10,6 @@ def data_cutoff(dataset, cutoff):
 
 def latex_asym(a, b, c):
     return '$' + str(a) + '^{+' + str(b) + '}_{-' + str(c) + '}$'
+
+def latex_sym(a, b):
+    return '$' + str(a) + '\pm{' + str(b) + '}$'

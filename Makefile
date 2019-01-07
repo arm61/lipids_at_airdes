@@ -32,30 +32,30 @@ GIXD_FIGS = $(FIG_DIR)/gixd.png
 ESI_FIGS = $(PDF_FIGS) $(GIXD_FIGS)
 
 
-DLPC_OUT_PAPER = output/dlpc/angle35.txt output/dlpc/rough35.txt output/dlpc/vt.txt output/dlpc/vh.txt output/dlpc/head.txt output/dlpc/solh35.txt output/dlpc/tail35.txt
-DMPC_OUT_PAPER = output/dmpc/angle40.txt output/dmpc/rough40.txt output/dmpc/vt.txt output/dmpc/vh.txt output/dmpc/head.txt output/dmpc/solh40.txt output/dmpc/tail40.txt output/dmpc/tail30.txt
-DPPC_OUT_PAPER = output/dppc/angle30.txt output/dppc/rough30.txt output/dppc/vt.txt output/dppc/vh.txt output/dppc/head.txt output/dppc/solh30.txt output/dppc/tail30.txt
-DMPG_OUT_PAPER = output/dmpg/angle30.txt output/dmpg/rough30.txt output/dmpg/vt.txt output/dmpg/vh.txt output/dmpg/head.txt output/dmpg/solh30.txt output/dmpg/tail30.txt
+DLPC_OUT_PAPER = output/dlpc/rough35.txt output/dlpc/vt.txt output/dlpc/vh.txt output/dlpc/head.txt output/dlpc/solh35.txt output/dlpc/tail35.txt
+DMPC_OUT_PAPER = output/dmpc/rough40.txt output/dmpc/vt.txt output/dmpc/vh.txt output/dmpc/head.txt output/dmpc/solh40.txt output/dmpc/tail40.txt output/dmpc/tail30.txt
+DPPC_OUT_PAPER = output/dppc/rough30.txt output/dppc/vt.txt output/dppc/vh.txt output/dppc/head.txt output/dppc/solh30.txt output/dppc/tail30.txt
+DMPG_OUT_PAPER = output/dmpg/rough30.txt output/dmpg/vt.txt output/dmpg/vh.txt output/dmpg/head.txt output/dmpg/solh30.txt output/dmpg/tail30.txt
 
-NDMPC1_OUT_PAPER = output/dmpc/angle25_neutron.txt output/dmpc/rough25_neutron.txt output/dmpc/solh25_neutron.txt output/dmpc/tail25_neutron.txt
-NDMPC2_OUT_PAPER = output/dmpc/angle20_neutron.txt output/dmpc/rough20_neutron.txt output/dmpc/solh20_neutron.txt output/dmpc/tail20_neutron.txt
-NDPPC1_OUT_PAPER = output/dppc/angle20_neutron.txt output/dppc/rough20_neutron.txt output/dppc/solh20_neutron.txt output/dppc/tail20_neutron.txt
-NDPPC2_OUT_PAPER = output/dppc/angle15_neutron.txt output/dppc/rough15_neutron.txt output/dppc/solh15_neutron.txt output/dppc/tail15_neutron.txt
+NDMPC1_OUT_PAPER = output/dmpc/rough25_neutron.txt output/dmpc/solh25_neutron.txt output/dmpc/tail25_neutron.txt
+NDMPC2_OUT_PAPER = output/dmpc/rough20_neutron.txt output/dmpc/solh20_neutron.txt output/dmpc/tail20_neutron.txt
+NDPPC1_OUT_PAPER = output/dppc/rough20_neutron.txt output/dppc/solh20_neutron.txt output/dppc/tail20_neutron.txt
+NDPPC2_OUT_PAPER = output/dppc/rough15_neutron.txt output/dppc/solh15_neutron.txt output/dppc/tail15_neutron.txt
 
 PAPER_OUT = $(DLPC_OUT_PAPER) $(DMPC_OUT_PAPER) $(DPPC_OUT_PAPER) $(DMPG_OUT_PAPER) $(NDMPC1_OUT_PAPER) $(NDMPC2_OUT_PAPER) $(NDPPC1_OUT_PAPER) $(NDPPC2_OUT_PAPER)
 
 
-DLPC_OUT_ESI =output/dlpc/angle20.txt output/dlpc/rough20.txt output/dlpc/solh20.txt output/dlpc/tail20.txt output/dlpc/angle25.txt output/dlpc/rough25.txt  output/dlpc/solh25.txt output/dlpc/tail25.txt output/dlpc/angle30.txt output/dlpc/rough30.txt output/dlpc/solh30.txt output/dlpc/tail30.txt
-DMPC_OUT_ESI =output/dmpc/angle20.txt output/dmpc/rough20.txt output/dmpc/solh20.txt output/dmpc/tail20.txt output/dmpc/angle25.txt output/dmpc/rough25.txt  output/dmpc/solh25.txt output/dmpc/tail25.txt output/dmpc/angle30.txt output/dmpc/rough30.txt output/dmpc/solh30.txt
-DPPC_OUT_ESI = output/dppc/angle15.txt output/dppc/rough15.txt output/dppc/solh15.txt output/dppc/tail15.txt output/dppc/angle20.txt output/dppc/rough20.txt  output/dppc/solh20.txt output/dppc/tail20.txt output/dppc/angle25.txt output/dppc/rough25.txt output/dppc/solh25.txt output/dppc/tail25.txt
-DMPG_OUT_ESI = output/dmpg/angle15.txt output/dmpg/rough15.txt output/dmpg/solh15.txt output/dmpg/tail15.txt output/dmpg/angle20.txt output/dmpg/rough20.txt  output/dmpg/solh20.txt output/dmpg/tail20.txt output/dmpg/angle25.txt output/dmpg/rough25.txt output/dmpg/solh25.txt output/dmpg/tail25.txt
+DLPC_OUT_ESI = output/dlpc/rough20.txt output/dlpc/solh20.txt output/dlpc/tail20.txt output/dlpc/rough25.txt  output/dlpc/solh25.txt output/dlpc/tail25.txt output/dlpc/rough30.txt output/dlpc/solh30.txt output/dlpc/tail30.txt
+DMPC_OUT_ESI = output/dmpc/rough20.txt output/dmpc/solh20.txt output/dmpc/tail20.txt output/dmpc/rough25.txt  output/dmpc/solh25.txt output/dmpc/tail25.txt output/dmpc/rough30.txt output/dmpc/solh30.txt
+DPPC_OUT_ESI = output/dppc/rough15.txt output/dppc/solh15.txt output/dppc/tail15.txt output/dppc/rough20.txt  output/dppc/solh20.txt output/dppc/tail20.txt output/dppc/rough25.txt output/dppc/solh25.txt output/dppc/tail25.txt
+DMPG_OUT_ESI = output/dmpg/rough15.txt output/dmpg/solh15.txt output/dmpg/tail15.txt output/dmpg/rough20.txt  output/dmpg/solh20.txt output/dmpg/tail20.txt output/dmpg/rough25.txt output/dmpg/solh25.txt output/dmpg/tail25.txt
 
 ESI_OUT = $(DLPC_OUT_ESI) $(DMPC_OUT_ESI) $(DPPC_OUT_ESI) $(DMPG_OUT_ESI)
 
 
 all : reports/si.pdf reports/paper.pdf
 clean :
-	rm -r reports/paper.pdf reports/si.pdf $(FIG_DIR)/*ref_sld.pdf  $(FIG_DIR)/*vh_dt_phi.pdf $(FIG_DIR)/*all_corner.pdf $(PLOT_DIR)/*.py notebooks/*.py output/dlpc/* output/dmpc/* output/dppc/* output/dmpg/* 
+	rm -r reports/paper.pdf reports/si.pdf $(FIG_DIR)/*ref_sld.pdf  $(FIG_DIR)/*vh_dt_phi.pdf $(FIG_DIR)/*all_corner.pdf $(PLOT_DIR)/*.py notebooks/*.py output/dlpc/* output/dmpc/* output/dppc/* output/dmpg/*
 
 reports/si.pdf : reports/si.tex reports/bibi.bib $(ESI_FIGS) $(ESI_OUT)
 	cd reports && pdflatex si.tex

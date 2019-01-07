@@ -1,4 +1,4 @@
-
+#!/usr/bin/env python
 # coding: utf-8
 
 # # X-ray reflectometry analysis
@@ -107,8 +107,7 @@ tail_sl = mv.get_scattering_length(tail)
 # In[ ]:
 
 
-thick_heads = 11.057
-chain_tilt = 0.792674
+thick_heads = 12.057
 if lipid == 'dlpc':
     vols = [330., 667.]
 if lipid == 'dmpg':
@@ -136,13 +135,13 @@ tail_length = 1.54 + 1.265 * length
 # In[ ]:
 
 
-lipid1 = mv.VolMono(head_sl, thick_heads, tail_sl, tail_length, chain_tilt, vols, 
+lipid1 = mv.VolMono(head_sl, thick_heads, tail_sl, tail_length, vols, 
                     reverse_monolayer=True, name='{}1'.format(lipid))
-lipid2 = mv.VolMono(head_sl, thick_heads, tail_sl, tail_length, chain_tilt, vols, 
+lipid2 = mv.VolMono(head_sl, thick_heads, tail_sl, tail_length, vols, 
                     reverse_monolayer=True, name='{}2'.format(lipid))
-lipid3 = mv.VolMono(head_sl, thick_heads, tail_sl, tail_length, chain_tilt, vols, 
+lipid3 = mv.VolMono(head_sl, thick_heads, tail_sl, tail_length, vols, 
                     reverse_monolayer=True, name='{}3'.format(lipid))
-lipid4 = mv.VolMono(head_sl, thick_heads, tail_sl, tail_length, chain_tilt, vols, 
+lipid4 = mv.VolMono(head_sl, thick_heads, tail_sl, tail_length, vols, 
                     reverse_monolayer=True, name='{}4'.format(lipid))
 
 
@@ -167,49 +166,48 @@ structure_lipid4 = air(0, 0) | lipid4 | des(0, 3.3)
 
 lipid1.head_mol_vol.setp(vary=True, bounds=(vols[0]*0.8, vols[0]*1.2))
 lipid1.tail_mol_vol.setp(vary=True, bounds=(vols[1]*0.8, vols[1]*1.2))
-lipid1.tail_length.setp(vary=False)
-lipid1.cos_rad_chain_tilt.setp(vary=True, bounds=(0.01, 0.99))
+lipid1.thick_tails.setp(vary=True, bounds=(5, tail_length))
 lipid1.rough_head_tail.constraint = structure_lipid1[-1].rough
 lipid1.rough_preceding_mono.constraint = structure_lipid1[-1].rough
 lipid1.phih.constraint = 1 - (lipid1.head_mol_vol /  lipid1.tail_mol_vol) * (
-    lipid1.cos_rad_chain_tilt * lipid1.tail_length / lipid1.thick_heads)
-lipid1.thick_heads.setp(vary=True, bounds=(6, 20))
+    lipid1.thick_tails / lipid1.thick_heads)
+lipid1.thick_heads.setp(vary=True, bounds=(7, 20))
 structure_lipid1[-1].rough.setp(vary=True, bounds=(2.5, 6))
 
 
 # In[ ]:
 
 
-lipid2.cos_rad_chain_tilt.setp(vary=True, bounds=(0.01, 0.99))
+lipid2.thick_tails.setp(vary=True, bounds=(5, tail_length))
 lipid2.rough_head_tail.constraint = structure_lipid2[-1].rough
 lipid2.rough_preceding_mono.constraint = structure_lipid2[-1].rough
 lipid2.thick_heads.setp(vary=True, bounds=(6, 20))
 lipid2.phih.constraint = 1 - (lipid2.head_mol_vol / lipid2.tail_mol_vol) * (
-    lipid2.cos_rad_chain_tilt * lipid2.tail_length / lipid2.thick_heads)
+    lipid2.thick_tails / lipid2.thick_heads)
 structure_lipid2[-1].rough.setp(vary=True, bounds=(2.5, 6))
 
 
 # In[ ]:
 
 
-lipid3.cos_rad_chain_tilt.setp(0.57, vary=True, bounds=(0.01, 0.99))
+lipid3.thick_tails.setp(vary=True, bounds=(5, tail_length))
 lipid3.rough_head_tail.constraint = structure_lipid3[-1].rough
 lipid3.rough_preceding_mono.constraint = structure_lipid3[-1].rough
 lipid3.thick_heads.setp(vary=True, bounds=(6, 20))
 lipid3.phih.constraint = 1 - (lipid3.head_mol_vol / lipid3.tail_mol_vol) * (
-    lipid3.cos_rad_chain_tilt * lipid3.tail_length / lipid3.thick_heads)
+    lipid3.thick_tails / lipid3.thick_heads)
 structure_lipid3[-1].rough.setp(vary=True, bounds=(2.5, 6))
 
 
 # In[ ]:
 
 
-lipid4.cos_rad_chain_tilt.setp(0.57, vary=True, bounds=(0.01, 0.99))
+lipid4.thick_tails.setp(vary=True, bounds=(5, tail_length))
 lipid4.rough_head_tail.constraint = structure_lipid4[-1].rough
 lipid4.rough_preceding_mono.constraint = structure_lipid4[-1].rough
 lipid4.thick_heads.setp(vary=True, bounds=(6, 20))
 lipid4.phih.constraint = 1 - (lipid4.head_mol_vol / lipid4.tail_mol_vol) * (
-    lipid4.cos_rad_chain_tilt * lipid4.tail_length / lipid4.thick_heads)
+    lipid4.thick_tails / lipid4.thick_heads)
 structure_lipid4[-1].rough.setp(vary=True, bounds=(2.5, 6))
 
 
@@ -220,7 +218,7 @@ structure_lipid4[-1].rough.setp(vary=True, bounds=(2.5, 6))
 
 lipids = [lipid1, lipid2, lipid3, lipid4]
 structures = [structure_lipid1, structure_lipid2, structure_lipid3, structure_lipid4]
-lipids = mv.set_constraints(lipids)
+lipids = mv.set_constraints(lipids, vary_tails=True)
 
 
 # Each model is then associated with a dataset
@@ -287,3 +285,9 @@ print(global_objective)
 # ## Bibliography
 # 
 # 1. Andrew Nelson, Stuart Prescott, Isaac Gresham, & Andrew R. McCluskey. (2018, August 3). refnx/refnx: v0.0.17 (Version v0.0.17). Zenodo. http://doi.org/10.5281/zenodo.1345464
+
+# In[ ]:
+
+
+
+
