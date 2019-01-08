@@ -7,33 +7,21 @@
 \usepackage{hyperref}% add hypertext capabilities
 \usepackage{xr}
 \externaldocument{si}
-%\usepackage[mathlines]{lineno}% Enable numbering of text and display math
-%\linenumbers\relax % Commence numbering lines
-
-%\usepackage[showframe,%Uncomment any one of the following lines to test
-%%scale=0.7, marginratio={1:1, 2:3}, ignoreall,% default settings
-%%text={7in,10in},centering,
-%%margin=1.5in,
-%%total={6.5in,8.75in}, top=1.2in, left=0.9in, includefoot,
-%%height=10in,a5paper,hmargin={3cm,0.8in},
-%]{geometry}
 
 \begin{document}
-
-\preprint{APS/123-QED}
 
 \title{Bayesian determination of the effect of a deep eutectic solvent on the
 structure of lipid monolayers}% Force line breaks with \\%
 
 \author{A.~R.~McCluskey}
-%\thanks{A.R.M. and A.S.-F. contributed equally to this work.}
+\thanks{A.R.M. and A.S.-F. contributed equally to this work}
 \email{a.r.mccluskey@bath.ac.uk/andrew.mccluskey@diamond.ac.uk}
 \affiliation{Department of Chemistry, University of Bath, Claverton Down,
 Bath, BA2 7AY, UK}
 \affiliation{Diamond Light Source, Harwell Campus, Didcot, OX11 0DE, UK}
 
 \author{A.~Sanchez-Fernandez}
-%\thanks{A.R.M. and A.S.-F. contributed equally to this work.}
+\thanks{A.R.M. and A.S.-F. contributed equally to this work}
 \altaffiliation[Present address: ]{Department of Food Technology, Lund
 University, SE-211 00 Lund, Sweden.}
 \affiliation{Department of Chemistry, University of Bath, Claverton Down,
@@ -76,23 +64,12 @@ UK}
              %  but any date may be explicitly specified
 
 \begin{abstract}
-  In this work, we present the first example of the self-assembly of
-  phospholipid monolayers at the interface between air and a non-aqueous
-  liquid.
-  Deep eutectic solvents are a novel class of environmentally friendly
-  non-aqueous room temperature liquids with tunable properties, that have
-  wide ranging potential applications and are capable of promoting the
-  self-assembly of surfactant molecules.
-  We use a chemically-consistent Bayesian modelling of X-ray and neutron
-  reflectometry measurements to show that these monolayers broadly behave
-  as they do on water.
-  However, the ability of the deep eutectic solvent to interact with the
-  phosphatidylglycerol lipid head, leads to an apparent increase in its
-  volume compared to that observed in water.
-  No such change was observed for the phosphocholine head, indicating that
-  such interactions are head, and therefore solvent, specific.
-  This has important implications for the potential uses of these solvents
-  and for our understanding of how biomolecules behave in the absence of water.
+  In this work, we present the first example of the self-assembly of phospholipid monolayers at the interface between air and an ionic solvent.
+  Deep eutectic solvents are a novel class of environmentally friendly non-aqueous room temperature liquids with tunable properties, that have wide ranging potential applications and are capable of promoting the self-assembly of surfactant molecules.
+  We use a chemically-consistent Bayesian modelling of X-ray and neutron reflectometry measurements to show that these monolayers broadly behave as they do on water.
+  However, the ability of the deep eutectic solvent to interact with the phosphatidylglycerol lipid head, leads to an apparent increase in its volume compared to that observed in water.
+  No such change was observed for the phosphocholine head, indicating that such interactions are head, and therefore solvent, specific.
+  This has important implications for the potential uses of these solvents and for our understanding of how biomolecules behave in the absence of water.
 \end{abstract}
 
 %\keywords{Suggested keywords}%Use showkeys class option if keyword
@@ -113,7 +90,8 @@ For example, investigations at the air/salt-water interface have identified the 
 However, the native environment for lipids in-vivo is far from a simple aqueous solution.
 In fact, it has been suggested \cite{Dai2013,Hammond2017} that DES might form within the crowded cellular environment and could assist in solubilizing biological species in an intermediate environment between that of the hydrophobic phospholipid tails and highly polar water rich regions, thereby assisting survival under extreme conditions such as freezing temperatures or drought where the water content of cells is restricted.
 
-This work presents the first observation of phospholipid monolayers at an air-DES interface (or for that matter, any non-aqueous media, to the best of the authors' knowledge).
+This work presents the first observation of phospholipid monolayers at an air-DES interface (or for that matter, any ionic solvent, to the best of the authors' knowledge).
+Furthermore, this is one of very few examples of a phospholipid monolayer at the interface between air and a non-aqueous solvent, with only formamide being noted previously \cite{Weinbach1993,Graner1995}.
 We have used a chemically-consistent approach to model X-ray (XRR) and neutron (NR) reflectometry measurements and thereby evaluate the effect of this non-aqueous solvent on the structure of phospholipid monolayers.
 
 Recent developments in computational resources and software have enabled powerful methodologies and algorithms to be harnessed by those from non-expert backgrounds.
@@ -148,7 +126,7 @@ PC indicates the molcule contains a phosphocholine head component, where PG cont
 \includegraphics[width=0.3\textwidth]{figures/head_groups}
 \caption{\label{fig:heads}\small The two lipid classes with different head
 groups compared in this study, where R indicates the hydrocarbon tail;
-(a) phosphatidylglycerol (PG), (b) phosphocholine (PC) \cite{SI2018}.}
+(a) phosphatidylglycerol (PG), (b) phosphocholine (PC) \cite{SI2019}.}
 \end{figure}
 %
 
@@ -211,14 +189,14 @@ Additionally, a recent evaluation of the applicability of different models for s
 In Table \ref{tab:water}, there appears to be a general consensus that the component volume for the phosphocholine (PC) head is around \SIrange{320}{360}{\angstrom\cubed}, while the phosphatidylglycerol (PG) head is in the range \SIrange{289}{291}{\angstrom\cubed}.
 However, it is not clear is the head component volumes from the literature, that are derived from water-based measurements, will be appropriate for this work, which involves a non-aqueous solvent.
 The charged nature of the zwitterionic or anionic lipid heads may have different interactions with the polar, but neutral water as compared to the charged DES components \cite{Sanchez-Fernandez2018}, which will affect the phospholipid head component volume.
-Therefore, herein we apply a chemically-consistent model that allows for the co-refinement of reflectometry measurements at different surface pressure, and makes no assumption of the component volume for the lipid head, $V_h$, or tail, $V_t$ \cite{SI2018}.
+Therefore, herein we apply a chemically-consistent model that allows for the co-refinement of reflectometry measurements at different surface pressure, and makes no assumption of the component volume for the lipid head, $V_h$, or tail, $V_t$ \cite{SI2019}.
 Instead, these parameters were allowed to vary for each lipid while being constrained to be self-consistent over different surface pressures in the same phase; Liquid-Condensed (LC) for DPPC and Liquid-Expanded (LE) for DMPC, DMPG, and DLPC.
 Furthermore, it is known that, on water, increase surface pressure and the associated LE-LC phase transitions lead to a compression of the lipid tail volume \cite{Marsh2010,Small1984}, and this compaction has not necessarily been accounted for in the literature \cite{Campbell2018}.
 This model avoids this issue by making no assumption about the molecular volumes and only considers surface pressures that we believe to be in the same phase.
 
 Our chemically-consistent model has been implemented in the Python library refnx \cite{Nelson2018,Nelson2018a}.
 This software allows for the inclusion of a custom model to be defined, from which parameters feed into the Abel\`{e}s refelectivity model (a model that is widely used to calculate reflectivity \cite{Abeles1950,Parratt1954}).
-This custom model, along with a series of Jupyter notebooks showing, in full, the analysis performed, can be found in the ESI and is available under a CC BY-SA 4.0 licence \cite{SI2018}.
+This custom model, along with a series of Jupyter notebooks showing, in full, the analysis performed, can be found in the ESI and is available under a CC BY-SA 4.0 licence \cite{SI2019}.
 
 This model consists of two layers to define the lipid monolayer; the head layer at the interface with the solvent and the tail layer at the interface with the air.
 The head components have a calculated scattering length, $b_h$, (found as a summation of the X-ray or neutron atomic scattering lengths), and a component volume, $V_h$.
@@ -272,13 +250,13 @@ However, while we have confience that the individual surface pressures measured 
 Instead we have used grazing incidence X-ray diffraction to confirm the
 phases of DMPC and DPPC at \SI{30}{\milli\newton\per\meter}.
 DPPC was found to be in the LC phase and DMPC in the LE phase at room
-temperature for the surface pressures measured (see Section \ref{sec:gixd}) \cite{SI2018}.
+temperature for the surface pressures measured (see Section \ref{sec:gixd}) \cite{SI2019}.
 We assume that DMPG and DLPC are also in the LE phase since there is no
 reason to believe that the phase behaviour in these systems differs
 significantly from DMPC at the same temperature.
 
 In the first of two steps, this custom model was used to co-refine the component volume of the lipid head component, $V_h$, the volume of the tail component, $V_t$, and the head thickness, $d_h$ across XRR measurements at four different surface concentrations.
-In keeping with the work of Campbell \emph{et al.} \cite{Campbell2018}, a single value for the head thickness was fitted for each lipid across all surface pressures, as the thickness of the head layer was considered to be dependent on molecular dimensions only.
+In keeping with the work of Campbell \emph{et al.} \cite{Campbell2018}, a single value for the head thickness was fitted for each lipid across all surface pressures, as the thickness of the head layer was considered to be dependent on molecular dimensions only, and has been shown to vary little with surface pressure \cite{Kewalramani2010}.
 The following parameters were allowed to vary; $d_t$, and $\sigma_{t,h,s}$, independently across the surface pressures, while others, shown in Table \ref{tab:invariant}, were held constant at the values given.
 For each co-refinement of four XRR measurements, there were, in total, eleven degrees of freedom in the fitting process.
 Throughout all of the analysis, the reflectometry scale factor was allowed to vary freely, while the background as constrained to the intensity of either the largest or second-largest $q$-value.
@@ -290,7 +268,7 @@ Table \ref{tab:invariant} also gives the details of the scattering lengths and S
 In both cases, the refinement of the custom model to the experimental data involved the transformation of the reflectometry calculated from the model and the data into $Rq^4$ such that the contribution of the Fresnel decay was removed, before using the differential evoluation method available to refnx from the scipy library \cite{Jones2001}, to find the parameters that gave the best fit to the data.
 The parameter space was then probed using the MCMC method available through emcee \cite{Foreman-Mackey2013}, which allowed for an estimate of the probability distribution function (PDF) associated with each parameter.
 In the MCMC sampling, 200 walkers were used over 1000 iterations, following an equilibration of 200 iterations.
-The use of MCMC sampling allowed for the Bayesian inference of the PDF for each of the variables and their respective interactions (shown in detail in the ESI).
+The use of MCMC sampling allowed for the Bayesian inference of the PDF for each of the variables and their respective interactions.
 This allowed the Shapiro test to be used to assess if each PDF was normally distributed.
 Parameters that were shown to be normally distributed are given with symmetric confidence intervals, while those that failed the Shapiro test are given with asymmetric confidence intervals.
 However, it is important to note that these are not \emph{true} confidence intervals, and account only for the uncertainty present in the data, i.e. they do no account of systematic uncertainty in the measurement that are underrepresented, or unrepresented, in the experimental dataset.
@@ -312,37 +290,25 @@ Table \ref{tab:liptab} gives details of all varied parameters for each lipid at 
   measured surface pressures; see legend above each plot. The different
   surface pressure XRR profiles have been offset in the $y$-axis by an order
   of magnitude and SLD profiles offset in the $y$-axis by
-  \SI{5e-6}{\per\square\angstrom}, for clarity \cite{SI2018}.}
+  \SI{5e-6}{\per\square\angstrom}, for clarity \cite{SI2019}.}
 	\label{fig:lipids}
 \end{figure}
 %
 %
 \begin{table*}
-	\caption{\label{tab:liptab} The best-fit values, and associated \SI{95}{\percent} confidence intervals for the varying parameters in the XRR models, at the \SI{30}{\milli\newton\per\meter}. The values for $\phi_h$ was obtained from the appropriate use of Eqn. \ref{equ:phih} \cite{SI2018}.}
+	\caption{\label{tab:liptab} The best-fit values, and associated \SI{95}{\percent} confidence intervals for the varying parameters in the XRR models, at the \SI{30}{\milli\newton\per\meter}. The values for $\phi_h$ was obtained from the appropriate use of Eqn. \ref{equ:phih} \cite{SI2019}.}
   \begin{ruledtabular}
 	\begin{tabular*}{\textwidth}{ccccc}
     Lipid & DLPC & DMPC & DPPC & DMPG \\
     \hline
-    $\sigma$/\si{\angstrom} & \input{../output/dlpc/rough30.txt} &
-    \input{../output/dmpc/rough30.txt} & \input{../output/dppc/rough30.txt} &
-    \input{../output/dmpg/rough30.txt} \\
+    $\sigma$/\si{\angstrom} & \input{../output/dlpc/rough30.txt} & \input{../output/dmpc/rough30.txt} & \input{../output/dppc/rough30.txt} & \input{../output/dmpg/rough30.txt} \\
+    $d_t$/\si{\angstrom} & \input{../output/dlpc/tail30.txt} & \input{../output/dmpc/tail30.txt} & \input{../output/dppc/tail30.txt} & \input{../output/dmpg/tail30.txt} \\
     \hline
-    $V_t$/\si{\cubic\angstrom} & \input{../output/dlpc/vt.txt} &
-    \input{../output/dmpc/vt.txt} & \input{../output/dppc/vt.txt} &
-    \input{../output/dmpg/vt.txt} \\
-    $V_h$/\si{\cubic\angstrom} & \input{../output/dlpc/vh.txt} &
-    \input{../output/dmpc/vh.txt} & \input{../output/dppc/vh.txt} &
-    \input{../output/dmpg/vh.txt} \\
-    $d_h$/\si{\angstrom} & \input{../output/dlpc/head.txt} &
-    \input{../output/dmpc/head.txt} & \input{../output/dppc/head.txt} &
-    \input{../output/dmpg/head.txt} \\
-    $d_t$/\si{\angstrom} & \input{../output/dlpc/tail30.txt} &
-    \input{../output/dmpc/tail30.txt} & \input{../output/dppc/tail30.txt} &
-    \input{../output/dmpg/tail30.txt} \\
+    $V_t$/\si{\cubic\angstrom} & \input{../output/dlpc/vt.txt} & \input{../output/dmpc/vt.txt} & \input{../output/dppc/vt.txt} & \input{../output/dmpg/vt.txt} \\
+    $V_h$/\si{\cubic\angstrom} & \input{../output/dlpc/vh.txt} & \input{../output/dmpc/vh.txt} & \input{../output/dppc/vh.txt} & \input{../output/dmpg/vh.txt} \\
+    $d_h$/\si{\angstrom} & \input{../output/dlpc/head.txt} & \input{../output/dmpc/head.txt} & \input{../output/dppc/head.txt} & \input{../output/dmpg/head.txt} \\
     \hline
-    $\phi_h$/$\times10^{-2}$ & \input{../output/dlpc/solh30.txt} &
-    \input{../output/dmpc/solh30.txt} & \input{../output/dppc/solh30.txt} &
-    \input{../output/dmpg/solh30.txt} \\
+    $\phi_h$/$\times10^{-2}$ & \input{../output/dlpc/solh30.txt} & \input{../output/dmpc/solh30.txt} & \input{../output/dppc/solh30.txt} & \input{../output/dmpg/solh30.txt} \\
 	\end{tabular*}
   \end{ruledtabular}
 \end{table*}
@@ -360,7 +326,7 @@ Table \ref{tab:neutron} gives details of the varied parameters at each surface p
   20 mNm$^{-1}$ for two contrasts (see legend above each plot); (a) DMPC,
   (b) DPPC. The NR profiles have been offset in the $y$-axis by an order of
   magnitude and SLD profiles offset in the $y$-axis by
-  \SI{5e-6}{\per\square\angstrom}, for clarity \cite{SI2018}.}
+  \SI{5e-6}{\per\square\angstrom}, for clarity \cite{SI2019}.}
 	\label{fig:neutron}
 \end{figure}
 %
@@ -368,25 +334,16 @@ Table \ref{tab:neutron} gives details of the varied parameters at each surface p
 \begin{table*}
   \caption{\label{tab:neutron} The best-fit values, and associated 95 \%
   confidence intervals for the varying parameters in the co-refined NR models.
-  The values of $\phi_h$ were found using Eqn. \ref{equ:phih} \cite{SI2018}.}
+  The values of $\phi_h$ were found using Eqn. \ref{equ:phih} \cite{SI2019}.}
   \begin{ruledtabular}
 	\begin{tabular*}{\textwidth}{ccccc}
     Lipid & \multicolumn{2}{c}{d$_{54}$-DMPC} & \multicolumn{2}{c}{d$_{62}$-DPPC} \\
     SP/mNm$^{-1}$ & 20 & 25 & 15 & 20 \\
     \hline
-    $\sigma_{t,h,s}$/\si{\angstrom} & \input{../output/dmpc/rough20_neutron.txt} &
-    \input{../output/dmpc/rough25_neutron.txt} &
-    \input{../output/dppc/rough15_neutron.txt} &
-    \input{../output/dppc/rough20_neutron.txt} \\
-    $d_t$/\si{\angstrom} & \input{../output/dmpc/tail20_neutron.txt} &
-    \input{../output/dmpc/tail25_neutron.txt} &
-    \input{../output/dppc/tail15_neutron.txt} &
-    \input{../output/dppc/tail20_neutron.txt} \\
+    $\sigma_{t,h,s}$/\si{\angstrom} & \input{../output/dmpc/rough20_neutron.txt} & \input{../output/dmpc/rough25_neutron.txt} & \input{../output/dppc/rough15_neutron.txt} & \input{../output/dppc/rough20_neutron.txt} \\
+    $d_t$/\si{\angstrom} & \input{../output/dmpc/tail20_neutron.txt} & \input{../output/dmpc/tail25_neutron.txt} & \input{../output/dppc/tail15_neutron.txt} & \input{../output/dppc/tail20_neutron.txt} \\
     \hline
-    $\phi_h$/$\times10^{-2}$ & \input{../output/dmpc/solh20_neutron.txt} &
-    \input{../output/dmpc/solh25_neutron.txt} &
-    \input{../output/dppc/solh15_neutron.txt} &
-    \input{../output/dppc/solh20_neutron.txt} \\
+    $\phi_h$/$\times10^{-2}$ & \input{../output/dmpc/solh20_neutron.txt} & \input{../output/dmpc/solh25_neutron.txt} & \input{../output/dppc/solh15_neutron.txt} & \input{../output/dppc/solh20_neutron.txt} \\
 	\end{tabular*}
   \end{ruledtabular}
 \end{table*}
@@ -458,11 +415,40 @@ The ability to fit the NR data, as shown in Figure \ref{fig:neutron} indicates t
 It is clear, that again stable monolayers of the lipids are forming at the air-DES interface, and that the component volumes determined from XRR measurements are robust enough to be used in the modelling of NR data.
 Futhermore, the trends observed with increasing surface pressure in the XRR models, pertaining to the increasing tail thickness and decreasing solvent concentration in the head components are consistant with that found in the NR models.
 
+\subsection{Interparameter correlations}
+%
+The use of Bayesian inference and MCMC sampling allowed for the probing of the probability distribution function for each parameter individually.
+However, it also enables the pairwise interparameter PDFs to be investigated, an example for DMPC at \SI{30}{\milli\newton\per\meter} is shown in Figure \ref{fig:dmpcpdfs} (the same plots for each lipid at each surface pressure measured is available in the ESI \cite{SI2019}).
+These two-dimensional PDFs give important information about the correlations that are present between the parameters of the chemically-consistant model.
+The less circular in nature that the 2D PDF is, the greater the correlation that is present between the parameters, e.g. a north-east/south-westernly skewed PDF indicates a positive correlation (where an increase in one parameter correlates an increase in the other) while a north-west/south-easternly skewed PDF indicates a negative correlation (an increase in one correlates with a decrease in the other).
+%
+\begin{figure}
+	\centering
+	\includegraphics[width=0.48\textwidth]{figures/dmpc3_all_corner}
+	\caption{The multi-parameter PDFs for the chemically-consistent model of DMPC XRR data at \SI{30}{\milli\newton\per\meter}.}
+	\label{fig:dmpcpdfs}
+\end{figure}
+%
+
+Substantial correlations are present in the parameters fitted to the XRR datasets, indicating important uncertainty that must be considered.
+In particular, as can be seen in Figure \ref{fig:dmpcpdfs}, there is a positive correlation between the lipid head thickness, $d_h$, and the solvent concentration in the head layer, $\phi_h$.
+This correlation can be rationalised as a result of the SLD of the solvent and the head layer (which is \SI{50}{\percent} solvated) being similar, and therefore the boundary between the two is not easy to define.
+Such a correlations are unavoidable without considering many neutron contrasts of the lipid and solvent, due to the solvophilic nature of the lipid heads.
+Another, important correlation is that between the head thickness and the tail thickness, $d_t$, again this is due to the lack of a well defined boundary between the head and tail layers.
+This is partially driven by the interfacial roughness that is present between the layers, with the correlation being more pronouned for phospholipids with shorted tails (e.g. there is a greater correlation for DLPC than DPPC).
+
 \section{Conclusions}
 %
-For the first time, stable phosphocholine and phosphatidylglycerol lipid monolayers have been observed and characterised on a non-aqueous liquid surface. Until the emergence of ionic liquids and DES, only a limited number of molecular solvents exhibited the ability to promote self-assembly and, to the best of our knowledge, only water among those had demonstrated the formation of phospholipid monolayers at the air-liquid interface.
+For the first time, stable phosphocholine and phosphatidylglycerol lipid monolayers have been observed and characterised on a ionic solvent surface.
+Until the emergence of ionic liquids and DES, only a limited number of molecular solvents exhibited the ability to promote self-assembly and, to the best of our knowledge, only water and formamide among those had demonstrated the formation of phospholipid monolayers at the air-liquid interface.
 
-A physically and chemically constrained modelling approach and Bayesian analysis method was used to rationalise these measurements showing that the structures are remarkably similar at the air-DES interface to those previously observed at the air-water interface. This has the important implication that DES therefore offer the possibility of performing studies of model membranes in the absence of water. Such applications may include fundamental investigations of phospholipid monolayers in extreme environments (total or partial absence of water, cryogenic temperatures), protein membrane interactions and development of new technologies for drug delivery. However, the PG component did show a significant difference; having a larger head component volume than observed for the same system in water. This suggests that the transfer of lipids to a DES is not just a simple substitution of the subphase. In this specific case we have proposed an explanation based on unfolding of the PG head component that is enabled by electrostatic screening of the component charges by the partially charged solvent.
+A physically and chemically constrained modelling approach and Bayesian analysis method was used to rationalise these measurements showing that the structures are remarkably similar at the air-DES interface to those previously observed at the air-water interface.
+This has the important implication that DES therefore offer the possibility of performing studies of model membranes in the absence of water.
+Such applications may include fundamental investigations of phospholipid monolayers in extreme environments (total or partial absence of water, cryogenic temperatures), protein membrane interactions and development of new technologies for drug delivery.
+However, the PG component did show a significant difference; having a larger head component volume than observed for the same system in water.
+This suggests that the transfer of lipids to a DES is not just a simple substitution of the subphase.
+In this specific case we have proposed an explanation based on unfolding of the PG head component that is enabled by electrostatic screening of the component charges by the partially charged solvent.
+Finally, the use of MCMC sampling of the reflectometry model parameter space give previously unseen insight into the correlations present in XRR data modelling, that should be considered in nature work of this nature.
 
 The ability to determine the head component volume was facilitated by access to easy to use, open-source software that allowed for the straightforward use of a custom, chemically-consistant model within the analysis of the XRR and NR measurements. Futhermore, this work presents the first, to our knowledge, use of chemically-consistant parameterisation to co-refine XRR measurements at different surface concentrations.
 

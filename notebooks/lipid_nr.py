@@ -153,7 +153,7 @@ lipid_1.rough_preceding_mono.constraint = structure_lipid_1[-1].rough
 lipid_1.phih.constraint = 1 - (lipid_1.head_mol_vol * lipid_1.thick_tails / 
                                (lipid_1.tail_mol_vol * lipid_1.thick_heads))
 lipid_1.thick_heads.setp(get_value('head'), vary=False)
-structure_lipid_1[-1].rough.setp(get_value('rough{}'.format(sp)), vary=True, bounds=(2.5, 6))
+structure_lipid_1[-1].rough.setp(get_value('rough{}'.format(sp)), vary=True, bounds=(3.3, 6))
 
 lipid_2.head_mol_vol.constraint = lipid_1.head_mol_vol
 lipid_2.tail_mol_vol.constraint = lipid_1.tail_mol_vol
