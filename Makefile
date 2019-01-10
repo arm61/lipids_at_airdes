@@ -53,7 +53,7 @@ DMPG_OUT_ESI = output/dmpg/rough15.txt output/dmpg/solh15.txt output/dmpg/tail15
 ESI_OUT = $(DLPC_OUT_ESI) $(DMPC_OUT_ESI) $(DPPC_OUT_ESI) $(DMPG_OUT_ESI)
 
 
-all : reports/si.pdf reports/paper.pdf reports/referees.pdf
+all : reports/si.pdf reports/paper.pdf
 clean :
 	rm -r reports/paper.pdf reports/si.pdf reports/referees.pdf $(FIG_DIR)/*ref_sld.pdf  $(FIG_DIR)/*vh_dt_phi.pdf $(FIG_DIR)/*all_corner.pdf $(PLOT_DIR)/*.py notebooks/*.py output/dlpc/* output/dmpc/* output/dppc/* output/dmpg/*
 
@@ -67,11 +67,6 @@ reports/paper.pdf : reports/paper.tex reports/bibi.bib $(PAPER_FIG) $(PAPER_OUT)
 	cd reports && bibtex paper.aux
 	cd reports && pdflatex paper.tex
 	cd reports && pdflatex paper.tex
-reports/referees.pdf : reports/referees.tex
-	cd reports && pdflatex referees.tex
-	cd reports && bibtex referees.aux
-	cd reports && pdflatex referees.tex
-	cd reports && pdflatex referees.tex
 
 output/dlpc/chain.txt : notebooks/lipid_xrr.py src/models/mol_vol.py $(DLPC_DATA)
 	cd notebooks && ipython lipid_xrr.py dlpc 11 20 25 30 35 a
