@@ -91,15 +91,17 @@ However, the native environment for lipids in-vivo is far from a simple aqueous 
 In fact, it has been suggested \cite{Dai2013,Hammond2017} that DES might form within the crowded cellular environment and could assist in solubilizing biological species in an intermediate environment between that of the hydrophobic phospholipid tails and highly polar water rich regions, thereby assisting survival under extreme conditions such as freezing temperatures or drought where the water content of cells is restricted.
 
 This work presents the first observation of phospholipid monolayers at an air-DES interface (or for that matter, any ionic solvent, to the best of the authors' knowledge).
-Furthermore, this is one of very few examples of a phospholipid monolayer at the interface between air and a non-aqueous solvent, with only formamide and mercury being noted previously \cite{Weinbach1993,Graner1995, Magnussen1996, Kraack2002}.
+Furthermore, this is one of very few examples of a phospholipid monolayer at the interface between air and a non-aqueous solvent, with only formamide previously \cite{Graner1995}.
+Langmuir monolayers of non-phospholipid surfactant molecules have also been noted at air-formamide and air-mercury interfaces \cite{Weinbach1993,Magnussen1996,Kraack2002}.
+In these works, the authors noted that the non-aqueous had an effect on the overall structure of the monolayer, however, little was noted about underlaying mechanism.
 We have used a chemically-consistent approach to model X-ray (XRR) and neutron (NR) reflectometry measurements and thereby evaluate the effect of this non-aqueous solvent on the structure of phospholipid monolayers.
 
 Recent developments in computational resources and software have enabled powerful methodologies and algorithms to be harnessed by those from non-expert backgrounds.
 This has benefitted significantly from open-source software projects such as the Python language \cite{vanRossum1995} and the Jupyter notebooks framework \cite{Kluyver2016}.
 In the area of NR and XRR, the landscape of data-analysis software is diverse, with a range of software packages available from a variety of sources; refnx \cite{Nelson2018,Nelson2018a}, MOTOFIT \cite{Nelson2006}, Rascal \cite{HughesRascal} Aurore \cite{Gerelli2016}, Refl1D \cite{Kienzle2011}, and GenX \cite{Bjorck2007}.
 
-The use of a Python library, such as refnx, enables the implementation custom models that contain chemically-relevant information as well as the application of probability distribution function (PDF) sampling techniques.
-The Python library emcee \cite{Foreman-Mackey2013} offers refnx to access the Goodman \& Weare Affine Invariant Markov chain Monte Carlo (MCMC) Ensemble method \cite{Goodman2010}.
+The use of a Python library, such as refnx, enables the implementation of custom models that contain chemically-relevant information as well as the application of probability distribution function (PDF) sampling techniques.
+The Python library emcee \cite{Foreman-Mackey2013} allows refnx to access the Goodman \& Weare Affine Invariant Markov chain Monte Carlo (MCMC) Ensemble method \cite{Goodman2010}.
 This allows the sampling of the high-dimensionality parameter space, relevant in reflectomety analysis, in a Bayesian fashion, where the new samples are generated with consideration of those sampled previously \cite{Sivia2006}.
 Bayesian inference gives an understanding of the PDF for the fitted parameters and therefore estimations of their inverse uncertainties and inter-parameter correlations.
 
@@ -143,7 +145,7 @@ XRR measurements were taken on I07 at Diamond Light Source, at \SI{12.5}{\kilo\e
 The reflected intensity was measured in a momentum transfer range from \SIrange{0.018}{0.7}{\per\angstrom}.
 The data were normalised with respect to the incident beam and the background was measured from off-specular reflection and subsequently subtracted.
 Samples were equilibrated for at least one hour and preserved under an argon atmosphere to minimise the adsorption of water by the subphase.
-XRR data were collected for each of the lipids, DLPC, DMPC, DPPC and DMPG at four surface pressures (DLPC: \SIlist[list-units = single]{20;25;30;35}{\milli\newton\per\meter}, DMPC: \SIlist[list-units = single]{20;25;30;40}{\milli\newton\per\meter}, DPPC: \SIlist[list-units = single]{15;20;25;30}{\milli\newton\per\meter}, DMPG: \SIlist[list-units = single]{15;20;25;30}{\milli\newton\per\meter}, as measured with an aluminium Wilhelmy plate; all measurements were conducted at \SI{22}{\celsius}.
+XRR data were collected for each of the lipids, DLPC, DMPC, DPPC and DMPG at four surface pressures (DLPC: \SIlist[list-units = single]{20;25;30;35}{\milli\newton\per\meter}, DMPC: \SIlist[list-units = single]{20;25;30;40}{\milli\newton\per\meter}, DPPC: \SIlist[list-units = single]{15;20;25;30}{\milli\newton\per\meter}, DMPG: \SIlist[list-units = single]{15;20;25;30}{\milli\newton\per\meter}, as measured with an aluminium Wilhelmy plate; measurements were conducted at \SIlist{7;22}{\celsius}.
 The aluminium Wilhelmy plate was used over a traditional paper plate due to the low wetability of paper by the DES.
 
 The NR experiments were performed on FIGARO at the Institut Laue-Langevin using the time-of-flight method \cite{Campbell2011}.
@@ -187,11 +189,11 @@ Additionally, a recent evaluation of the applicability of different models for s
 %
 
 In Table \ref{tab:water}, there appears to be a general consensus that the component volume for the phosphocholine (PC) head is around \SIrange{320}{360}{\angstrom\cubed}, while the phosphatidylglycerol (PG) head is in the range \SIrange{289}{291}{\angstrom\cubed}.
-However, it is not clear is the head component volumes from the literature, that are derived from water-based measurements, will be appropriate for this work, which involves a non-aqueous solvent.
+However, it is not clear that the head component volumes from the literature, that are derived from water-based measurements, will be appropriate for this work, which involves a non-aqueous solvent.
 The charged nature of the zwitterionic or anionic lipid heads may have different interactions with the polar, but neutral water as compared to the charged DES components \cite{Sanchez-Fernandez2018}, which will affect the phospholipid head component volume.
 Therefore, herein we apply a chemically-consistent model that allows for the co-refinement of reflectometry measurements at different surface pressure, and makes no assumption of the component volume for the lipid head, $V_h$, or tail, $V_t$ \cite{SI2019}.
 Instead, these parameters were allowed to vary for each lipid while being constrained to be self-consistent over different surface pressures in the same phase; Liquid-Condensed (LC) for DPPC and Liquid-Expanded (LE) for DMPC, DMPG, and DLPC.
-Furthermore, it is known that, on water, increase surface pressure and the associated LE-LC phase transitions lead to a compression of the lipid tail volume \cite{Marsh2010,Small1984}, and this compaction has not necessarily been accounted for in the literature \cite{Campbell2018}.
+Furthermore, it is known that, on water, increased surface pressure and the associated LE-LC phase transitions lead to a compression of the lipid tail volume \cite{Marsh2010,Small1984}, and this compaction has not necessarily been accounted for in the literature \cite{Campbell2018}.
 This model avoids this issue by making no assumption about the molecular volumes and only considers surface pressures that we believe to be in the same phase.
 
 Our chemically-consistent model has been implemented in the Python library refnx \cite{Nelson2018,Nelson2018a}.
@@ -216,7 +218,9 @@ To ensure that the number density of head components and pairs of tail component
 \phi_h =  1 - \bigg(\frac{d_tV_h}{V_td_h}\bigg).
 \end{equation}
 %
-Based on the work of Campbell \emph{et al.},\cite{Campbell2018} a single value for the interfacial roughness was fitted for all of the interfaces, including the subphase (i.e. $\sigma_h$ = $\sigma_t$ = $\sigma_s$), as there is only a single lipid molecule type in each monolayer. Therefore, any capillary wave roughness at the air-DES interface is carried equally through the layers.
+Based on the work of Campbell \emph{et al.},\cite{Campbell2018} a single value for the interfacial roughness was fitted for all of the interfaces, including the subphase (i.e. $\sigma_h$ = $\sigma_t$ = $\sigma_s$), as there is only a single lipid molecule type in each monolayer.
+Therefore, any capillary wave roughness at the air-DES interface is carried equally through the layers.
+The interfacial roughness was constrained to be greater than \SI{3.3}{\angstrom} in agreement with previous work \cite{Sanchez-Fernandez2016}.
 %
 \begin{table}
 	\caption{\label{tab:invariant} The invariant parameters within the chemically-consistent model.
@@ -259,7 +263,7 @@ In the first of two steps, this custom model was used to co-refine the component
 In keeping with the work of Campbell \emph{et al.} \cite{Campbell2018}, a single value for the head thickness was fitted for each lipid across all surface pressures, as the thickness of the head layer was considered to be dependent on molecular dimensions only, and has been shown to vary little with surface pressure \cite{Kewalramani2010}.
 The following parameters were allowed to vary; $d_t$, and $\sigma_{t,h,s}$, independently across the surface pressures, while others, shown in Table \ref{tab:invariant}, were held constant at the values given.
 For each co-refinement of four XRR measurements, there were, in total, eleven degrees of freedom in the fitting process.
-Throughout all of the analysis, the reflectometry scale factor was allowed to vary freely, while the background as constrained to the intensity of either the largest or second-largest $q$-value.
+Throughout all of the analysis, the reflectometry scale factor was allowed to vary freely, while the background was constrained to the intensity of either the largest or second-largest $q$-value.
 
 In the second step, the head and tail component volumes, and head layer thickness determined from XRR were fixed for the refinement of the custom model against the NR measurements.
 This approach means that the number of variable parameters to fit the NR data can be reduced to two, namely the thickness of the tail layer, $d_t$, and the interfacial roughness, $\sigma_{t,h,s}$, for the co-refinement of two datasets.
@@ -403,12 +407,12 @@ However, as this has only been shown for a single PG-lipid at the air-DES interf
 The major difference between the two head components is the fact PG component is negatively charged whereas the PC component is zwitterionic.
 It has been shown previously that the conformation for the PC component is folded in water \cite{Gilliams2016}, due to the interaction between the positively-charged ammonium and the negatively-charged phosphate groups.
 A similar structure may occur for the PG component, with the interaction between the partially postively-charged alcoholic hydrogen atoms and the negatively-charged phosphate group.
-However, such an interaction would be weaker than that observed in the PC component.
+However, for PG, such an interaction would be weaker than that observed in the PC component.
 Therefore, this observed increase found for the PG component volume in DES when compared with water may be due to the unfolding of the PG head.
 This unfolding would be made possible by the charged nature of the solvent providing a greater screening effect for the PG head than are present in water.
 This effect may not be observed for the PC component due to the greater strength of the folding arising from the formally-charged nature of the ammonium group.
 It would be anticipated that this unfolding would result in an increase in the thickness of the lipid head layer.
-Previously, DPPG has been reported to have a head layer thickness of \SI{10.3\pm0.4}{\angstrom} at \SI{22}{\milli\newton\per\meter} from neutron reflectometry measurements \cite{Clifton2012}, which it slightly less than the \input{../output/dmpg/head.txt}\si{\angstrom} determined in the current work, further suggesting that the unfolding of the PG head component may be occurring as a result of interaction with the DES.
+Previously, DPPG has been reported to have a head layer thickness of \SI{10.3\pm0.4}{\angstrom} at \SI{22}{\milli\newton\per\meter} from neutron reflectometry measurements \cite{Clifton2012}, which is slightly less than the \input{../output/dmpg/head.txt}\si{\angstrom} determined in the current work, further suggesting that the unfolding of the PG head component may be occurring as a result of interaction with the DES.
 
 \subsection{Refinement of neutron reflectometry}
 %
@@ -436,7 +440,7 @@ In particular, as can be seen in Figure \ref{fig:dmpcpdfs}, there is a positive 
 This correlation can be rationalised as a result of the SLD of the solvent and the head layer (which is \SI{50}{\percent} solvated) being similar, and therefore the boundary between the two is not easy to define.
 Such a correlations are unavoidable without considering many neutron contrasts of the lipid and solvent, due to the solvophilic nature of the lipid heads.
 Another, important correlation is that between the head thickness and the tail thickness, $d_t$, again this is due to the lack of a well defined boundary between the head and tail layers.
-This is partially driven by the interfacial roughness that is present between the layers, with the correlation being more pronouned for phospholipids with shorted tails (e.g. there is a greater correlation for DLPC than DPPC).
+This is partially driven by the interfacial roughness that is present between the layers, with the correlation being more pronouned for phospholipids with shorter tails (e.g. there is a greater correlation for DLPC than DPPC).
 
 \section{Conclusions}
 %
@@ -449,9 +453,10 @@ Such applications may include fundamental investigations of phospholipid monolay
 However, the PG component did show a significant difference; having a larger head component volume than observed for the same system in water.
 This suggests that the transfer of lipids to a DES is not just a simple substitution of the subphase.
 In this specific case we have proposed an explanation based on unfolding of the PG head component that is enabled by electrostatic screening of the component charges by the partially charged solvent.
-Finally, the use of MCMC sampling of the reflectometry model parameter space give previously unseen insight into the correlations present in XRR data modelling, that should be considered in nature work of this nature.
+Finally, the use of MCMC sampling of the reflectometry model parameter space gives insight into the correlations present in XRR data modelling, that should be considered in nature work of this nature.
 
-The ability to determine the head component volume was facilitated by access to easy to use, open-source software that allowed for the straightforward use of a custom, chemically-consistant model within the analysis of the XRR and NR measurements. Futhermore, this work presents the first, to our knowledge, use of chemically-consistant parameterisation to co-refine XRR measurements at different surface concentrations.
+The ability to determine the head component volume was facilitated by access to easy to use, open-source software that allowed for the straightforward use of a custom, chemically-consistant model within the analysis of the XRR and NR measurements.
+Futhermore, to our knowledge, this work presents the first use of a chemically-consistant parameterisation to co-refine XRR measurements at different surface concentrations.
 
 \section{Author Contributions}
 T.A., A.J.J., A.S.-F. and K.J.E. were involved in the experimental design, and conducted the experiments along with R.A.C..
@@ -459,7 +464,7 @@ A.R.M. developed the chemically-consistent model and analysed the data, with inp
 A.R.M., A.S.-F. and T.A. wrote the manuscript, with input from all authors.
 
 \acknowledgments{
-The authors thank Andrew Nelson for their help with the refnx software.
+The authors thank Andrew Nelson for useful discussions & assistance with the refnx software.
 A.R.M. is grateful to the University of Bath and Diamond Light Source for
 co-funding a studentship (Studentship Number STU0149).
 Thanks also to the European Spallation Source and the University of Bath
