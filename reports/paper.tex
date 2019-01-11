@@ -67,9 +67,9 @@ UK}
   In this work, we present the first example of the self-assembly of phospholipid monolayers at the interface between air and an ionic solvent.
   Deep eutectic solvents are a novel class of environmentally friendly non-aqueous room temperature liquids with tunable properties, that have wide ranging potential applications and are capable of promoting the self-assembly of surfactant molecules.
   We use a chemically-consistent Bayesian modelling of X-ray and neutron reflectometry measurements to show that these monolayers broadly behave as they do on water.
-  However, the ability of the deep eutectic solvent to interact with the phosphatidylglycerol lipid head, leads to an apparent increase in its volume compared to that observed in water.
-  No such change was observed for the phosphocholine head, indicating that such interactions are head, and therefore solvent, specific.
-  This has important implications for the potential uses of these solvents and for our understanding of how biomolecules behave in the absence of water.
+  This method allows for the monolayer structure to be determined, alongside the molecular volumes of the individual monolayer components without the need for water-specific constraints to be introduced.
+  Furthermore, using this method we are able to better understand the correlations present between parameters in the analytical model.
+  This example of a non-aqueous phospholipid monolayer has important implications for the potential uses of these solvents and for our understanding of how biomolecules behave in the absence of water.
 \end{abstract}
 
 %\keywords{Suggested keywords}%Use showkeys class option if keyword
@@ -91,7 +91,7 @@ However, the native environment for lipids in-vivo is far from a simple aqueous 
 In fact, it has been suggested \cite{Dai2013,Hammond2017} that DES might form within the crowded cellular environment and could assist in solubilizing biological species in an intermediate environment between that of the hydrophobic phospholipid tails and highly polar water rich regions, thereby assisting survival under extreme conditions such as freezing temperatures or drought where the water content of cells is restricted.
 
 This work presents the first observation of phospholipid monolayers at an air-DES interface (or for that matter, any ionic solvent, to the best of the authors' knowledge).
-Furthermore, this is one of very few examples of a phospholipid monolayer at the interface between air and a non-aqueous solvent, with only formamide being noted previously \cite{Weinbach1993,Graner1995}.
+Furthermore, this is one of very few examples of a phospholipid monolayer at the interface between air and a non-aqueous solvent, with only formamide and mercury being noted previously \cite{Weinbach1993,Graner1995, Magnussen1996, Kraack2002}.
 We have used a chemically-consistent approach to model X-ray (XRR) and neutron (NR) reflectometry measurements and thereby evaluate the effect of this non-aqueous solvent on the structure of phospholipid monolayers.
 
 Recent developments in computational resources and software have enabled powerful methodologies and algorithms to be harnessed by those from non-expert backgrounds.
@@ -398,6 +398,7 @@ This agrees well with the values found for the same head component in water, sho
 Interestingly, the component volume for the PG head is similar to that for the PC head with a value of \input{../output/dmpg/vh.txt}\si{\angstrom\cubed} .
 The PG head component volume in water, from either DMPG using differential vibrating tube densimetry \cite{Pan2012} or POPG using molecular dynamics simulations \cite{Kucerka2012}, is noticeably smaller.
 This indicates that there may be some effect arising from the solvation in choline cloride:glycerol causing an apparent increase in the PG component volume when compared with water.
+However, as this has only been shown for a single PG-lipid at the air-DES interface, the results are not conclusive.
 
 The major difference between the two head components is the fact PG component is negatively charged whereas the PC component is zwitterionic.
 It has been shown previously that the conformation for the PC component is folded in water \cite{Gilliams2016}, due to the interaction between the positively-charged ammonium and the negatively-charged phosphate groups.
@@ -453,7 +454,7 @@ Finally, the use of MCMC sampling of the reflectometry model parameter space giv
 The ability to determine the head component volume was facilitated by access to easy to use, open-source software that allowed for the straightforward use of a custom, chemically-consistant model within the analysis of the XRR and NR measurements. Futhermore, this work presents the first, to our knowledge, use of chemically-consistant parameterisation to co-refine XRR measurements at different surface concentrations.
 
 \section{Author Contributions}
-T.A., A.J.J., and K.J.E. were involved in the experimental design, and conducted the experiments along with A.S.-F. and R.A.C.
+T.A., A.J.J., A.S.-F. and K.J.E. were involved in the experimental design, and conducted the experiments along with R.A.C..
 A.R.M. developed the chemically-consistent model and analysed the data, with input from S.C.P, A.S.-F., T.A., and R.A.C..
 A.R.M., A.S.-F. and T.A. wrote the manuscript, with input from all authors.
 
