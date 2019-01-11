@@ -128,7 +128,7 @@ PC indicates the molcule contains a phosphocholine head component, where PG cont
 \includegraphics[width=0.3\textwidth]{figures/head_groups}
 \caption{\label{fig:heads}\small The two lipid classes with different head
 groups compared in this study, where R indicates the hydrocarbon tail;
-(a) phosphatidylglycerol (PG), (b) phosphocholine (PC) \cite{SI2019}.}
+(a) phosphatidylglycerol (PG), (b) phosphocholine (PC).}
 \end{figure}
 %
 
@@ -191,14 +191,14 @@ Additionally, a recent evaluation of the applicability of different models for s
 In Table \ref{tab:water}, there appears to be a general consensus that the component volume for the phosphocholine (PC) head is around \SIrange{320}{360}{\angstrom\cubed}, while the phosphatidylglycerol (PG) head is in the range \SIrange{289}{291}{\angstrom\cubed}.
 However, it is not clear that the head component volumes from the literature, that are derived from water-based measurements, will be appropriate for this work, which involves a non-aqueous solvent.
 The charged nature of the zwitterionic or anionic lipid heads may have different interactions with the polar, but neutral water as compared to the charged DES components \cite{Sanchez-Fernandez2018}, which will affect the phospholipid head component volume.
-Therefore, herein we apply a chemically-consistent model that allows for the co-refinement of reflectometry measurements at different surface pressure, and makes no assumption of the component volume for the lipid head, $V_h$, or tail, $V_t$ \cite{SI2019}.
+Therefore, herein we apply a chemically-consistent model that allows for the co-refinement of reflectometry measurements at different surface pressure, and makes no assumption of the component volume for the lipid head, $V_h$, or tail, $V_t$.
 Instead, these parameters were allowed to vary for each lipid while being constrained to be self-consistent over different surface pressures in the same phase; Liquid-Condensed (LC) for DPPC and Liquid-Expanded (LE) for DMPC, DMPG, and DLPC.
 Furthermore, it is known that, on water, increased surface pressure and the associated LE-LC phase transitions lead to a compression of the lipid tail volume \cite{Marsh2010,Small1984}, and this compaction has not necessarily been accounted for in the literature \cite{Campbell2018}.
 This model avoids this issue by making no assumption about the molecular volumes and only considers surface pressures that we believe to be in the same phase.
 
 Our chemically-consistent model has been implemented in the Python library refnx \cite{Nelson2018,Nelson2018a}.
 This software allows for the inclusion of a custom model to be defined, from which parameters feed into the Abel\`{e}s refelectivity model (a model that is widely used to calculate reflectivity \cite{Abeles1950,Parratt1954}).
-This custom model, along with a series of Jupyter notebooks showing, in full, the analysis performed, can be found in the ESI and is available under a CC BY-SA 4.0 licence \cite{SI2019}.
+This custom model, along with a series of Jupyter notebooks showing, in full, the analysis performed, can be found in the ESI and is available under a CC BY-SA 4.0 licence.
 
 This model consists of two layers to define the lipid monolayer; the head layer at the interface with the solvent and the tail layer at the interface with the air.
 The head components have a calculated scattering length, $b_h$, (found as a summation of the X-ray or neutron atomic scattering lengths), and a component volume, $V_h$.
@@ -254,7 +254,7 @@ However, while we have confience that the individual surface pressures measured 
 Instead we have used grazing incidence X-ray diffraction to confirm the
 phases of DMPC and DPPC at \SI{30}{\milli\newton\per\meter}.
 DPPC was found to be in the LC phase and DMPC in the LE phase at room
-temperature for the surface pressures measured (see Section \ref{sec:gixd}) \cite{SI2019}.
+temperature for the surface pressures measured (see Section \ref{sec:gixd} in the ESI).
 We assume that DMPG and DLPC are also in the LE phase since there is no
 reason to believe that the phase behaviour in these systems differs
 significantly from DMPC at the same temperature.
@@ -294,13 +294,13 @@ Table \ref{tab:liptab} gives details of all varied parameters for each lipid at 
   measured surface pressures; see legend above each plot. The different
   surface pressure XRR profiles have been offset in the $y$-axis by an order
   of magnitude and SLD profiles offset in the $y$-axis by
-  \SI{5e-6}{\per\square\angstrom}, for clarity \cite{SI2019}.}
+  \SI{5e-6}{\per\square\angstrom}, for clarity.}
 	\label{fig:lipids}
 \end{figure}
 %
 %
 \begin{table*}
-	\caption{\label{tab:liptab} The best-fit values, and associated \SI{95}{\percent} confidence intervals for the varying parameters in the XRR models, at the \SI{30}{\milli\newton\per\meter}. The values for $\phi_h$ was obtained from the appropriate use of Eqn. \ref{equ:phih} \cite{SI2019}.}
+	\caption{\label{tab:liptab} The best-fit values, and associated \SI{95}{\percent} confidence intervals for the varying parameters in the XRR models, at the \SI{30}{\milli\newton\per\meter}. The values for $\phi_h$ was obtained from the appropriate use of Eqn. \ref{equ:phih}.}
   \begin{ruledtabular}
 	\begin{tabular*}{\textwidth}{ccccc}
     Lipid & DLPC & DMPC & DPPC & DMPG \\
@@ -330,7 +330,7 @@ Table \ref{tab:neutron} gives details of the varied parameters at each surface p
   20 mNm$^{-1}$ for two contrasts (see legend above each plot); (a) DMPC,
   (b) DPPC. The NR profiles have been offset in the $y$-axis by an order of
   magnitude and SLD profiles offset in the $y$-axis by
-  \SI{5e-6}{\per\square\angstrom}, for clarity \cite{SI2019}.}
+  \SI{5e-6}{\per\square\angstrom}, for clarity.}
 	\label{fig:neutron}
 \end{figure}
 %
@@ -338,7 +338,7 @@ Table \ref{tab:neutron} gives details of the varied parameters at each surface p
 \begin{table*}
   \caption{\label{tab:neutron} The best-fit values, and associated 95 \%
   confidence intervals for the varying parameters in the co-refined NR models.
-  The values of $\phi_h$ were found using Eqn. \ref{equ:phih} \cite{SI2019}.}
+  The values of $\phi_h$ were found using Eqn. \ref{equ:phih}.}
   \begin{ruledtabular}
 	\begin{tabular*}{\textwidth}{ccccc}
     Lipid & \multicolumn{2}{c}{d$_{54}$-DMPC} & \multicolumn{2}{c}{d$_{62}$-DPPC} \\
@@ -423,7 +423,7 @@ Futhermore, the trends observed with increasing surface pressure in the XRR mode
 \subsection{Interparameter correlations}
 %
 The use of Bayesian inference and MCMC sampling allowed for the probing of the probability distribution function for each parameter individually.
-However, it also enables the pairwise interparameter PDFs to be investigated, an example for DMPC at \SI{30}{\milli\newton\per\meter} is shown in Figure \ref{fig:dmpcpdfs} (similar plots for each lipid at each surface pressure measured is available in the ESI \cite{SI2019}).
+However, it also enables the pairwise interparameter PDFs to be investigated, an example for DMPC at \SI{30}{\milli\newton\per\meter} is shown in Figure \ref{fig:dmpcpdfs} (similar plots for each lipid at each surface pressure measured is available in the ESI).
 These two-dimensional PDFs give important information about the correlations that are present between the parameters of the chemically-consistant model.
 The less circular in nature that the 2D PDF is, the greater the correlation that is present between the parameters, e.g. a north-east/south-westernly skewed PDF indicates a positive correlation (where an increase in one parameter correlates an increase in the other) while a north-west/south-easternly skewed PDF indicates a negative correlation (an increase in one correlates with a decrease in the other).
 %
@@ -464,7 +464,7 @@ A.R.M. developed the chemically-consistent model and analysed the data, with inp
 A.R.M., A.S.-F. and T.A. wrote the manuscript, with input from all authors.
 
 \acknowledgments{
-The authors thank Andrew Nelson for useful discussions & assistance with the refnx software.
+The authors thank Andrew Nelson for useful discussions \& assistance with the refnx software.
 A.R.M. is grateful to the University of Bath and Diamond Light Source for
 co-funding a studentship (Studentship Number STU0149).
 Thanks also to the European Spallation Source and the University of Bath
