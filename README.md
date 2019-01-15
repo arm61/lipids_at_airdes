@@ -13,7 +13,7 @@ For more information about reproducible workflows in Python, check out [Tania Al
 
 ## [Data](https://researchdata.bath.ac.uk/id/eprint/548)
 
-The reduced X-ray  and neutron reflectometry data can be obtained from the University of Bath Research Data Archive.
+The reduced X-ray and neutron reflectometry data can be obtained from the University of Bath Research Data Archive.
 
 [https://researchdata.bath.ac.uk/id/eprint/548](https://researchdata.bath.ac.uk/id/eprint/548)
 
@@ -33,7 +33,13 @@ Requirements:
 
 The supplied Makefile, will reproduce all of the analysis, plot the figures, and build a preprint version of the paper (`reports/preprint.pdf`) when run. Be aware that the analyses within this work are non-trivial and take many hours to run so **use caution** before re-running.
 
-If you **still** want to re-run all of the analysis, please download the [experimental data](https://researchdata.bath.ac.uk/id/eprint/548), place it in a directory named `data/processed` before running the following commands:
+If you **still** want to re-run all of the analysis, please download the [experimental data zip file](https://researchdata.bath.ac.uk/id/eprint/548), and unzip it into the directory named `data/processed` using the following command 
+
+```
+unzip lipids_at_airdes_data.zip
+```
+
+Then run the following commands:
 
 ```
 conda create --name paper_env python
