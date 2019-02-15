@@ -305,12 +305,17 @@ ax1.set_xlim([np.min(processed_chain[4].chain.flatten())-0.01,
 ax1.set_xticklabels(['{:.1f}'.format(a[0]), '{:.1f}'.format(a[1]), '{:.1f}'.format(a[2])])
 ax2 = plt.subplot(gs[0, 1])
 ax3 = ax2.twinx()
-ax2.plot([sp1, sp2, sp3, sp4], 
+ax2.plot([float(sp1), float(sp2), float(sp3), float(sp4)], 
          [np.average(tail1), np.average(tail2), np.average(tail3), np.average(tail4)], 
-          c='k', marker='s', ls='', ms=15)
-ax3.plot([sp1, sp2, sp3, sp4], 
+          c='k', marker='x', ls='', ms=20)
+ax3.plot([float(sp1), float(sp2), float(sp3), float(sp4)],
          np.array([np.average(solh1), np.average(solh2), np.average(solh3), np.average(solh4)]) * 100, 
-         c='k', marker='o', ls='', ms=15)
+         c='k', marker='o', ls='', ms=20)
+
+k = np.array([np.average(tail1), np.average(tail2), np.average(tail3), np.average(tail4)])
+ax2.set_ylim([np.min(k)-0.2, np.max(k)+0.2])
+l = np.array([np.average(solh1), np.average(solh2), np.average(solh3), np.average(solh4)]) * 100
+ax3.set_ylim([np.min(l)-2, np.max(l)+2])
 ax2.set_xlabel(r'Surface Pressure/mNm$^{-1}$')
 ax2.set_ylabel(r'$d_t$/Å')
 ax3.set_ylabel(r'$\phi_h$/$\times 10^{-2}$')
