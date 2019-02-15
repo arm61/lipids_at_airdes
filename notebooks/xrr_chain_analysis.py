@@ -312,19 +312,40 @@ ax3.plot([float(sp1), float(sp2), float(sp3), float(sp4)],
          np.array([np.average(solh1), np.average(solh2), np.average(solh3), np.average(solh4)]) * 100, 
          c='k', marker='o', ls='', ms=20)
 
-k = np.array([np.average(tail1), np.average(tail2), np.average(tail3), np.average(tail4)])
-ax2.set_ylim([np.min(k)-0.2, np.max(k)+0.2])
-l = np.array([np.average(solh1), np.average(solh2), np.average(solh3), np.average(solh4)]) * 100
-ax3.set_ylim([np.min(l)-2, np.max(l)+2])
+
+if lipid == 'dlpc':
+    ax2.set_ylim([7, 10.5])
+    ax2.set_yticks([8, 9, 10])
+    ax3.set_ylim([45, 70])
+    ax3.set_yticks([50, 60, 70])
+if lipid == 'dmpc':
+    ax2.set_ylim([9, 15])
+    ax2.set_yticks([10, 12, 14])
+    ax3.set_ylim([45, 70])
+    ax3.set_yticks([50, 60, 70])
+if lipid == 'dppc':
+    ax2.set_ylim([15.75, 17.25])
+    ax2.set_yticks([16, 17])
+    ax3.set_ylim([43, 48])
+    ax3.set_yticks([44, 46, 48])
+if lipid == 'dmpg':
+    ax2.set_ylim([5, 15])
+    ax2.set_yticks([5, 10, 15])
+    ax3.set_ylim([50, 90])
+    ax3.set_yticks([50, 70, 90])
 ax2.set_xlabel(r'Surface Pressure/mNm$^{-1}$')
 ax2.set_ylabel(r'$d_t$/Å')
 ax3.set_ylabel(r'$\phi_h$/$\times 10^{-2}$')
 
 ax2.yaxis.label.set_color('k')
 ax3.yaxis.label.set_color('k')
-ax2.text(0.88, 0.07, '(' + label + ')', fontsize=44, transform=ax2.transAxes)
+ax1.text(0.02, 0.96, '(' + label + ')', fontsize=44, transform=ax1.transAxes, ha='left', va='top')
 ax2.tick_params(axis='y', colors='k')
 ax3.tick_params(axis='y', colors='k')
+ax2.set_xlim([13, 42])
+ax3.set_xlim([13, 42])
+ax2.set_xticks([15, 20, 25, 30, 35, 40])
+ax3.set_xticks([15, 20, 25, 30, 35, 40])
 plt.tight_layout()
 plt.savefig('{}{}_vh_dt_phi.pdf'.format(figures_dir, lipid))
 plt.close()
