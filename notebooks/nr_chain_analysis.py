@@ -298,7 +298,7 @@ mpl.rcParams['axes.linewidth'] = 1
 mpl.rcParams['axes.edgecolor'] = 'k'
 
 
-label=['$d_t$/Å', r'ϕ$_h/\times10^{-2}$', 'σ$_{t,h,s}$/Å']
+label=['$d_t$/Å', r'$ϕ_h/\times10^{-2}$', '$σ_{t,h,s}$/Å']
 
 new_flat = np.zeros((processed_chain[0].chain.size, 3))
 

@@ -66,9 +66,10 @@ UK}
 
 \maketitle
 
-This Supplementary Information document is only part of a fully reproducible analysis workflow. The complete workflow, along with all datasets, figure files, and analysis/plotting scripts is available at \url{https://github.com/arm61/lipids_at_airdes} (DOI: 10.5281/zenodo.2538002) under a CC BY-SA 4.0 license.
+This Supplementary Information document is only a part of a fully reproducible analysis workflow. The complete workflow, along with all datasets, figure files, and analysis/plotting scripts is available at \url{https://github.com/arm61/lipids_at_airdes} (DOI: 10.5281/zenodo.2538002) under a CC BY-SA 4.0 license.
 
 \section{XRR parameters at each surface pressure}
+\label{sec:xrrpara}
 Tables \ref{tab:liptab1}-\ref{tab:liptab4} give the best fit values for the custom model that were fitted to each surface pressure, for each lipid. These values were used for comparison to assess the effect of the choline chloride:glycerol on the lipid.
 
 \section{Neutron reflectometry and SLD profiles}
@@ -76,24 +77,23 @@ Figure \ref{fig:neutron} shows the neutron reflectomery and scattering length de
 
 \section{Grazing incident X-ray diffraction (GIXD)}
 \label{sec:gixd}
-We have already indicated that the surface pressure was measured using an Aluminium Wilhelmy plate because the standard paper plates did not wet properly. This method did allow us to measure Langmuir isotherms, but these were inconsistent and as such, not a reliable method for determining the phase of the lipid monolayers.
+The surface pressure was measured using an Aluminium Wilhelmy plate because the standard paper plates did not wet properly. This method did allow us to measure Langmuir isotherms, but these were inconsistent and as such, not a reliable method for determining the phase of the lipid monolayers.
 Instead we were able to measure GIXD for DPPC and DMPC over a range of different surface pressures and temperatures and representative data from these measurements are shown in Figure \ref{fig:gixd} for \SI{30}{\milli\newton\per\meter} and \SI{22}{\celsius} (and \SI{7}{\celsius} for DMPC).
 Unfortunately, despite our best efforts, the quality of GIXD data obtained was not entirely satisfactory.
-All of data contains a weak artefact which we believe is due to scattering from the Teflon trough, which is probably due to the relatively low meniscus of the DES (due to its low surface tension compared to water). In addition we cannot see the expected (1,1) peak observed for these lipids on water.
+All of data contains a weak artefact which we believe is due to scattering from the Teflon trough, which is probably due to the relatively low meniscus of the DES (due to its low surface tension compared to water).
+In addition we cannot see the expected (1,1) peak observed for these lipids on water.
 It is unclear whether this is because these peaks are absent or too weak to be measured.
 Nonetheless, Figure \ref{fig:gixd} shows clear diffraction peaks (which we assume to be the (2, 0)) for DPPC at \SI{22}{\celsius} and for DMPC at \SI{7}{\celsius}.
 These peaks are also visible at lower surface pressures (data not shown).
 The presence of any diffraction feature indicates the presence of an LC phase at these temperatures.
-Importantly there is no such peak observed for DMPC at \SI{22}{\celsius} (see \ref{fig:gixd}), indicating that DMPC is in the LE phase at this temperature.
-The position of the (2,0) peak, approx \SI{1.48}{\per\angstrom}, is similar to that found under the same conditions in water.\cite{watkins_structure_2009}
+Importantly there is no such peak observed for DMPC at \SI{22}{\celsius} (see Figure \ref{fig:gixd}), indicating that DMPC is in the LE phase at this temperature.
+The position of the (2,0) peak, approx \SI{1.48}{\per\angstrom}, is similar to that found under the same conditions in water \cite{watkins_structure_2009}.
 We therefore assume that the phase behaviour on the DES is similar to that observed on water and that the phases observed at \SI{30}{\milli\newton\per\meter} are the same at the other surface pressures measured with XRR and NR.
 While we have no direct evidence, we have extended this assumption to DLPC and DMPG since there is no reason to believe that the phases of these molecules should be different from that observed for DMPC.
 
 \section{Probability distribution functions}
 The two-dimensional probability distribution functions (PDFs) for all parameters and all lipids from the X-ray reflectometry models are given in Figures \ref{fig:dlpc1}-\ref{fig:dmpg4}.
 The two-dimensional probability distribution functions (PDFs) for all parameters and all lipids from the neutron reflectometry models are given in Figures \ref{fig:dmpcn1}-\ref{fig:dppcn2}.
-
-\section{Tables and Figures}
 
 %
 \begin{table}
@@ -181,7 +181,7 @@ The two-dimensional probability distribution functions (PDFs) for all parameters
 	\includegraphics[width=0.9\textwidth]{figures/dmpc_25n_ref_sld}
 	\includegraphics[width=0.9\textwidth]{figures/dppc_15n_ref_sld}
 	\caption{The NR and SLD profiles at a surface pressure of (a) 25 mNm$^{-1}$ for two contrasts of DMPC, and (b) 15 mNm$^{-1}$ for two contrasts of DPPC. The NR profiles have been offset in the $y$-axis by an order of magnitude and SLD profiles offset in the $y$-axis by \SI{5e-6}{\per\square\angstrom}, for clarity.}
-	\label{fig:neutron}
+	\label{fig:sineutron}
 \end{figure}
 
 \begin{figure}[H]

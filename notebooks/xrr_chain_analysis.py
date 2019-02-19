@@ -7,7 +7,7 @@
 # 
 # It is first necessary to import the necessary modules for the analysis.
 
-# In[1]:
+# In[2]:
 
 
 # Standard libraries to import
@@ -34,7 +34,7 @@ import helper
 
 # These are parameters to make the plots pretty.
 
-# In[2]:
+# In[3]:
 
 
 mpl.rcParams['axes.labelsize']=44
@@ -94,7 +94,7 @@ refnx.version.full_version, scipy.version.version
 # 
 # For details see the `lipid_xrr` notebook.
 
-# In[19]:
+# In[7]:
 
 
 # Reading datasets into refnx format
@@ -209,7 +209,7 @@ global_objective = GlobalObjective([objective1, objective2, objective3, objectiv
 
 # The chain is read in by refnx, and processed to assigned it to the global objective. 
 
-# In[25]:
+# In[8]:
 
 
 chain = refnx.analysis.load_chain('{}/{}/chain.txt'.format(analysis_dir, lipid))
@@ -219,7 +219,7 @@ processed_chain = refnx.analysis.process_chain(global_objective, chain)
 
 # The global objective is printed to check it is accurate.
 
-# In[26]:
+# In[9]:
 
 
 print(global_objective)
@@ -227,7 +227,7 @@ print(global_objective)
 
 # Using the probability distribution functions from the processed chain, the PDFs for the tail layer thickness and the solvent content of the headgroup are defined. 
 
-# In[33]:
+# In[10]:
 
 
 tail1 = processed_chain[2].chain
@@ -247,7 +247,7 @@ solh4 = 1 - (processed_chain[4].chain / processed_chain[3].chain) * (
 
 # The reflectometry and SLD profile are then plotted. 
 
-# In[35]:
+# In[11]:
 
 
 fig = plt.figure(figsize=(20, 7.5))
@@ -286,69 +286,16 @@ plt.close()
 
 # The PDFs for the head volumes of the lipid and the variation of the tail thickness and solvent content with surface pressure are plotted. 
 
-# In[38]:
+# In[23]:
 
 
-fig = plt.figure(figsize=(20, 5.5))
-gs = mpl.gridspec.GridSpec(1, 2) 
-ax1 = plt.subplot(gs[0, 0])
-a = mquantiles(processed_chain[4].chain.flatten(), prob=[0.025, 0.5, 0.975])
-weights = np.ones_like(processed_chain[4].chain.flatten())/float(
-    len(processed_chain[4].chain.flatten()))
-ax1.hist(processed_chain[4].chain.flatten(), bins=50, histtype='stepfilled', 
-         color='k', weights=weights)
-ax1.set_ylabel('PDF({}-$V_h$)'.format(lipid.upper()))
-ax1.set_xlabel('{}-$V_h$/Å$^3$'.format(lipid.upper()))
-ax1.set_xticks([a[0], a[1], a[2]])
-ax1.set_xlim([np.min(processed_chain[4].chain.flatten())-0.01, 
-              np.max(processed_chain[4].chain.flatten())+0.01])
-ax1.set_xticklabels(['{:.1f}'.format(a[0]), '{:.1f}'.format(a[1]), '{:.1f}'.format(a[2])])
-ax2 = plt.subplot(gs[0, 1])
-ax3 = ax2.twinx()
-ax2.plot([float(sp1), float(sp2), float(sp3), float(sp4)], 
-         [np.average(tail1), np.average(tail2), np.average(tail3), np.average(tail4)], 
-          c='k', marker='x', ls='', ms=20)
-ax3.plot([float(sp1), float(sp2), float(sp3), float(sp4)],
-         np.array([np.average(solh1), np.average(solh2), np.average(solh3), np.average(solh4)]) * 100, 
-         c='k', marker='o', ls='', ms=20)
-
-
-if lipid == 'dlpc':
-    ax2.set_ylim([7, 10.5])
-    ax2.set_yticks([8, 9, 10])
-    ax3.set_ylim([45, 70])
-    ax3.set_yticks([50, 60, 70])
-if lipid == 'dmpc':
-    ax2.set_ylim([9, 15])
-    ax2.set_yticks([10, 12, 14])
-    ax3.set_ylim([45, 70])
-    ax3.set_yticks([50, 60, 70])
-if lipid == 'dppc':
-    ax2.set_ylim([15.75, 17.25])
-    ax2.set_yticks([16, 17])
-    ax3.set_ylim([43, 48])
-    ax3.set_yticks([44, 46, 48])
-if lipid == 'dmpg':
-    ax2.set_ylim([5, 15])
-    ax2.set_yticks([5, 10, 15])
-    ax3.set_ylim([50, 90])
-    ax3.set_yticks([50, 70, 90])
-ax2.set_xlabel(r'Surface Pressure/mNm$^{-1}$')
-ax2.set_ylabel(r'$d_t$/Å')
-ax3.set_ylabel(r'$\phi_h$/$\times 10^{-2}$')
-
-ax2.yaxis.label.set_color('k')
-ax3.yaxis.label.set_color('k')
-ax1.text(0.02, 0.96, '(' + label + ')', fontsize=44, transform=ax1.transAxes, ha='left', va='top')
-ax2.tick_params(axis='y', colors='k')
-ax3.tick_params(axis='y', colors='k')
-ax2.set_xlim([13, 42])
-ax3.set_xlim([13, 42])
-ax2.set_xticks([15, 20, 25, 30, 35, 40])
-ax3.set_xticks([15, 20, 25, 30, 35, 40])
-plt.tight_layout()
-plt.savefig('{}{}_vh_dt_phi.pdf'.format(figures_dir, lipid))
-plt.close()
+np.savetxt('{}{}_vh.txt'.format(figures_dir, lipid), processed_chain[4].chain.flatten())
+np.savetxt('{}{}_tailplot.txt'.format(figures_dir, lipid), [[float(sp1), float(sp2), float(sp3), float(sp4)], 
+         [np.average(tail1), np.average(tail2), np.average(tail3), np.average(tail4)],
+         [np.std(tail1), np.std(tail2), np.std(tail3), np.std(tail4)]])
+np.savetxt('{}{}_solhplot.txt'.format(figures_dir, lipid), [[float(sp1), float(sp2), float(sp3), float(sp4)], 
+         np.array([np.average(solh1), np.average(solh2), np.average(solh3), np.average(solh4)]) * 100,
+         np.array([np.std(solh1), np.std(solh2), np.std(solh3), np.std(solh4)]) * 100])
 
 
 # Each of the variables is output to a text file, so that they may be easily imported into the final document if necessary. 
@@ -425,7 +372,7 @@ mpl.rcParams['axes.linewidth'] = 1
 mpl.rcParams['axes.edgecolor'] = 'k'
 
 
-label=['$V_t$/Å$^3$', '$V_h$/Å$^3$', '$d_h$/Å', '$d_t$/Å', r'ϕ$_h/\times10^{-2}$', 'σ$_{t,h,s}$/Å']
+label=['$V_t$/Å$^3$', '$V_h$/Å$^3$', '$d_h$/Å', '$d_t$/Å', r'$ϕ_h/\times10^{-2}$', '$σ_{t,h,s}$/Å']
 
 new_flat = np.zeros((processed_chain[0].chain.size, 6))
 
