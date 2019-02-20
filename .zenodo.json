@@ -34,12 +34,12 @@
   "license": "CC BY-SA 4.0",
   "grants": [{
     "funder": "University of Bath & Diamond Light Source",
-    "code": "STU0149"}
+    "code": "STU0149"},
   {
-    "funder": "European Spallation Source & the University of Bath Alumni Fund"}
+    "funder": "European Spallation Source & the University of Bath Alumni Fund"},
   {
     "funder": "Diamond Light Source",
-    "code": "SI10546-1"}
+    "code": "SI10546-1"},
   {
     "funder": "Institut Laue-Langevin",
     "code": "9-13-612"
