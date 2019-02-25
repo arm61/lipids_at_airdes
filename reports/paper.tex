@@ -76,10 +76,10 @@ This example of a non-aqueous phospholipid monolayer has important implications 
   Electronic Supplementary Information (ESI) available: All analysis/plotting
   scripts and figure files, allowing for a fully reproducible, and automated,
   analysis workflow for the work presented is available at
-  \url{https://github.com/arm61/lipids_at_airdes} (DOI: 10.5281/zenodo.2538002)
+  \url{https://github.com/arm61/lipids_at_airdes} (DOI: 10.5281/zenodo.2573512)
   under a CC BY-SA 4.0 license.
   Reduced experimental datasets are available at
-  \url{https://researchdata.bath.ac.uk/id/eprint/548}, under a CC-BY 4.0 license.
+  \url{https://doi.org/10.15125/BATH-00548}, under a CC-BY 4.0 license.
   \end{description}
 \end{abstract}
 %\keywords{Suggested keywords}%Use showkeys class option if keyword
@@ -166,7 +166,7 @@ So, although the surface coverage was nominally the same as used in the X-ray st
 XRR measurements were taken on I07 at Diamond Light Source, at \SI{12.5}{\kilo\electronvolt} photon energy using the double-crystal deflector \cite{arnold_implementation_2012}.
 The reflected intensity was measured in a momentum transfer range from \SIrange{0.018}{0.7}{\per\angstrom}.
 The data were normalised with respect to the incident beam and the background was measured from off-specular reflection and subsequently subtracted.
-Samples were equilibrated for at least one hour and preserved under an argon atmosphere to minimise the adsorption of water by the subphase.
+Samples were equilibrated for at least one hour and preserved under an helium atmosphere to minimise the adsorption of water by the subphase.
 XRR data were collected for each of the lipids, DLPC, DMPC, DPPC and DMPG at four surface pressures (DLPC: \SIlist[list-units = single]{20;25;30;35}{\milli\newton\per\meter}, DMPC: \SIlist[list-units = single]{20;25;30;40}{\milli\newton\per\meter}, DPPC: \SIlist[list-units = single]{15;20;25;30}{\milli\newton\per\meter}, DMPG: \SIlist[list-units = single]{15;20;25;30}{\milli\newton\per\meter}, as measured with an aluminium Wilhelmy plate; measurements were conducted at \SIlist{7;22}{\celsius}.
 The aluminium Wilhelmy plate was used over a traditional paper plate due to the low wettability of paper by the DES.
 
@@ -294,8 +294,7 @@ Table \ref{tab:invariant} also gives the details of the scattering lengths and S
 In both cases, the refinement of the custom model to the experimental data involved the transformation of the reflectometry calculated from the model and the data into $Rq^4$ such that the contribution of the Fresnel decay was removed, before using the differential evolution method available to refnx from the scipy library \cite{jones_scipy_2001}, to find the parameters that gave the best fit to the data.
 The parameter space was then probed using the MCMC method available through emcee \cite{foreman-mackey_emcee_2013}, which allowed for an estimate of the probability distribution function (PDF) associated with each parameter.
 In the MCMC sampling, 200 walkers were used over 1000 iterations, following equilibration of 200 iterations.
-The use of MCMC sampling allowed for the Bayesian inference of the PDF for each of the variables and their respective interactions.
-The Shapiro test to be used to assess if each PDF was normally distributed.
+The use of MCMC sampling allowed for a Bayesian inference of the PDF for each of the variables and their respective interactions and the Shapiro test to be used to assess if each PDF was normally distributed.
 Parameters that were shown to be normally distributed are given with symmetric confidence intervals, while those that failed the Shapiro test are given with asymmetric confidence intervals (\SI{95}{\percent} confidence intervals in both cases).
 However, it is important to note that these are not \emph{true} confidence intervals, and account only for the uncertainty present in the data, i.e. they do not account of systematic uncertainty in the measurement that is underrepresented, or unrepresented, in the experimental dataset.
 
@@ -318,10 +317,10 @@ However, it is important to note that these are not \emph{true} confidence inter
 \section{Results \& Discussions}
 %
 The chemically-consistent model was co-refined across the four surface pressure XRR measurements for each lipid.
-Although lipid monolayers on water often reach values above \SI{50}{\milli\newton\per\meter}, signifying a decrease in surface tension of ca. \SI{20}{\milli\newton\per\meter} upon addition of lipid, it was not possible to reach those values for the monolayers on DES \cite{mohwald_phospholipid_1990}.
+Although lipid monolayers on water often reach values above \SI{50}{\milli\newton\per\meter}, signifying a decrease in surface tension to ca. \SI{20}{\milli\newton\per\meter} upon addition of lipid, it was not possible to reach those values for the monolayers on DES \cite{mohwald_phospholipid_1990}.
 The surface tension of pure choline chloride:glycerol has been previously reported to be \SI{63.5\pm0.5}{\milli\newton\per\meter} \cite{sanchez-fernandez_micellization_2016}.
-This means that a surface pressure of ca. \SI{40}{\milli\newton\per\meter} in choline chloride:glycerol will be reached with a reduction of ca. \SI{20}{\milli\newton\per\meter} in the surface tension.
-Interestingly, the absolute values of surface tension reduction in both water and choline chloride:glycerol upon addition of lipid are similar.
+This means that a surface pressure of ca. \SI{40}{\milli\newton\per\meter} iin choline chloride:glycerol will also result in a reduction to ca. \SI{20}{\milli\newton\per\meter} in the surface tension.
+Interestingly, the absolute values of surface tension in both water and choline chloride:glycerol after addition of lipid are similar.
 Therefore, surface pressures of up to \SI{40}{\milli\newton\per\meter} were measured for the monolayers on DES, when possible.
 The resulting XRR profiles and associated SLD profiles are shown in Figure \ref{fig:lipids}.
 Table \ref{tab:liptab} gives details of all varied parameters for each lipid at \SI{30}{\milli\newton\per\meter}, as well as the details of $\phi_h$ which was determined from Eqn. \ref{equ:phih} (the same details for the other surface pressures are available in Section \ref{sec:xrrpara} of the ESI).
@@ -379,7 +378,7 @@ Table \ref{tab:neutron} gives details of the varied parameters at each surface p
 \subsection{Effect of compression on monolayer thickness}
 %
 From Tables \ref{tab:liptab} and \ref{tab:neutron}, we can see that, as expected and as found in previous work \cite{mohwald_phospholipid_1990,vaknin_structural_1991}, the thickness of the tail layer increases as the number of carbon atoms in the tail chain increases.
-Furthermore, the thickness of the tail layers in these monolayers appears to agree well with values found for water-analogues; \input{../output/dmpc/tail30.txt}\AA\ at 30 mN/m in DES compared with $d_t=15.8$~\si{\angstrom} at \SI{30}{\milli\newton\per\meter} \cite{johnson_structure_1991} in water for DMPC, and \input{../output/dppc/tail30.txt}~\si{\angstrom} at \SI{30}{\milli\newton\per\meter} in DES compared with $d_t=16.7$~\si{\angstrom} at \SI{40}{\milli\newton\per\meter} \cite{helm_phospholipid_1987} in water for DPPC.
+Furthermore, the thickness of the tail layers in these monolayers appears to agree well with values found for water-analogues; \input{../output/dmpc/tail30.txt}\AA\ at 30 mN/m in DES compared with $d_t=15.8$~\si{\angstrom} at \SI{30}{\milli\newton\per\meter} in water for DMPC \cite{johnson_structure_1991}, and \input{../output/dppc/tail30.txt}~\si{\angstrom} at \SI{30}{\milli\newton\per\meter} in DES compared with $d_t=16.7$~\si{\angstrom} at \SI{40}{\milli\newton\per\meter} in water for DPPC \cite{helm_phospholipid_1987}.
 
 The variation of the tail layer thickness in the models with surface pressure is given for each lipid in Figure \ref{fig:lipresults}(e).
 As is commonly observed for lipid monolayers at the air-water interface, an increase in surface pressure results in an increase in the thickness of the tail layer.
@@ -425,7 +424,7 @@ This agrees well with the values found for the same head component in water, sho
 Interestingly, the component volume for the PG head is similar to that for the PC head with a value of \input{../output/dmpg/vh.txt}~\si{\angstrom\cubed}.
 The PG head component volume in water, from either DMPG using differential vibrating tube densimetry \cite{pan_molecular_2012} or POPG using molecular dynamics simulations \cite{kucerka_scattering_2012}, is noticeably smaller.
 This indicates that there may be some effect arising from the solvation in choline chloride:glycerol causing an apparent increase in the PG component volume when compared with water.
-However, as this has only been shown for a single PG-lipid at the air-DES interface.
+However, this has only been shown for a single PG-lipid at the air–DES interface.
 
 The major difference between the two head groups of the lipids is that the PG is present as a sodium salt, whereas the PC is zwitterionic.
 When in solution the anionic PG head is expected to associate with cations in solution, as it does in water \cite{grigoriev_effect_1999} where such interactions depended on a variety of factors including the ionic strength.
@@ -474,14 +473,16 @@ Such applications may include fundamental investigations of phospholipid monolay
 However, the PG component did show a significant difference; having a larger head component volume than observed for the same system in water.
 This suggests that the transfer of lipids to a DES is not just a simple substitution of the subphase.
 In this specific case, we have proposed an explanation based on the dissociation of the PG head component salt and the subsequent interaction with the DES.
-Finally, the use of MCMC sampling of the reflectometry model parameter space gives insight into the correlations present in XRR data modelling, that should be considered in nature work of this nature.
+Finally, the use of MCMC sampling of the reflectometry model parameter space gives insight into the correlations present in XRR data modelling, that should be considered in work of this nature.
 
 The ability to determine the head component volume was facilitated by access to easy to use, open-source software that allowed for the straightforward use of a custom, chemically-consistent model within the analysis of the XRR and NR measurements.
 Furthermore, to our knowledge, this work presents the first use of a chemically-consistent parameterisation to co-refine XRR measurements at different surface concentrations.
 
 \section{Author Contributions}
 T.A., A.J.J., A.S.-F. and K.J.E. were involved in the experimental design and conducted the experiments along with R.A.C..
+
 A.R.M. developed the chemically-consistent model and analysed the data, with input from S.C.P, A.S.-F., T.A., and R.A.C..
+
 A.R.M., A.S.-F. and T.A. wrote the manuscript, with input from all authors.
 
 \acknowledgments{
