@@ -6,6 +6,8 @@
 
 &ast;[a.r.mccluskey@bath.ac.uk](mailto:a.r.mccluskey@bath.ac.uk) & [tom.arnold@esss.se](mailto:tom.arnold@esss.se)
 
+[![ToCFigure](https://raw.githubusercontent.com/arm61/lipids_at_airdes/master/toc_figure/ToC_figure.png)]
+
 This is the electronic supplementary information (ESI) associated with the publication "Bayesian determination of the effect of a deep eutectic solvent on the structure of lipid monolayers".
 This ESI provides full details of the analyses performed in the work and access to an automated analysis workflow, through this we aim to provide better access to analysis reproducibility.
 The [Supplementary Information document](reports/si.pdf) can be found in the [reports](/reports) folder, alongside a preprint copy of the publication.
