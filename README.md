@@ -7,7 +7,7 @@
 &ast;[a.r.mccluskey@bath.ac.uk](mailto:a.r.mccluskey@bath.ac.uk) & [tom.arnold@esss.se](mailto:tom.arnold@esss.se)
 
 [![ToCFigure](https://raw.githubusercontent.com/arm61/lipids_at_airdes/master/toc_figure/ToC_figure.png)](http://dx.doi.org/10.1039/C9CP00203K)
-*Table of Contents Figure*
+*A novel reflectometry analysis method reveals the structure of lipid monolayers at the air-DES interface.*
 
 This is the electronic supplementary information (ESI) associated with the publication "Bayesian determination of the effect of a deep eutectic solvent on the structure of lipid monolayers".
 This ESI provides full details of the analyses performed in the work and access to an automated analysis workflow, through this we aim to provide better access to analysis reproducibility.
