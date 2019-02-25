@@ -1,0 +1,54 @@
+{
+	"title": "lipids_at_airdes",
+	"creators": [{
+			"name": "McCluskey, Andrew R.",
+			"affiliation": "Department of Chemistry, University of Bath, Claverton Down, Bath, BA2 7AY, UK.; Diamond Light Source, Harwell Campus,. Didcot, OX11 0DE, UK.",
+			"orcid": "0000-0003-3381-5911"
+		},
+		{
+			"name": "Sanchez-Fernandez, Adrian",
+			"affiliation": "Department of Chemistry, University of Bath, Claverton Down, Bath, BA2 7AY, UK.; European Spallation Source, SE-211 00 Lund, Sweden.",
+			"orcid": "0000-0002-0241-1191"
+		},
+		{
+			"name": "Edler, Karen J.",
+			"affiliation": "Department of Chemistry, University of Bath, Claverton Down, Bath, BA2 7AY, UK.",
+			"orcid": "0000-0001-5822-0127"
+		},
+		{
+			"name": "Parker, Stephen C.",
+			"affiliation": "Department of Chemistry, University of Bath, Claverton Down, Bath, BA2 7AY, UK.",
+			"orcid": "0000-0003-3804-0975"
+		},
+		{
+			"name": "Jackson Andrew J.",
+			"affiliation": "European Spallation Source, SE-211 00 Lund, Sweden.;Department of Physical Chemistry, Lund University, SE-211 00 Lund, Sweden.",
+			"orcid": "0000-0002-6296-0336"
+		},
+		{
+			"name": "Campbell, Richard A.",
+			"affiliation": "Division of Pharmacy and Optometry, University of Manchester, Manchester, M13 9PT, UK.; Institut Laue-Langevin, 71 avenue des Martyrs, 38000, Grenoble, France.",
+			"orcid": "0000-0002-6296-314X"
+		},
+		{
+			"name": "Arnold, Thomas",
+			"affiliation": "European Spallation Source, SE-211 00 Lund, Sweden.; Diamond Light Source, Harwell Campus,. Didcot, OX11 0DE, UK.; ISIS Neutron and Muon Source, Science and Technology Facilities Council, Rutherford Appleton Laboratory, Harwell Oxford, Didcot, OX11 0QX, UK.; Department of Chemistry, University of Bath, Claverton Down, Bath, BA2 7AY, UK.",
+			"orcid": "0000-0001-7196-7831"
+		}
+	],
+	"description": "ESI for \"Bayesian determination of the effect of a deep eutectic solvent on the structure of lipid monolayers\" ",
+	"access_right": "open",
+	"license": "CC-BY-SA-4.0",
+	"grants": [{
+		"funder": "University of Bath & Diamond Light Source",
+		"code": "STU0149"
+	}, {
+		"funder": "European Spallation Source & the University of Bath Alumni Fund"
+	}, {
+		"funder": "Diamond Light Source",
+		"code": "SI10546-1"
+	}, {
+		"funder": "Institut Laue-Langevin",
+		"code": "9-13-612"
+	}]
+}

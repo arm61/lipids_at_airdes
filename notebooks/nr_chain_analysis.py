@@ -298,12 +298,12 @@ mpl.rcParams['axes.linewidth'] = 1
 mpl.rcParams['axes.edgecolor'] = 'k'
 
 
-label=['$d_t$/Å', r'ϕ$_h/\times10^{-2}$', 'σ$_{t,h,s}$/Å']
+label=['$d_t$/Å', r'$ϕ_h/\times10^{-2}$', '$σ_{t,h,s}$/Å']
 
 new_flat = np.zeros((processed_chain[0].chain.size, 3))
 
 new_flat[:, 0] = processed_chain[1].chain.flatten()
-new_flat[:, 1] = (1 - ((get_value('vh') * processed_chain[1].chain.flatten() * tail_length) / (
+new_flat[:, 1] = (1 - ((get_value('vh') * processed_chain[1].chain.flatten()) / (
     get_value('head') * get_value('vt')))) * 100
 new_flat[:, 2] = processed_chain[2].chain.flatten()
 
