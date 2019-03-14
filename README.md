@@ -62,6 +62,41 @@ make
 
 PDF versions of the figures, can be found in the `reports/figures` directory.
 
+## Citations
+
+**Paper**: A. R. McCluskey, A. Sanchez-Fernandez, K. J. Edler, S. C. Parker, A. J. Jackson, R. A. Campbell and T. Arnold, *Phys. Chem. Chem. Phys.*, 2019, **21**(11), 6133–6141.
+**ESI**: A. R. McCluskey, A. Sanchez-Fernandez, K. J. Edler, S. C. Parker, A. J. Jackson, R. A. Campbell and T. Arnold, lipids_at_airdes (Version 1.0), http://doi.org/10.5281/zenodo.2577796.
+**Data**: A. R. McCluskey, A. Sanchez-Fernandez, K. J. Edler, S. C. Parker, A. J. Jackson, R. A. Campbell and T. Arnold, Dataset for ‘Bayesian determination of the effect of a deep eutectic solvent on the structure of lipid monolayers’, https://doi.org/10.15125/BATH-00548.
+
+### BibTeX
+
+```
+@article{lipids_at_airdes_paper, 
+    title={Bayesian determination of the effect of a deep eutectic solvent on the structure of lipid monolayers}, 
+    volume={21}, 
+    DOI={10.1039/C9CP00203K}, 
+    number={11}, 
+    journal={Phys. Chem. Chem. Phys.}, 
+    author={McCluskey, A. R. and Sanchez-Fernandez, A. and Edler, K. J. and Parker, S. C. and Jackson, A. J. and Campbell, R. A. and Arnold, T.}, 
+    year={2019}, 
+    pages={6133–6141} 
+}
+
+@misc{lipids_at_airdes_esi, 
+    title={lipids_at_airdes (Version 1.0)}, 
+    url={http://doi.org/10.5281/zenodo.2577796}, 
+    author={McCluskey, A. R. and Sanchez-Fernandez, A. and Edler, K. J. and Parker, S. C. and Jackson, A. J. and Campbell, R. A. and Arnold, T.}, 
+    year={2019} 
+}
+
+@misc{lipids_at_airdes_data, 
+    title={Dataset for “Bayesian determination of the effect of a deep eutectic solvent on the structure of lipid monolayers”}, 
+    url={https://doi.org/10.15125/BATH-00548}, 
+    author={McCluskey, A. R. and Sanchez-Fernandez, A. and Edler, K. J. and Parker, S. C. and Jackson, A. J. and Campbell, R. A. and Arnold, T.}, 
+    year={2019} 
+}
+```
+
 ## Acknowledgements
 
 A. R. M. is grateful to the University of Bath and Diamond Light Source for co-funding a studentship (Studentship Number STU0149). The authors thank the European Spallation Source and the University of Bath Alumni Fund for supporting A. S.-F.
