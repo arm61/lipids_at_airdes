@@ -65,7 +65,9 @@ PDF versions of the figures, can be found in the `reports/figures` directory.
 ## Citations
 
 **Paper**: A. R. McCluskey, A. Sanchez-Fernandez, K. J. Edler, S. C. Parker, A. J. Jackson, R. A. Campbell and T. Arnold, *Phys. Chem. Chem. Phys.*, 2019, **21**(11), 6133–6141.
+
 **ESI**: A. R. McCluskey, A. Sanchez-Fernandez, K. J. Edler, S. C. Parker, A. J. Jackson, R. A. Campbell and T. Arnold, lipids_at_airdes (Version 1.0), http://doi.org/10.5281/zenodo.2577796.
+
 **Data**: A. R. McCluskey, A. Sanchez-Fernandez, K. J. Edler, S. C. Parker, A. J. Jackson, R. A. Campbell and T. Arnold, Dataset for ‘Bayesian determination of the effect of a deep eutectic solvent on the structure of lipid monolayers’, https://doi.org/10.15125/BATH-00548.
 
 ### BibTeX
