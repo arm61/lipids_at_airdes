@@ -34,7 +34,7 @@ Requirements:
 - make
 - [REVTeX](https://journals.aps.org/revtex)
 
-The supplied Makefile, will reproduce all of the analysis, plot the figures, and build a preprint version of the paper (`reports/preprint.pdf`) when run. Be aware that the analyses within this work are non-trivial and take many hours to run so **use caution** before re-running.
+The supplied Makefile, will reproduce all of the analysis, plot the figures, and build a preprint version of the paper (`reports/paper.pdf`) when run. Be aware that the analyses within this work are non-trivial and take many hours to run so **use caution** before re-running.
 
 If you **still** want to re-run all of the analysis, please download the [experimental data zip file](https://doi.org/10.15125/BATH-00548), and unzip it (in the `lipids_at_airdes` directory) using the following command:
 
